@@ -1,0 +1,2348 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎴 Lục Hào – Bộ Luyện Tập</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Readex+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#000812;--glass:rgba(4,14,34,.78);--glass2:rgba(8,20,45,.85);--gb:rgba(80,140,255,.18);--text:#cce4f8;--muted:#3a6080;--gold:#c8a84b;--gold2:#e8cc78;--teal:#2ab8c8;--red:#e74c3c;--green:#27ae60}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:'Readex Pro',sans-serif}
+/* === SPACE BG === */
+#sf{position:fixed;inset:0;z-index:0}
+.earth-wrap{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1;pointer-events:none;width:80vmin;height:80vmin}
+.earth{width:100%;height:100%;border-radius:50%;overflow:hidden;
+  background:radial-gradient(circle at 33% 33%,#68ccf8 0%,#2880d0 35%,#1458a8 65%,#081830 100%);
+  box-shadow:inset -28px -18px 90px rgba(0,0,30,.75),inset 12px 10px 40px rgba(100,200,255,.12),0 0 90px rgba(70,150,255,.28),0 0 200px rgba(30,80,200,.12)}
+.e-land{position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(ellipse 28% 22% at 28% 28%,rgba(48,102,34,.88) 0%,transparent 100%),
+  radial-gradient(ellipse 20% 28% at 64% 62%,rgba(40,88,26,.82) 0%,transparent 100%),
+  radial-gradient(ellipse 22% 16% at 47% 50%,rgba(40,88,26,.78) 0%,transparent 100%),
+  radial-gradient(ellipse 14% 20% at 16% 66%,rgba(48,102,34,.72) 0%,transparent 100%),
+  radial-gradient(ellipse 16% 14% at 77% 28%,rgba(48,102,34,.78) 0%,transparent 100%),
+  radial-gradient(ellipse 10% 8% at 84% 14%,rgba(48,102,34,.68) 0%,transparent 100%),
+  radial-gradient(ellipse 24% 10% at 35% 82%,rgba(40,88,26,.72) 0%,transparent 100%);
+  animation:eland 80s linear infinite}
+.e-cloud{position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(ellipse 38% 9% at 58% 24%,rgba(255,255,255,.22) 0%,transparent 100%),
+  radial-gradient(ellipse 26% 6% at 22% 44%,rgba(255,255,255,.16) 0%,transparent 100%),
+  radial-gradient(ellipse 32% 7% at 76% 66%,rgba(255,255,255,.2) 0%,transparent 100%),
+  radial-gradient(ellipse 18% 5% at 42% 76%,rgba(255,255,255,.13) 0%,transparent 100%);
+  animation:ecloud 55s linear infinite reverse}
+.e-shade{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 72% 38%,transparent 30%,rgba(0,0,22,.55) 65%,rgba(0,0,22,.92) 100%)}
+.e-atm{position:absolute;inset:-4%;border-radius:50%;background:radial-gradient(circle,transparent 82%,rgba(80,160,255,.2) 92%,transparent 100%);pointer-events:none}
+@keyframes eland{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes ecloud{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+/* planets */
+#solar{position:fixed;inset:0;z-index:1;pointer-events:none}
+.orbit-ring{position:absolute;top:50%;left:50%;border-radius:50%;border:1px solid rgba(255,255,255,.05);transform:translate(-50%,-50%)}
+.p-wrap{position:fixed;top:50%;left:50%;width:0;height:0;z-index:1;pointer-events:none;animation:orb linear infinite}
+.p-body{position:absolute;border-radius:50%;animation:corb linear infinite}
+.p-ring{position:absolute;border-radius:50%;border:3px solid rgba(210,190,100,.4);transform:translate(-50%,-50%) rotateX(72deg)}
+@keyframes orb{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes corb{from{transform:rotate(0deg)}to{transform:rotate(-360deg)}}
+/* === APP UI === */
+#app{position:fixed;inset:0;z-index:10;display:flex;flex-direction:row}
+/* ── SIDEBAR ── */
+#sidebar{width:220px;flex-shrink:0;height:100vh;background:rgba(4,10,28,.94);backdrop-filter:blur(20px);border-right:1px solid rgba(80,140,255,.12);display:flex;flex-direction:column;z-index:20;transition:transform .25s}
+.sb-logo{padding:18px 16px 14px;border-bottom:1px solid rgba(80,140,255,.1);display:flex;align-items:center;gap:10px}
+.sb-logo-icon{font-family:'Noto Serif',serif;font-size:1.56rem;color:var(--gold);line-height:1}
+.sb-logo-text{font-family:'Noto Serif',serif;font-size:0.99rem;color:var(--gold);opacity:.85;line-height:1.2}
+.sb-logo-sub{font-size:0.78rem;color:var(--muted);margin-top:2px}
+.sb-section{padding:14px 10px 4px;font-size:0.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.sb-item{display:flex;align-items:center;gap:9px;padding:9px 14px;border-radius:9px;margin:2px 8px;cursor:pointer;font-size:0.92rem;color:#6a90b8;transition:all .15s;border:1px solid transparent;user-select:none}
+.sb-item:hover{background:rgba(80,140,255,.08);color:var(--text)}
+.sb-item.active{background:rgba(40,80,160,.25);color:#fff;border-color:rgba(80,140,255,.2);font-weight:600}
+.sb-item .sb-ico{font-size:1.09rem;width:22px;text-align:center;flex-shrink:0}
+.sb-item .sb-badge{margin-left:auto;background:rgba(80,140,255,.2);border-radius:8px;padding:1px 7px;font-size:0.75rem;color:#88c4f0}
+.sb-item.active .sb-badge{background:rgba(80,140,255,.35);color:var(--gold2)}
+.sb-sub{padding-left:24px}
+.sb-sub .sb-item{font-size:0.88rem;padding:7px 12px;border-radius:8px}
+.sb-expand-arrow{margin-left:auto;font-size:0.75rem;color:var(--muted);transition:transform .2s}
+.sb-expand-arrow.open{transform:rotate(90deg)}
+.sb-footer{margin-top:auto;padding:12px;border-top:1px solid rgba(80,140,255,.1)}
+/* ── HAMBURGER (mobile) ── */
+#sb-toggle{display:none;position:fixed;top:10px;left:10px;z-index:100;background:rgba(4,14,34,.9);border:1px solid rgba(80,140,255,.2);border-radius:9px;width:38px;height:38px;align-items:center;justify-content:center;cursor:pointer;font-size:1.25rem;backdrop-filter:blur(10px)}
+#sb-overlay{display:none;position:fixed;inset:0;z-index:19;background:rgba(0,0,0,.5)}
+/* ── MAIN CONTENT ── */
+#main{flex:1;overflow:hidden;display:flex;align-items:flex-start;justify-content:center;padding:0;height:100vh}
+.pane{display:none;width:100%;max-width:660px;height:100vh;overflow-y:auto;flex-direction:column;padding:12px 12px 0}
+.pane.on{display:flex}
+/* scrollbar */
+.pane::-webkit-scrollbar{width:4px}.pane::-webkit-scrollbar-track{background:transparent}.pane::-webkit-scrollbar-thumb{background:rgba(80,140,255,.3);border-radius:2px}
+/* ── top bar (user badge area only) ── */
+#topbar{display:none}
+/* Legacy tab CSS kept for compatibility */
+.tab{display:none}
+@media(max-width:768px){
+  #sidebar{position:fixed;top:0;left:0;transform:translateX(-100%);z-index:200}
+  #sidebar.open{transform:translateX(0)}
+  #sb-toggle{display:flex}
+  #sb-overlay.open{display:block}
+  #main{padding:0;height:100vh}
+  .pane{height:100vh;padding:54px 10px 0}
+}
+/* scrollbar */
+.pane::-webkit-scrollbar{width:4px}.pane::-webkit-scrollbar-track{background:transparent}.pane::-webkit-scrollbar-thumb{background:rgba(80,140,255,.3);border-radius:2px}
+/* glass card */
+.glass{background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--gb);border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.04)}
+/* HOME */
+.bank-logo{font-family:'Noto Serif',serif;text-align:center;margin:18px 0 4px;line-height:1.2}
+.bank-sub{text-align:center;color:var(--muted);font-size:1.08rem;margin-bottom:8px}
+.bank-badge{display:inline-block;background:rgba(10,20,45,.8);border:1px solid var(--gb);border-radius:100px;padding:4px 14px;font-size:1.03rem;color:var(--teal);margin-bottom:14px}
+.sec-grid{display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
+.sec-tile{background:rgba(8,18,40,.7);border-radius:11px;padding:11px 14px;border-left:3px solid;cursor:pointer;transition:all .18s;display:flex;align-items:center;gap:10px}
+.sec-tile:hover{background:rgba(20,40,80,.7);transform:translateX(3px)}
+.sec-tile .si{font-size:1.71rem;flex-shrink:0}
+.sec-tile .sn{font-size:1.19rem;font-weight:600;flex:1}
+.sec-tile .sc{font-size:0.99rem;color:var(--muted);text-align:right}
+.btn-main{display:block;width:100%;background:linear-gradient(135deg,#0e2840,#1a5090);color:#fff;border:1px solid rgba(80,140,255,.4);border-radius:12px;padding:13px;font-size:1.27rem;font-family:'Readex Pro',sans-serif;font-weight:700;cursor:pointer;margin-bottom:8px;transition:all .2s}
+.btn-main:hover{filter:brightness(1.15)}
+.btn-review{display:none;width:100%;background:rgba(60,10,90,.6);color:#cc99ff;border:1px solid rgba(140,60,200,.4);border-radius:12px;padding:12px;font-size:1.19rem;font-family:'Readex Pro',sans-serif;font-weight:700;cursor:pointer;margin-bottom:6px;transition:all .2s}
+.btn-review:hover{background:rgba(80,20,120,.7)}
+.w-count{display:inline-block;background:#9b59b6;color:#fff;border-radius:20px;padding:1px 9px;font-size:1.01rem;margin-left:7px;font-weight:800;vertical-align:middle}
+.btn-clear{background:none;border:none;color:var(--muted);font-size:0.99rem;cursor:pointer;text-decoration:underline;font-family:'Readex Pro',sans-serif;margin-bottom:10px}
+/* GAME */
+.ghead{position:sticky;top:-12px;z-index:5;background:rgba(4,14,34,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--gb);padding:9px 14px;border-radius:12px 12px 0 0;margin-bottom:10px;margin-top:-12px}
+.ghead-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
+.xp-wrap{display:flex;align-items:center;gap:7px}
+.xp-bg{width:90px;height:5px;background:#0e2030;border-radius:3px;overflow:hidden}
+.xp-bar{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width .4s}
+.xp-val{font-size:0.99rem;color:var(--gold);font-weight:600}
+.streak{font-size:1.05rem;font-weight:700;color:#f39c12}
+.prog-bg{height:4px;background:#0e2030;border-radius:2px;overflow:hidden}
+.prog-bar{height:100%;background:linear-gradient(90deg,var(--teal),var(--gold2));transition:width .5s}
+.sec-lbl{font-size:0.99rem;color:var(--muted);margin-top:5px}
+.qcard{background:rgba(8,18,42,.8);border:1px solid var(--gb);border-radius:13px;padding:16px;margin-bottom:10px}
+.qmeta{display:flex;justify-content:space-between;margin-bottom:8px}
+.qnum{font-size:0.99rem;color:var(--muted)}
+.qbadge{font-size:0.9rem;border-radius:5px;padding:2px 8px;font-weight:700}
+.qtext{font-size:1.27rem;line-height:1.7}
+.qtext b{color:var(--gold)}
+.opts{display:flex;flex-direction:column;gap:7px;margin-bottom:10px}
+.opt{background:rgba(10,22,48,.85);border:1px solid rgba(60,100,160,.3);border-radius:11px;padding:12px 14px;cursor:pointer;font-size:1.19rem;line-height:1.5;text-align:left;display:flex;gap:9px;transition:all .15s;color:var(--text);font-family:'Readex Pro',sans-serif;width:100%}
+.opt .ltr{font-weight:700;color:var(--gold);min-width:18px;font-family:'Noto Serif',serif;flex-shrink:0}
+.opt:hover{border-color:rgba(100,180,255,.5);background:rgba(20,40,80,.8)}
+.opt.correct{background:#0a2015!important;border-color:#27ae60!important;color:#7dff9a!important}
+.opt.correct .ltr{color:#27ae60}
+.opt.wrong{background:#220a0a!important;border-color:var(--red)!important;color:#ff8888!important}
+.opt.wrong .ltr{color:var(--red)}
+.exbox{display:none;border-radius:11px;overflow:hidden;margin-bottom:10px;animation:exin .3s ease}
+.exbox.show{display:block}
+@keyframes exin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.exhdr{padding:9px 14px;font-size:0.99rem;font-weight:700;display:flex;align-items:center;gap:6px}
+.exbody{background:rgba(8,18,42,.9);border:1px solid var(--gb);border-top:none;border-radius:0 0 11px 11px;padding:12px 14px}
+.exright{font-size:1.11rem;line-height:1.8;color:#9be0ec;margin-bottom:7px}
+.exright b,.exwhy{color:var(--gold2)}
+.exwhy{font-size:1.11rem;line-height:1.8;color:#b0d8f0;margin-bottom:7px}
+.exwhy b{color:var(--gold2)}
+.exwrong{font-size:1.03rem;color:var(--muted);border-top:1px solid rgba(60,100,160,.2);padding-top:7px;margin-top:2px;line-height:1.75}
+.exrule{font-size:1.05rem;color:#88b8d8;margin-bottom:6px;padding-bottom:6px;border-bottom:1px solid rgba(60,100,160,.2)}
+.btn-next{display:none;width:100%;background:linear-gradient(135deg,#0d2a0a,#1e5c14);color:#fff;border:none;border-radius:11px;padding:13px;font-size:1.24rem;font-family:'Readex Pro',sans-serif;font-weight:600;cursor:pointer;margin-bottom:12px}
+.btn-next.show{display:block}
+.btn-next:hover{filter:brightness(1.1)}
+.xppop{position:fixed;top:64px;right:16px;font-size:1.48rem;font-weight:800;color:var(--gold);pointer-events:none;z-index:999;animation:xfpop .8s ease forwards}
+@keyframes xfpop{0%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-50px) scale(1.3)}}
+/* END */
+.end-wrap{padding:20px 4px;text-align:center}
+.end-medals{font-size:3.44rem;margin-bottom:8px}
+.end-title{font-family:'Noto Serif',serif;font-size:2.65rem;color:var(--gold);margin-bottom:6px}
+.end-score{font-size:4.49rem;font-weight:800;background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.1}
+.end-det{color:var(--muted);font-size:1.16rem;margin:6px 0 4px}
+.end-rnote{font-size:1.08rem;min-height:1.2em;margin-bottom:12px}
+.sec-res{margin-bottom:14px}
+.sr-row{background:rgba(8,18,42,.8);border:1px solid var(--gb);border-radius:9px;padding:9px 13px;margin-bottom:5px;display:flex;justify-content:space-between;align-items:center;font-size:1.13rem}
+.sr-score{font-weight:700;color:var(--gold)}
+.end-btns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.btn-retry{background:rgba(8,18,42,.8);border:1px solid var(--gb);color:var(--text);border-radius:10px;padding:10px 20px;font-size:1.16rem;font-family:'Readex Pro',sans-serif;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-retry:hover{background:rgba(20,40,80,.8)}
+/* === ADMIN === */
+.admin-login{padding:30px 20px;text-align:center}
+.admin-head{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.admin-tabs{display:flex;gap:6px;margin-bottom:14px;background:rgba(4,10,28,.6);padding:5px;border-radius:10px}
+.atab{flex:1;background:none;border:none;color:var(--muted);font-family:'Readex Pro',sans-serif;font-size:1.08rem;font-weight:600;cursor:pointer;padding:8px 6px;border-radius:7px;transition:all .15s}
+.atab.active{background:rgba(40,80,160,.5);color:#fff}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center}
+.srch{flex:1;min-width:140px;background:rgba(8,18,42,.8);border:1px solid var(--gb);border-radius:8px;padding:8px 11px;color:var(--text);font-family:'Readex Pro',sans-serif;font-size:1.11rem;outline:none}
+.fsel{background:rgba(8,18,42,.8);border:1px solid var(--gb);border-radius:8px;padding:8px 10px;color:var(--text);font-family:'Readex Pro',sans-serif;font-size:1.08rem;outline:none;cursor:pointer}
+.btn-add{background:linear-gradient(135deg,#1e4a1e,var(--green));color:#fff;border:none;border-radius:8px;padding:8px 14px;font-size:1.11rem;font-family:'Readex Pro',sans-serif;font-weight:700;cursor:pointer;white-space:nowrap}
+.btn-rst{background:rgba(8,18,42,.8);border:1px solid var(--gb);color:var(--muted);border-radius:8px;padding:8px 12px;font-size:1.08rem;font-family:'Readex Pro',sans-serif;cursor:pointer;transition:all .2s}
+.btn-rst:hover{border-color:var(--red);color:var(--red)}
+.astats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
+.astat{background:rgba(8,18,42,.8);border:1px solid var(--gb);border-radius:10px;padding:10px 12px}
+.asv{font-size:2.34rem;font-weight:800;color:var(--gold)}
+.asl{font-size:0.99rem;color:var(--muted);margin-top:2px}
+.qtbl{width:100%;border-collapse:collapse;font-size:1.1rem}
+.qtbl th{background:rgba(12,24,52,.9);font-size:0.94rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);padding:8px 10px;text-align:left;border-bottom:1px solid var(--gb)}
+.qtbl td{padding:8px 10px;border-bottom:1px solid rgba(20,40,80,.5);vertical-align:middle}
+.qtbl tr:hover td{background:rgba(16,32,64,.5)}
+.qtxt{max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bdg{display:inline-block;border-radius:5px;padding:2px 7px;font-size:0.9rem;font-weight:600;white-space:nowrap}
+.ans{display:inline-block;background:#1e3a1e;color:#6ddc94;border-radius:5px;padding:2px 8px;font-size:0.94rem;font-weight:700;min-width:26px;text-align:center}
+.acts{display:flex;gap:5px}
+.be{background:#1e2a42;border:1px solid rgba(60,100,160,.4);color:#8aafe0;border-radius:6px;padding:4px 9px;font-size:0.99rem;cursor:pointer;font-family:'Readex Pro',sans-serif}
+.be:hover{border-color:#4a8fd4;color:#fff}
+.bd{background:#2a1010;border:1px solid rgba(120,40,40,.4);color:#e07070;border-radius:6px;padding:4px 9px;font-size:0.99rem;cursor:pointer;font-family:'Readex Pro',sans-serif}
+.bd:hover{border-color:var(--red);color:#fff}
+/* === MODAL === */
+.mo-ov{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;display:none;align-items:center;justify-content:center;padding:14px}
+.mo-ov.open{display:flex}
+.mo-box{background:rgba(8,16,36,.96);border:1px solid var(--gb);border-radius:15px;width:100%;max-width:600px;max-height:90vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,.7)}
+.mo-head{display:flex;justify-content:space-between;align-items:center;padding:15px 20px;border-bottom:1px solid var(--gb);position:sticky;top:0;background:rgba(8,16,36,.97);z-index:1}
+.mo-title{font-size:1.27rem;font-weight:700}
+.mo-close{background:none;border:none;color:var(--muted);font-size:1.71rem;cursor:pointer;padding:0 4px;line-height:1}
+.mo-close:hover{color:var(--text)}
+.mo-body{padding:18px 20px}
+.mo-foot{display:flex;justify-content:flex-end;gap:9px;padding:13px 20px;border-top:1px solid var(--gb);position:sticky;bottom:0;background:rgba(8,16,36,.97)}
+.fr{margin-bottom:14px}
+.fr label{display:block;font-size:0.99rem;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.05em}
+.fr textarea,.fr input[type=text],.fr select{width:100%;background:rgba(4,10,28,.9);border:1px solid var(--gb);border-radius:8px;padding:9px 11px;color:var(--text);font-family:'Readex Pro',sans-serif;font-size:1.13rem;outline:none;resize:vertical;transition:border-color .2s}
+.fr textarea{min-height:60px}
+.fr textarea:focus,.fr input:focus,.fr select:focus{border-color:#4a8fd4}
+.fr2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.og{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.oi{display:flex;align-items:center;gap:7px;background:rgba(4,10,28,.9);border:1px solid var(--gb);border-radius:8px;padding:7px 9px;transition:border-color .2s}
+.oi.sel{border-color:var(--green)}
+.oi input[type=radio]{accent-color:var(--green);cursor:pointer;flex-shrink:0}
+.oi input[type=text]{background:none;border:none;padding:0;flex:1;font-size:1.11rem;color:var(--text);font-family:'Readex Pro',sans-serif;outline:none}
+.ol{font-family:'Noto Serif',serif;font-weight:700;color:var(--gold);min-width:15px;font-size:1.19rem}
+.btn-sv{background:linear-gradient(135deg,#1e4a1e,var(--green));color:#fff;border:none;border-radius:8px;padding:9px 22px;font-size:1.13rem;font-family:'Readex Pro',sans-serif;font-weight:700;cursor:pointer}
+.btn-cn{background:rgba(10,20,45,.8);border:1px solid var(--gb);color:var(--muted);border-radius:8px;padding:9px 18px;font-size:1.13rem;font-family:'Readex Pro',sans-serif;cursor:pointer}
+/* === TOAST === */
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(70px);background:rgba(10,40,20,.95);border:1px solid var(--green);color:#6ddc94;border-radius:9px;padding:9px 20px;font-size:1.13rem;font-weight:600;z-index:500;transition:transform .3s;white-space:nowrap;pointer-events:none}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.toast.err{background:rgba(40,10,10,.95);border-color:var(--red);color:#ff9999}
+/* fields */
+.fi{margin-bottom:13px}
+.fi label{display:block;font-size:0.99rem;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.05em}
+.fi input{width:100%;background:rgba(4,10,28,.9);border:1px solid var(--gb);border-radius:9px;padding:11px 13px;color:var(--text);font-family:'Readex Pro',sans-serif;font-size:1.19rem;outline:none}
+.fi input:focus{border-color:#4a8fd4}
+.err-msg{color:#ff6b6b;font-size:1.03rem;text-align:center;margin-top:9px;min-height:1em}
+@media(max-width:600px){
+  .astats{grid-template-columns:repeat(2,1fr)}
+  .og,.fr2{grid-template-columns:1fr}
+  .tab{padding:6px 8px;font-size:1.03rem}
+  .logo-tab{display:none}
+}
+/* === FEEDBACK === */
+.star-row{display:flex;gap:6px;justify-content:center;margin:8px 0}
+.star{font-size:2.08rem;cursor:pointer;transition:transform .12s,filter .12s;line-height:1;user-select:none}
+.star:hover,.star.lit{filter:drop-shadow(0 0 6px rgba(240,200,80,.7))}
+.star.lit{transform:scale(1.12)}
+.fb-tag{background:rgba(20,40,80,.6);border:1px solid rgba(80,140,255,.2);border-radius:20px;padding:5px 12px;font-size:0.88rem;cursor:pointer;color:var(--muted);transition:all .15s;font-family:'Readex Pro',sans-serif}
+.fb-tag.on{background:rgba(40,80,160,.45);border-color:rgba(80,140,255,.55);color:var(--text)}
+.fb-tag:hover{border-color:rgba(80,140,255,.45)}
+.fb-textarea{width:100%;background:rgba(4,10,28,.85);border:1px solid var(--gb);border-radius:10px;padding:10px 12px;color:var(--text);font-family:'Readex Pro',sans-serif;font-size:0.94rem;resize:vertical;outline:none;min-height:80px;transition:border-color .2s}
+.fb-textarea:focus{border-color:#4a8fd4}
+.fb-card{background:rgba(8,18,42,.7);border:1px solid var(--gb);border-radius:12px;padding:12px 14px;margin-bottom:8px}
+.fb-meta{font-size:0.81rem;color:var(--muted);margin-bottom:4px}
+.fb-stars-small{color:#f0c94b;font-size:0.99rem;letter-spacing:1px}
+.fb-body{font-size:0.92rem;color:var(--text);line-height:1.6;margin-top:4px}
+.fb-tags-row{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.fb-tag-sm{background:rgba(40,80,160,.3);border-radius:20px;padding:2px 9px;font-size:0.78rem;color:#88c4f0}
+/* mini inline feedback at end of quiz */
+.mini-fb{background:rgba(6,14,36,.85);border:1px solid rgba(80,140,255,.2);border-radius:14px;padding:14px;margin-top:10px;margin-bottom:10px}
+.mini-fb-title{font-size:0.92rem;color:var(--muted);margin-bottom:8px;text-align:center}
+.mini-star{font-size:1.77rem;cursor:pointer;transition:transform .1s;user-select:none;line-height:1}
+.mini-star.lit{transform:scale(1.15);filter:drop-shadow(0 0 4px rgba(240,200,80,.6))}
+.mini-fb-sent{text-align:center;padding:8px 0;font-size:0.92rem;color:#6ddc94}
+#login-screen{position:fixed;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,4,18,.6);backdrop-filter:blur(10px)}
+#login-screen.hidden{display:none}
+.lcard{background:rgba(6,12,32,.96);border:1px solid rgba(80,140,255,.22);border-radius:22px;padding:32px 26px 26px;width:100%;max-width:380px;box-shadow:0 32px 100px rgba(0,0,0,.85),inset 0 0 0 1px rgba(255,255,255,.04);text-align:center}
+.lcard-logo{font-family:'Noto Serif',serif;font-size:2.64rem;color:var(--gold);text-shadow:0 0 40px rgba(200,168,75,.4);margin-bottom:6px;line-height:1.1}
+.lcard-tagline{font-family:'Noto Serif',serif;font-size:0.94rem;color:rgba(200,170,75,.55);margin-bottom:4px}
+.lcard-sub{color:var(--muted);font-size:0.88rem;margin-bottom:22px;line-height:1.5}
+.ldivider{display:flex;align-items:center;gap:10px;margin:16px 0;color:var(--muted);font-size:0.81rem}
+.ldivider::before,.ldivider::after{content:'';flex:1;height:1px;background:rgba(80,140,255,.15)}
+.btn-google{width:100%;background:rgba(255,255,255,.95);border:none;border-radius:11px;padding:12px 16px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;font-family:'Readex Pro',sans-serif;font-size:0.94rem;font-weight:700;color:#1f1f2e;transition:all .2s;box-shadow:0 2px 12px rgba(0,0,0,.35)}
+.btn-google:hover{background:#fff;transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,0,0,.45)}
+.btn-guest{width:100%;background:rgba(16,32,70,.7);border:1px solid rgba(80,140,255,.22);border-radius:11px;padding:12px 16px;cursor:pointer;font-family:'Readex Pro',sans-serif;font-size:0.94rem;font-weight:600;color:#88c4f0;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:9px}
+.btn-guest:hover{background:rgba(24,48,100,.8);border-color:rgba(80,140,255,.45);transform:translateY(-2px)}
+.lgoogle-note{font-size:0.78rem;color:var(--muted);margin-top:10px;line-height:1.6}
+.lgoogle-note a{color:#88c4f0;text-decoration:none}
+.lsaved-section{margin-top:20px;border-top:1px solid rgba(80,140,255,.1);padding-top:16px;text-align:left}
+.lsaved-title{font-size:0.81rem;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em}
+.su-item{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:9px;cursor:pointer;transition:background .15s;border:1px solid transparent}
+.su-item:hover{background:rgba(80,140,255,.08);border-color:rgba(80,140,255,.15)}
+.su-name{font-size:0.88rem;color:var(--text);flex:1}
+.su-sub{font-size:0.78rem;color:var(--muted)}
+.su-del{background:none;border:none;color:rgba(220,90,90,.4);cursor:pointer;font-size:1.04rem;padding:3px 5px;line-height:1;border-radius:5px}
+.su-del:hover{background:rgba(220,90,90,.1);color:#e74c3c}
+/* User badge in tabbar */
+.user-badge{display:flex;align-items:center;gap:6px;margin-left:auto;cursor:pointer;padding:4px 9px;border-radius:8px;transition:background .2s;position:relative;flex-shrink:0}
+.user-badge:hover{background:rgba(80,140,255,.12)}
+.u-avatar{width:26px;height:26px;border-radius:50%;object-fit:cover;border:1px solid rgba(80,140,255,.35)}
+.u-letter{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#243a7a,#162a58);border:1px solid rgba(80,140,255,.35);display:flex;align-items:center;justify-content:center;font-size:0.81rem;font-weight:700;color:#88c4f0;flex-shrink:0}
+.u-name{font-size:0.84rem;color:var(--text);max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.u-guest-badge{font-size:0.78rem;background:rgba(40,80,160,.4);color:#7090cc;border:1px solid rgba(60,100,180,.3);border-radius:5px;padding:1px 6px;margin-left:2px}
+/* User popup menu */
+.upop{position:absolute;top:54px;right:0;background:rgba(6,14,36,.98);border:1px solid rgba(80,140,255,.22);border-radius:14px;padding:16px 14px 12px;min-width:230px;z-index:400;box-shadow:0 16px 60px rgba(0,0,0,.75);animation:popIn .18s ease}
+@keyframes popIn{from{opacity:0;transform:translateY(-8px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.upop-avatar{width:44px;height:44px;border-radius:50%;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:1.35rem;background:linear-gradient(135deg,#243a7a,#162a58);border:1px solid rgba(80,140,255,.3)}
+.upop-name{font-size:0.94rem;font-weight:700;color:var(--text);margin-bottom:2px}
+.upop-email{font-size:0.78rem;color:var(--muted);margin-bottom:14px;word-break:break-all}
+.upop-sep{height:1px;background:rgba(80,140,255,.1);margin:8px 0}
+.upop-btn{width:100%;background:none;border:none;border-radius:8px;padding:8px 10px;color:var(--text);font-family:'Readex Pro',sans-serif;font-size:0.88rem;cursor:pointer;text-align:left;display:flex;align-items:center;gap:9px;transition:background .15s}
+.upop-btn:hover{background:rgba(80,140,255,.1)}
+.upop-btn.danger{color:#ff8888}
+.upop-btn.danger:hover{background:rgba(200,60,60,.12)}
+
+</style>
+</head>
+<body>
+<canvas id="sf"></canvas>
+<div class="earth-wrap">
+  <div class="earth">
+    <div class="e-land"></div>
+    <div class="e-cloud"></div>
+    <div class="e-shade"></div>
+  </div>
+  <div class="e-atm"></div>
+</div>
+<div id="solar"></div>
+
+<!-- LOGIN SCREEN -->
+<div id="login-screen">
+  <div class="lcard">
+    <div class="lcard-logo">🎴 Lục Hào</div>
+    <div class="lcard-tagline">Kinh Dịch · Luyện Tập</div>
+    <div class="lcard-sub">Đăng nhập để theo dõi tiến độ học tập của bạn</div>
+
+    <button class="btn-google" onclick="triggerGoogleLogin()">
+      <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.08 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-3.59-13.46-8.88l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+      Đăng nhập với Google
+    </button>
+
+    <div class="ldivider">hoặc</div>
+
+    <button class="btn-guest" onclick="loginGuest()">
+      👤 Tiếp tục với Guest
+    </button>
+
+    <p class="lgoogle-note">
+      Google Sign-In yêu cầu cấu hình <a href="#" onclick="showGoogleSetup();return false">Client ID</a> trong Admin.<br>
+      Dữ liệu lưu trên thiết bị của bạn.
+    </p>
+
+    <div class="lsaved-section" id="lsaved" style="display:none">
+      <div class="lsaved-title">Tài khoản đã dùng trên máy này</div>
+      <div id="lsaved-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Hamburger toggle (mobile) -->
+<button id="sb-toggle" onclick="toggleSidebar()">☰</button>
+<div id="sb-overlay" onclick="closeSidebar()"></div>
+
+<div id="app">
+  <!-- LEFT SIDEBAR -->
+  <nav id="sidebar">
+    <div class="sb-logo">
+      <div class="sb-logo-icon">🎴</div>
+      <div><div class="sb-logo-text">Lục Hào</div><div class="sb-logo-sub">Kinh Dịch · Luyện Tập</div></div>
+    </div>
+
+    <div style="flex:1;overflow-y:auto;padding-bottom:8px">
+      <!-- Home -->
+      <div class="sb-section">Tổng quan</div>
+      <div class="sb-item" id="nav-home" onclick="sw('home')">
+        <span class="sb-ico">🏠</span>Trang chủ
+      </div>
+
+      <!-- Luyện tập group -->
+      <div class="sb-section">Luyện tập</div>
+      <div class="sb-item" id="nav-dc" onclick="sw('dc')">
+        <span class="sb-ico">🎯</span>12 Địa Chi
+        <span class="sb-badge" id="sb-badge-dc"></span>
+      </div>
+      <div class="sb-item" id="nav-dt" onclick="sw('dt')">
+        <span class="sb-ico">🔮</span>Dụng Thần
+        <span class="sb-badge" id="sb-badge-dt"></span>
+      </div>
+      <div class="sb-item" id="nav-vs" onclick="sw('vs')">
+        <span class="sb-ico">⚡</span>Vượng Suy
+        <span class="sb-badge" id="sb-badge-vs"></span>
+      </div>
+      <div class="sb-item" id="nav-report" onclick="sw('report')">
+        <span class="sb-ico">📊</span>Báo cáo
+      </div>
+      <div class="sb-item" id="nav-feedback" onclick="sw('feedback')">
+        <span class="sb-ico">💬</span>Góp ý
+      </div>
+
+      <!-- Phần mềm group -->
+      <div class="sb-section">Phần mềm</div>
+      <div class="sb-item" id="nav-software" onclick="sw('software')">
+        <span class="sb-ico">🔮</span>Gieo & Luận quẻ
+        <span class="sb-badge" style="background:rgba(40,160,100,.2);color:#6ddc94">Soon</span>
+      </div>
+
+      <!-- Admin -->
+      <div class="sb-section">Quản trị</div>
+      <div class="sb-item" id="nav-admin" onclick="sw('admin')">
+        <span class="sb-ico">⚙️</span>Admin
+      </div>
+    </div>
+
+    <!-- User section at bottom -->
+    <div class="sb-footer">
+      <div class="sb-item" id="user-badge" onclick="toggleUserPopup(event)" style="margin:0;border-radius:10px;cursor:pointer">
+        <div class="u-letter" id="u-avatar-letter" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#243a7a,#162a58);display:flex;align-items:center;justify-content:center;font-size:0.88rem;font-weight:700;color:#88c4f0;flex-shrink:0;pointer-events:none">?</div>
+        <div style="flex:1;min-width:0;pointer-events:none">
+          <div class="u-name" id="u-name-label" style="font-size:0.88rem;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">—</div>
+          <div style="font-size:0.78rem;color:var(--muted)">Tài khoản</div>
+        </div>
+        <span style="font-size:0.84rem;color:var(--muted);pointer-events:none" id="upop-arrow">▴</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- User popup: OUTSIDE sidebar to prevent event bubbling issues -->
+  <div class="upop" id="upop" style="display:none;position:fixed;bottom:76px;left:12px;width:208px;min-width:unset;top:auto;right:auto;z-index:600">
+    <div style="text-align:center;margin-bottom:4px">
+      <div class="upop-avatar" id="upop-avatar">👤</div>
+      <div class="upop-name" id="upop-name"></div>
+      <div class="upop-email" id="upop-email"></div>
+    </div>
+    <div class="upop-sep"></div>
+    <button class="upop-btn" onclick="closeUpop();sw('report')">📊 Xem báo cáo của tôi</button>
+    <button class="upop-btn" onclick="closeUpop();switchUser()">🔄 Đổi tài khoản</button>
+    <div class="upop-sep"></div>
+    <button class="upop-btn danger" onclick="closeUpop();logoutUser()">⏻ Đăng xuất</button>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div id="main">
+    <div class="pane" id="pane-home"></div>
+    <div class="pane on" id="pane-dc"></div>
+    <div class="pane" id="pane-dt"></div>
+    <div class="pane" id="pane-vs"></div>
+    <div class="pane" id="pane-report"></div>
+    <div class="pane" id="pane-feedback"></div>
+    <div class="pane" id="pane-software"></div>
+    <div class="pane" id="pane-admin"></div>
+  </div>
+</div>
+<div class="mo-ov" id="mo">
+  <div class="mo-box">
+    <div class="mo-head">
+      <span class="mo-title" id="moT">Câu hỏi</span>
+      <button class="mo-close" onclick="closeMo()">×</button>
+    </div>
+    <div class="mo-body" id="moB"></div>
+    <div class="mo-foot">
+      <button class="btn-cn" onclick="closeMo()">Hủy</button>
+      <button class="btn-sv" onclick="saveQ()">💾 Lưu câu hỏi</button>
+    </div>
+  </div>
+</div>
+<div id="toast" class="toast"></div>
+<script>
+
+const DC_SECS=[{n:'Nhận biết 12 Địa Chi',c:'#e74c3c',i:'🎯'},{n:'Ngũ hành',c:'#3498db',i:'🌊'},{n:'Tam hợp',c:'#2ecc71',i:'🔺'},{n:'Nhị hợp',c:'#9b59b6',i:'💞'},{n:'Nhị xung',c:'#f39c12',i:'⚡'},{n:'Nhập mộ',c:'#7f8c8d',i:'🏛️'},{n:'Tương hại',c:'#e67e22',i:'⚠️'},{n:'Tương hình',c:'#1abc9c',i:'🔮'},{n:'Ngũ hành sinh khắc',c:'#d35400',i:'☯️'}];
+const DT_LT=[{n:'Phụ Mẫu',h:'父母',c:'#3498db',i:'📜'},{n:'Tử Tôn',h:'子孫',c:'#2ecc71',i:'🌿'},{n:'Thê Tài',h:'妻財',c:'#f39c12',i:'💰'},{n:'Quan Quỷ',h:'官鬼',c:'#9b59b6',i:'⚖️'},{n:'Huynh Đệ',h:'兄弟',c:'#e74c3c',i:'🤝'}];
+const VS_SECS=[{n:'Phần I – Xét Vượng/Suy',c:'#e74c3c',i:'⚡'},{n:'Phần II – Gọi tên quan hệ',c:'#3498db',i:'📖'},{n:'Phần III – Tính điểm Căn Lực',c:'#2ecc71',i:'🔢'}];
+const DT_TYPES=['Nhận diện','Dụng thần','Tình huống'];
+const CKEY='lh_admin_creds';
+
+const DC_DEF=[
+{id:"dc0",s:0,q:"Thứ tự đúng của 12 địa chi là:",o:["Tý, Sửu, Dần, Mão, Thìn, Tị, Ngọ, Mùi, Thân, Dậu, Tuất, Hợi","Tý, Dần, Sửu, Mão, Thìn, Tị, Ngọ, Mùi, Thân, Dậu, Tuất, Hợi","Tý, Sửu, Mão, Dần, Thìn, Tị, Ngọ, Mùi, Thân, Dậu, Tuất, Hợi","Tý, Sửu, Dần, Mão, Tị, Thìn, Ngọ, Mùi, Thân, Dậu, Tuất, Hợi"],a:0,e:"Chuỗi: Tý(1)→Sửu(2)→Dần(3)→Mão(4)→Thìn(5)→Tị(6)→Ngọ(7)→Mùi(8)→Thân(9)→Dậu(10)→Tuất(11)→Hợi(12)."},
+{id:"dc1",s:0,q:"Địa chi đứng ngay sau Tý là:",o:["Dần","Sửu","Hợi","Mão"],a:1,e:"Tý là số 1, ngay sau là Sửu số 2."},
+{id:"dc2",s:0,q:"Địa chi đứng ngay trước Ngọ là:",o:["Tị","Thìn","Mùi","Dần"],a:0,e:"Ngọ là số 7, ngay trước là Tị số 6."},
+{id:"dc3",s:0,q:"Địa chi đứng cuối cùng trong vòng 12 chi là:",o:["Tuất","Dậu","Hợi","Sửu"],a:2,e:"Hợi là số 12, cuối vòng."},
+{id:"dc4",s:0,q:"Địa chi đứng thứ 5 tính từ Tý là:",o:["Mão","Thìn","Tị","Dần"],a:1,e:"Tý(1)→Sửu(2)→Dần(3)→Mão(4)→Thìn(5)."},
+{id:"dc5",s:0,q:"Địa chi nằm giữa Dần và Thìn là:",o:["Mão","Sửu","Tị","Ngọ"],a:0,e:"Dần(3)→Mão(4)→Thìn(5)."},
+{id:"dc6",s:0,q:"Từ Tý đếm thuận 6 chi thì đến:",o:["Tị","Ngọ","Mùi","Thân"],a:1,e:"Từ Tý 6 bước: Sửu→Dần→Mão→Thìn→Tị→Ngọ."},
+{id:"dc7",s:0,q:"Từ Hợi lùi 2 chi thì đến:",o:["Dậu","Tuất","Thân","Sửu"],a:0,e:"Hợi(12) lùi 1=Tuất(11), lùi 2=Dậu(10)."},
+{id:"dc8",s:0,q:"Cặp chi mở đầu và kết thúc vòng 12 chi là:",o:["Tý – Tuất","Sửu – Hợi","Tý – Hợi","Dần – Hợi"],a:2,e:"Tý(1) mở đầu và Hợi(12) kết thúc."},
+{id:"dc9",s:0,q:"Địa chi đứng ngay sau Mùi là:",o:["Thân","Dậu","Ngọ","Tuất"],a:0,e:"Mùi(8), ngay sau là Thân(9)."},
+{id:"dc10",s:1,q:"Tý thuộc hành nào?",o:["Kim","Mộc","Thủy","Hỏa"],a:2,e:"Tý = Thủy. Thủy=Tý+Hợi, Mộc=Dần+Mão, Hỏa=Tị+Ngọ, Kim=Thân+Dậu, Thổ=Sửu+Thìn+Mùi+Tuất."},
+{id:"dc11",s:1,q:"Sửu thuộc hành nào?",o:["Thổ","Kim","Mộc","Thủy"],a:0,e:"Sửu = Thổ. Bốn chi Thổ: Sửu, Thìn, Mùi, Tuất."},
+{id:"dc12",s:1,q:"Dần thuộc hành nào?",o:["Hỏa","Mộc","Kim","Thổ"],a:1,e:"Dần = Mộc (cùng Mão, mùa Xuân)."},
+{id:"dc13",s:1,q:"Mão thuộc hành nào?",o:["Mộc","Thủy","Hỏa","Thổ"],a:0,e:"Mão = Mộc (cùng Dần, mùa Xuân)."},
+{id:"dc14",s:1,q:"Thìn thuộc hành nào?",o:["Thủy","Kim","Thổ","Hỏa"],a:2,e:"Thìn = Thổ. Một trong bốn chi Thổ."},
+{id:"dc15",s:1,q:"Tị thuộc hành nào?",o:["Kim","Mộc","Hỏa","Thổ"],a:2,e:"Tị = Hỏa (cùng Ngọ, mùa Hạ)."},
+{id:"dc16",s:1,q:"Ngọ thuộc hành nào?",o:["Hỏa","Kim","Thủy","Mộc"],a:0,e:"Ngọ = Hỏa (cùng Tị, mùa Hạ)."},
+{id:"dc17",s:1,q:"Thân thuộc hành nào?",o:["Mộc","Kim","Hỏa","Thủy"],a:1,e:"Thân = Kim (cùng Dậu, mùa Thu)."},
+{id:"dc18",s:1,q:"Dậu thuộc hành nào?",o:["Kim","Mộc","Thủy","Hỏa"],a:0,e:"Dậu = Kim (cùng Thân, mùa Thu)."},
+{id:"dc19",s:1,q:"Hợi thuộc hành nào?",o:["Thổ","Hỏa","Thủy","Mộc"],a:2,e:"Hợi = Thủy (cùng Tý, đầu và cuối vòng)."},
+{id:"dc20",s:2,q:"Tý thuộc tam hợp với hai chi nào?",o:["Thân, Thìn","Sửu, Hợi","Ngọ, Tuất","Mão, Mùi"],a:0,e:"Thân–Tý–Thìn hợp Thủy cục. Bốn bộ: Thân-Tý-Thìn(Thủy), Hợi-Mão-Mùi(Mộc), Dần-Ngọ-Tuất(Hỏa), Tị-Dậu-Sửu(Kim)."},
+{id:"dc21",s:2,q:"Sửu thuộc tam hợp với hai chi nào?",o:["Tị, Dậu","Tý, Hợi","Mão, Mùi","Dần, Ngọ"],a:0,e:"Tị–Dậu–Sửu hợp Kim cục."},
+{id:"dc22",s:2,q:"Dần thuộc tam hợp với hai chi nào?",o:["Hợi, Mão","Ngọ, Tuất","Tị, Dậu","Thân, Tý"],a:1,e:"Dần–Ngọ–Tuất hợp Hỏa cục."},
+{id:"dc23",s:2,q:"Mão thuộc tam hợp với hai chi nào?",o:["Hợi, Mùi","Dần, Tuất","Tị, Sửu","Thân, Thìn"],a:0,e:"Hợi–Mão–Mùi hợp Mộc cục."},
+{id:"dc24",s:2,q:"Thìn thuộc tam hợp với hai chi nào?",o:["Dậu, Sửu","Thân, Tý","Hợi, Mão","Dần, Ngọ"],a:1,e:"Thân–Tý–Thìn hợp Thủy cục."},
+{id:"dc25",s:2,q:"Tị thuộc tam hợp với hai chi nào?",o:["Dậu, Sửu","Tý, Thìn","Hợi, Mùi","Dần, Tuất"],a:0,e:"Tị–Dậu–Sửu hợp Kim cục."},
+{id:"dc26",s:2,q:"Ngọ thuộc tam hợp với hai chi nào?",o:["Tị, Mùi","Dần, Tuất","Hợi, Mão","Tý, Thân"],a:1,e:"Dần–Ngọ–Tuất hợp Hỏa cục."},
+{id:"dc27",s:2,q:"Mùi thuộc tam hợp với hai chi nào?",o:["Hợi, Mão","Tị, Dậu","Dần, Tuất","Tý, Thìn"],a:0,e:"Hợi–Mão–Mùi hợp Mộc cục."},
+{id:"dc28",s:2,q:"Bộ nào dưới đây là tam hợp Thủy cục?",o:["Thân – Tý – Thìn","Hợi – Mão – Mùi","Dần – Ngọ – Tuất","Tị – Dậu – Sửu"],a:0,e:"Thân–Tý–Thìn = Thủy cục."},
+{id:"dc29",s:2,q:"Bộ nào dưới đây là tam hợp Kim cục?",o:["Thân – Tý – Thìn","Tị – Dậu – Sửu","Dần – Ngọ – Tuất","Hợi – Mão – Mùi"],a:1,e:"Tị–Dậu–Sửu = Kim cục."},
+{id:"dc30",s:3,q:"Tý nhị hợp với chi nào?",o:["Hợi","Sửu","Dần","Thìn"],a:1,e:"Tý(1)↔Sửu(2). Quy tắc: Tý↔Sửu, Dần↔Hợi, Mão↔Tuất, Thìn↔Dậu, Tị↔Thân, Ngọ↔Mùi."},
+{id:"dc31",s:3,q:"Dần nhị hợp với chi nào?",o:["Hợi","Tuất","Thân","Mão"],a:0,e:"Dần(3)↔Hợi(12)."},
+{id:"dc32",s:3,q:"Mão nhị hợp với chi nào?",o:["Tuất","Dậu","Hợi","Tý"],a:0,e:"Mão(4)↔Tuất(11). Mão↔Dậu là xung!"},
+{id:"dc33",s:3,q:"Thìn nhị hợp với chi nào?",o:["Dậu","Tuất","Thân","Mão"],a:0,e:"Thìn(5)↔Dậu(10). Thìn↔Tuất là xung!"},
+{id:"dc34",s:3,q:"Tị nhị hợp với chi nào?",o:["Dậu","Hợi","Thân","Sửu"],a:2,e:"Tị(6)↔Thân(9). Tị↔Hợi là xung."},
+{id:"dc35",s:3,q:"Ngọ nhị hợp với chi nào?",o:["Tý","Mùi","Dậu","Thân"],a:1,e:"Ngọ(7)↔Mùi(8). Tý↔Ngọ là xung."},
+{id:"dc36",s:3,q:"Mùi nhị hợp với chi nào?",o:["Mão","Tuất","Hợi","Ngọ"],a:3,e:"Mùi(8)↔Ngọ(7)."},
+{id:"dc37",s:3,q:"Thân nhị hợp với chi nào?",o:["Dậu","Tý","Tị","Hợi"],a:2,e:"Thân(9)↔Tị(6)."},
+{id:"dc38",s:3,q:"Dậu nhị hợp với chi nào?",o:["Tị","Sửu","Thìn","Mão"],a:2,e:"Dậu(10)↔Thìn(5)."},
+{id:"dc39",s:3,q:"Tuất nhị hợp với chi nào?",o:["Dậu","Mão","Hợi","Ngọ"],a:1,e:"Tuất(11)↔Mão(4)."},
+{id:"dc40",s:3,q:"Hợi nhị hợp với địa chi nào?",o:["Mão","Dần","Tị","Dậu"],a:1,e:"Hợi(12)↔Dần(3)."},
+{id:"dc41",s:3,q:"Tý và Sửu nhị hợp tạo ra ngũ hành gì?",o:["Thủy","Thổ","Thủy và Thổ","Không cần quan tâm, vì chưa dùng đến kiến thức này"],a:3,e:"Trong Lục Hào, hành tổng hợp từ nhị hợp không dùng để xét vượng suy."},
+{id:"dc42",s:3,q:"Dần và Hợi nhị hợp tạo ra ngũ hành gì?",o:["Thủy","Mộc","Không cần quan tâm, vì chưa dùng đến kiến thức này","Thủy và Mộc"],a:2,e:"Tương tự — ngũ hành tổng hợp từ nhị hợp không dùng trong Lục Hào."},
+{id:"dc43",s:4,q:"Tý xung với chi nào?",o:["Sửu","Ngọ","Mùi","Hợi"],a:1,e:"Tý↔Ngọ (cách 6). Sáu cặp xung: Tý↔Ngọ, Sửu↔Mùi, Dần↔Thân, Mão↔Dậu, Thìn↔Tuất, Tị↔Hợi."},
+{id:"dc44",s:4,q:"Sửu xung với chi nào?",o:["Tuất","Thìn","Mùi","Tý"],a:2,e:"Sửu(2)↔Mùi(8)."},
+{id:"dc45",s:4,q:"Dần xung với chi nào?",o:["Hợi","Thân","Tị","Dậu"],a:1,e:"Dần(3)↔Thân(9). Dần↔Hợi là nhị HỢP."},
+{id:"dc46",s:4,q:"Mão xung với chi nào?",o:["Dần","Thìn","Tuất","Dậu"],a:3,e:"Mão(4)↔Dậu(10). Mão↔Tuất là nhị HỢP."},
+{id:"dc47",s:4,q:"Thìn xung với chi nào?",o:["Mùi","Tuất","Hợi","Dậu"],a:1,e:"Thìn(5)↔Tuất(11). Thìn↔Dậu là nhị HỢP."},
+{id:"dc48",s:4,q:"Tị xung với chi nào?",o:["Ngọ","Thân","Hợi","Mùi"],a:2,e:"Tị(6)↔Hợi(12). Tị↔Thân là nhị HỢP."},
+{id:"dc49",s:4,q:"Cặp nào dưới đây là nhị xung?",o:["Tý – Sửu","Tý – Ngọ","Tý – Hợi","Tý – Thân"],a:1,e:"Tý–Ngọ là nhị xung (cách 6). Tý–Sửu là nhị HỢP."},
+{id:"dc50",s:4,q:"Cặp nào dưới đây là nhị xung?",o:["Mão – Dậu","Mão – Tuất","Mão – Hợi","Mão – Tý"],a:0,e:"Mão–Dậu là nhị xung. Mão–Tuất là nhị HỢP."},
+{id:"dc51",s:4,q:"Cặp nào dưới đây KHÔNG phải nhị xung?",o:["Thìn – Tuất","Sửu – Mùi","Dần – Thân","Dần – Hợi"],a:3,e:"Dần–Hợi là nhị HỢP! Ba cặp kia đều là nhị xung."},
+{id:"dc52",s:4,q:"Bộ nào gồm toàn các cặp nhị xung?",o:["Tý–Ngọ, Mão–Dậu, Thìn–Tuất","Tý–Sửu, Dần–Hợi, Mão–Tuất","Hợi–Mão–Mùi","Tị–Dậu–Sửu"],a:0,e:"Tý↔Ngọ, Mão↔Dậu, Thìn↔Tuất: đều xung (cách 6)."},
+{id:"dc53",s:5,q:"Tý nhập mộ ở chi nào?",o:["Tuất","Sửu","Thìn","Mùi"],a:2,e:"Tý(Thủy) → mộ Thìn. Bảng: Thủy→Thìn, Mộc→Mùi, Hỏa→Tuất, Kim→Sửu."},
+{id:"dc54",s:5,q:"Dần nhập mộ ở chi nào?",o:["Mùi","Tuất","Sửu","Thìn"],a:0,e:"Dần(Mộc) → mộ Mùi."},
+{id:"dc55",s:5,q:"Mão nhập mộ ở chi nào?",o:["Tuất","Mùi","Sửu","Thìn"],a:1,e:"Mão(Mộc) → mộ Mùi. Cùng hành với Dần."},
+{id:"dc56",s:5,q:"Tị nhập mộ ở chi nào?",o:["Thìn","Sửu","Tuất","Mùi"],a:2,e:"Tị(Hỏa) → mộ Tuất."},
+{id:"dc57",s:5,q:"Ngọ nhập mộ ở chi nào?",o:["Tuất","Thìn","Sửu","Mùi"],a:0,e:"Ngọ(Hỏa) → mộ Tuất. Cùng hành với Tị."},
+{id:"dc58",s:5,q:"Thân nhập mộ ở chi nào?",o:["Tuất","Sửu","Mùi","Thìn"],a:1,e:"Thân(Kim) → mộ Sửu."},
+{id:"dc59",s:5,q:"Dậu nhập mộ ở chi nào?",o:["Tuất","Sửu","Thìn","Mùi"],a:1,e:"Dậu(Kim) → mộ Sửu. Cùng hành với Thân."},
+{id:"dc60",s:5,q:"Địa chi nào dưới đây KHÔNG phải là mộ (khố)?",o:["Sửu","Thìn","Mùi","Hợi"],a:3,e:"Tứ Mộ là Sửu, Thìn, Mùi, Tuất. Hợi KHÔNG phải mộ."},
+{id:"dc61",s:5,q:"Tị và Ngọ cùng nhập mộ ở:",o:["Sửu","Thìn","Mùi","Tuất"],a:3,e:"Tị và Ngọ đều là Hỏa → cùng nhập mộ tại Tuất."},
+{id:"dc62",s:5,q:"Thân và Dậu cùng nhập mộ ở:",o:["Sửu","Tuất","Thìn","Mùi"],a:0,e:"Thân và Dậu đều là Kim → cùng nhập mộ tại Sửu."},
+{id:"dc63",s:6,q:"Tý hại chi nào?",o:["Sửu","Mùi","Ngọ","Nhị Hại không dùng để xét vượng suy nên không cần quan tâm"],a:3,e:"Nhị Hại không dùng trong Lục Hào."},
+{id:"dc64",s:6,q:"Sửu hại chi nào?",o:["Ngọ","Thân","Không cần quan tâm, Nhị Hại không dùng để xét vượng suy","Mùi"],a:2,e:"Nhị Hại không dùng trong Lục Hào."},
+{id:"dc65",s:6,q:"Dần hại chi nào?",o:["Tị","Hợi","Không cần quan tâm, Nhị Hại không dùng để xét vượng suy","Ngọ"],a:2,e:"Nhị Hại không dùng trong Lục Hào."},
+{id:"dc66",s:6,q:"Mão hại chi nào?",o:["Dậu","Không cần quan tâm, Nhị Hại không dùng để xét vượng suy","Tuất","Tý"],a:1,e:"Nhị Hại không dùng trong Lục Hào."},
+{id:"dc67",s:6,q:"Bộ nào gồm toàn các cặp tương hại?",o:["Tý–Mùi, Sửu–Ngọ, Dần–Tị","Tý–Mùi, Sửu–Ngọ, Thân–Hợi","Tý–Ngọ, Mão–Dậu, Dần–Thân","Nhị Hại không dùng để xét vượng suy nên không cần quan tâm"],a:3,e:"Nhị Hại không dùng trong Lục Hào."},
+{id:"dc68",s:7,q:"Tý tương hình với chi nào?",o:["Mão","Ngọ","Dậu","Tương hình không dùng để xét vượng suy nên không cần quan tâm"],a:3,e:"Tương hình không dùng trong Lục Hào."},
+{id:"dc69",s:7,q:"Sửu cùng với các địa chi nào thành bộ tam hình?",o:["Tuất, Mùi","Tị, Thân","Không cần quan tâm, Tương hình không dùng để xét vượng suy","Dậu, Hợi"],a:2,e:"Tương hình không dùng trong Lục Hào."},
+{id:"dc70",s:7,q:"Dần cùng với các địa chi nào thành bộ tam hình?",o:["Tị, Thân","Mùi, Tuất","Không cần quan tâm, Tương hình không dùng để xét vượng suy","Hợi, Tý"],a:2,e:"Tương hình không dùng trong Lục Hào."},
+{id:"dc71",s:7,q:"Thìn thuộc loại nào sau đây?",o:["Không có hình","Tương hình với Mão","Tự hình","Tương hình không dùng để xét vượng suy nên không cần quan tâm"],a:3,e:"Tương hình không dùng trong Lục Hào."},
+{id:"dc72",s:8,q:"Hào Dần gặp tháng Mão gọi là:",o:["Phò trợ, vượng","Cùng ngũ hành, suy","Cùng ngũ hành, trung hòa","Không liên quan đến nhau"],a:0,e:"Dần=Mộc, Mão=Mộc → cùng hành = Phò trợ → vượng."},
+{id:"dc73",s:8,q:"Hào Dần gặp tháng Tý gọi là:",o:["sinh xuất/tiết khí, suy","được sinh/sinh nhập, vượng","Không liên quan đến nhau","sinh nhập, suy"],a:1,e:"Dần=Mộc, Tý=Thủy → Thủy sinh Mộc = Sinh nhập → vượng."},
+{id:"dc74",s:8,q:"Hào Tị gặp ngày Tý gọi là:",o:["sinh xuất/tiết khí, suy","được sinh/sinh nhập, vượng","Không liên quan đến nhau","bị khắc/khắc nhập, suy"],a:3,e:"Tị=Hỏa, Tý=Thủy → Thủy khắc Hỏa = Khắc nhập → suy."},
+{id:"dc75",s:8,q:"Hào Tị gặp ngày Mùi gọi là:",o:["khắc xuất, suy","được sinh/sinh nhập, vượng","sinh xuất/tiết khí, suy","sinh xuất/tiết khí, vượng"],a:2,e:"Tị=Hỏa, Mùi=Thổ → Hỏa sinh Thổ = Sinh xuất → suy."},
+{id:"dc76",s:8,q:"Hào Ngọ gặp tháng Thân gọi là:",o:["sinh xuất, vượng","được sinh/sinh nhập, vượng","sinh xuất/tiết khí, suy","khắc xuất, suy"],a:3,e:"Ngọ=Hỏa, Thân=Kim → Hỏa khắc Kim = Khắc xuất → suy."},
+{id:"dc77",s:8,q:"Hào Dần gặp tháng Dậu gọi là:",o:["khắc xuất, suy","được sinh/sinh nhập, vượng","sinh xuất/tiết khí, suy","bị khắc/khắc nhập, suy"],a:3,e:"Dần=Mộc, Dậu=Kim → Kim khắc Mộc = Khắc nhập → suy."},
+{id:"dc78",s:8,q:"Hào Thân gặp tháng Mão gọi là:",o:["khắc xuất, suy","được sinh/sinh nhập, vượng","sinh xuất/tiết khí, suy","bị khắc/khắc nhập, suy"],a:0,e:"Thân=Kim, Mão=Mộc → Kim khắc Mộc = Khắc xuất → suy."},
+{id:"dc79",s:8,q:"Hào Mão gặp ngày Tị gọi là:",o:["sinh xuất/tiết khí, suy","được sinh/sinh nhập, vượng","khắc xuất, suy","sinh xuất/tiết khí, vượng"],a:0,e:"Mão=Mộc, Tị=Hỏa → Mộc sinh Hỏa = Sinh xuất → suy."},
+{id:"dc80",s:8,q:"Hào Ngọ gặp tháng Mão gọi là:",o:["sinh xuất/tiết khí, suy","Không liên quan đến nhau","được sinh/sinh nhập, vượng","sinh nhập, suy"],a:2,e:"Ngọ=Hỏa, Mão=Mộc → Mộc sinh Hỏa = Sinh nhập → vượng."},
+];
+const DT_DEF=[
+{id:"dt0",lt:0,t:"Nhận diện",q:"Trong quẻ, hào nào đại diện cho <b>cha mẹ</b>?",o:["Huynh Đệ","Phụ Mẫu","Thê Tài","Tử Tôn"],a:1,rule:"Phụ Mẫu = cha mẹ.",why:"Phụ Mẫu (B): Phụ là cha, Mẫu là mẹ.",wrong:"Huynh Đệ=anh em; Thê Tài=vợ/tiền; Tử Tôn=con."},
+{id:"dt1",lt:1,t:"Dụng thần",q:"Xem <b>sức khỏe con cái</b> thì lấy dụng thần nào?",o:["Quan Quỷ","Phụ Mẫu","Tử Tôn","Huynh Đệ"],a:2,rule:"Tử Tôn = con cái. Xem ai → lấy hào đại diện người đó.",why:"Tử Tôn (C).",wrong:"Quan Quỷ = bệnh tật (thứ gây hại), không phải người bệnh."},
+{id:"dt2",lt:2,t:"Nhận diện",q:"Hào <b>Thê Tài</b> đại diện cho nội dung nào?",o:["Tiền bạc, vợ, thu nhập","Cha mẹ, nhà cửa, giấy tờ","Bạn bè, anh em, đối thủ","Bệnh tật, kiện tụng, tai họa"],a:0,rule:"Thê Tài = tài vật và vợ/bạn gái (với nam).",why:"A đúng: tiền, vợ, thu nhập đều là 'tài'.",wrong:"B=Phụ Mẫu; C=Huynh Đệ; D=Quan Quỷ."},
+{id:"dt3",lt:3,t:"Dụng thần",q:"Hỏi có <b>được lên chức</b> không thì chọn hào nào?",o:["Phụ Mẫu","Tử Tôn","Quan Quỷ","Thê Tài"],a:2,rule:"Quan Quỷ = công danh, chức vụ.",why:"Quan Quỷ (C): hỏi thăng chức xét Quan Quỷ.",wrong:"Phụ Mẫu=cấp trên; Thê Tài=tiền lương."},
+{id:"dt4",lt:0,t:"Nhận diện",q:"Hào <b>Phụ Mẫu</b> đại diện cho nhóm nào?",o:["Nhà cửa, giấy tờ, đất đai","Tiền bạc, bảo mẫu, thù lao","Công nhân, con cái, thuốc men","Bạn bè, đối thủ, tay chân"],a:0,rule:"Phụ Mẫu = nhà cửa, xe cộ, hợp đồng, giấy tờ.",why:"A đúng.",wrong:"B=Thê Tài; C=Tử Tôn; D=Huynh Đệ."},
+{id:"dt5",lt:0,t:"Dụng thần",q:"Xem <b>sức khỏe bố mẹ</b> thì lấy dụng thần nào?",o:["Thê Tài","Phụ Mẫu","Huynh Đệ","Quan Quỷ"],a:1,rule:"Bố mẹ = Phụ Mẫu.",why:"Phụ Mẫu (B).",wrong:"Quan Quỷ = bệnh, không phải người bệnh."},
+{id:"dt6",lt:2,t:"Nhận diện",q:"Trong quẻ, <b>vợ hoặc bạn gái</b> (người nam hỏi) là hào nào?",o:["Quan Quỷ","Thê Tài","Tử Tôn","Phụ Mẫu"],a:1,rule:"Thê Tài = vợ/bạn gái (khi người HỎI là nam).",why:"Thê Tài (B).",wrong:"Quan Quỷ=chồng/bạn trai CHỈ khi người hỏi là NỮ."},
+{id:"dt7",lt:3,t:"Dụng thần",q:"Người <b>nữ</b> hỏi về <b>chồng hoặc bạn trai</b> thì lấy dụng thần nào?",o:["Huynh Đệ","Thê Tài","Quan Quỷ","Tử Tôn"],a:2,rule:"⚠️ Nữ: chồng/bạn trai = Quan Quỷ.",why:"Quan Quỷ (C): quy tắc giới tính!",wrong:"Thê Tài=vợ của NAM."},
+{id:"dt8",lt:4,t:"Nhận diện",q:"Hào <b>Huynh Đệ</b> đại diện cho nội dung nào?",o:["Anh em, bạn bè, đối thủ cạnh tranh","Công danh, kiện tụng, bệnh tật","Nhà cửa, xe cộ, hợp đồng","Con cái, bác sĩ, thú nuôi"],a:0,rule:"Huynh Đệ = người đồng vai ngang hàng.",why:"A đúng.",wrong:"B=Quan Quỷ; C=Phụ Mẫu; D=Tử Tôn."},
+{id:"dt9",lt:3,t:"Dụng thần",q:"Xem <b>công danh, sự nghiệp, chức vụ</b> thì lấy hào nào?",o:["Tử Tôn","Quan Quỷ","Phụ Mẫu","Thê Tài"],a:1,rule:"Quan Quỷ = công danh, sự nghiệp.",why:"Quan Quỷ (B).",wrong:"Phụ Mẫu=cấp trên (người)."},
+{id:"dt10",lt:1,t:"Nhận diện",q:"Trong quẻ, <b>con cái, cháu chắt</b> thuộc hào nào?",o:["Phụ Mẫu","Tử Tôn","Thê Tài","Quan Quỷ"],a:1,rule:"Tử Tôn = con cái (tử=con, tôn=cháu).",why:"Tử Tôn (B).",wrong:"Phụ Mẫu=thế hệ TRÊN."},
+{id:"dt11",lt:0,t:"Dụng thần",q:"Hỏi về <b>xe cộ, phương tiện đi lại</b> thì lấy hào nào?",o:["Huynh Đệ","Phụ Mẫu","Quan Quỷ","Tử Tôn"],a:1,rule:"Phụ Mẫu = xe cộ (vật bao bọc, chở đi).",why:"Phụ Mẫu (B).",wrong:"Quan Quỷ=bệnh/công danh."},
+{id:"dt12",lt:3,t:"Nhận diện",q:"Hào <b>Quan Quỷ</b> thường đại diện cho nhóm nào?",o:["Công việc, công danh, danh tiếng","Tiền bạc, vợ, vật dụng hằng ngày","Bạn bè, tay chân, nhà vệ sinh","Con cái, bác sĩ, đường ống"],a:0,rule:"Quan Quỷ = công danh + bệnh tật, oan khuất.",why:"A đúng.",wrong:"B=Thê Tài; C=Huynh Đệ; D=Tử Tôn."},
+{id:"dt13",lt:0,t:"Dụng thần",q:"Hỏi về <b>hợp đồng, giấy tờ, visa</b> thì lấy dụng thần nào?",o:["Phụ Mẫu","Thê Tài","Quan Quỷ","Huynh Đệ"],a:0,rule:"Phụ Mẫu = tất cả giấy tờ, văn bản pháp lý.",why:"Phụ Mẫu (A).",wrong:"Thê Tài=tiền; Quan Quỷ=chức/bệnh."},
+{id:"dt14",lt:3,t:"Nhận diện",q:"Trong quẻ, <b>cơ quan nhà nước</b> thường thuộc hào nào?",o:["Tử Tôn","Phụ Mẫu","Quan Quỷ","Huynh Đệ"],a:2,rule:"Quan Quỷ = tổ chức quyền lực nhà nước.",why:"Quan Quỷ (C).",wrong:"Phụ Mẫu=cấp trên cá nhân."},
+{id:"dt15",lt:4,t:"Dụng thần",q:"Xem về <b>bạn bè, anh em kết nghĩa</b> thì lấy hào nào?",o:["Quan Quỷ","Huynh Đệ","Phụ Mẫu","Tử Tôn"],a:1,rule:"Huynh Đệ = người đồng vai ngang hàng.",why:"Huynh Đệ (B).",wrong:"Tử Tôn=người DƯỚI; Phụ Mẫu=người TRÊN."},
+{id:"dt16",lt:1,t:"Nhận diện",q:"Hào <b>Tử Tôn</b> đại diện cho nhóm nào?",o:["Con cái, đệ tử, nhân viên thân tín, dược phẩm","Cha mẹ, xe cộ, mồ mả","Tiền bạc, vợ, bảo mẫu","Bệnh tật, virus, kiện tụng"],a:0,rule:"Tử Tôn = con cháu, người dưới ta, thuốc men.",why:"A đúng.",wrong:"B=Phụ Mẫu; C=Thê Tài; D=Quan Quỷ."},
+{id:"dt17",lt:1,t:"Nhận diện",q:"Hào nào đại diện cho <b>tăng ni, người tu hành</b>?",o:["Quan Quỷ","Tử Tôn","Huynh Đệ","Phụ Mẫu"],a:1,rule:"Tử Tôn = tăng ni, phúc thần.",why:"Tử Tôn (B): mang phúc lành.",wrong:"Quan Quỷ=quỷ tiêu cực."},
+{id:"dt18",lt:1,t:"Nhận diện",q:"Trong quẻ, <b>đệ tử thân tín</b> là hào nào?",o:["Phụ Mẫu","Thê Tài","Tử Tôn","Quan Quỷ"],a:2,rule:"Tử Tôn = đệ tử, người học trò thân cận.",why:"Tử Tôn (C).",wrong:"Thê Tài=người làm thuê về tài chính."},
+{id:"dt19",lt:0,t:"Nhận diện",q:"Hào nào đại diện cho <b>Công ty</b>?",o:["Phụ Mẫu","Huynh Đệ","Tử Tôn","Quan Quỷ"],a:0,rule:"Phụ Mẫu = công ty, tổ chức bao bọc ta.",why:"Phụ Mẫu (A).",wrong:"Quan Quỷ=cơ quan nhà nước; Huynh Đệ=đồng nghiệp."},
+{id:"dt20",lt:2,t:"Nhận diện",q:"Hào <b>Thê Tài</b> còn đại diện cho nội dung nào?",o:["Lương thực, tiền công, châu báu","Cấp trên, ruộng vườn, hồ sơ","Mạch máu, miệng, tai","Kiện tụng, virus, lãnh đạo"],a:0,rule:"Thê Tài = mọi tài vật hữu hình.",why:"A đúng.",wrong:"Cấp trên/hồ sơ=Phụ Mẫu; mạch máu=Tử Tôn."},
+{id:"dt21",lt:4,t:"Dụng thần",q:"Hỏi về <b>cánh tay, chân, răng</b> thì quy về hào nào?",o:["Tử Tôn","Huynh Đệ","Quan Quỷ","Thê Tài"],a:1,rule:"Huynh Đệ = chi thể ngoại vi: tay chân, răng.",why:"Huynh Đệ (B).",wrong:"Tử Tôn=mạch máu, mắt tai miệng."},
+{id:"dt22",lt:0,t:"Nhận diện",q:"Hào <b>Phụ Mẫu</b> còn đại diện cho nội dung nào?",o:["Quần áo, mồ mả, thành trì","Bạn gái, tiền lương, thu nhập","Anh em họ, bàng quang, tiêu hóa","Công an, ban thờ, thú nuôi"],a:0,rule:"Phụ Mẫu = vật bao bọc: quần áo, mồ mả, thành trì.",why:"A đúng.",wrong:"Tiền lương=Thê Tài; bàng quang=Huynh Đệ; thú nuôi=Tử Tôn."},
+{id:"dt23",lt:2,t:"Dụng thần",q:"Xem khoản <b>nợ phải đòi</b> thì lấy dụng thần nào?",o:["Phụ Mẫu","Tử Tôn","Thê Tài","Quan Quỷ"],a:2,rule:"Thê Tài = tiền bạc, đòi nợ.",why:"Thê Tài (C).",wrong:"Phụ Mẫu=hợp đồng vay (giấy tờ)."},
+{id:"dt24",lt:1,t:"Nhận diện",q:"Trong quẻ, <b>công nhân</b> thường lấy hào nào?",o:["Tử Tôn","Quan Quỷ","Huynh Đệ","Phụ Mẫu"],a:0,rule:"Tử Tôn = người lao động dưới ta.",why:"Tử Tôn (A).",wrong:"Huynh Đệ=đồng nghiệp ngang hàng."},
+{id:"dt25",lt:2,t:"Nhận diện",q:"Hào nào đại diện cho <b>chị dâu, em dâu</b>?",o:["Thê Tài","Phụ Mẫu","Quan Quỷ","Huynh Đệ"],a:0,rule:"Thê Tài = vợ của anh/em trai.",why:"Thê Tài (A).",wrong:"Huynh Đệ=bản thân anh/em chồng."},
+{id:"dt26",lt:4,t:"Nhận diện",q:"Hào <b>Huynh Đệ</b> còn đại diện cho nhóm nào?",o:["Nhà vệ sinh, vách tường, môn hộ","Chị dâu, em dâu","Hợp đồng, xe cộ","Vợ, tiền bạc, nô bộc"],a:0,rule:"Huynh Đệ = vật phân chia ngăn cách: vách tường, nhà vệ sinh.",why:"A đúng.",wrong:"Chị dâu/em dâu=Thê Tài; hợp đồng=Phụ Mẫu."},
+{id:"dt27",lt:1,t:"Dụng thần",q:"Xem về <b>phúc thần, thuốc men</b> thì lấy hào nào?",o:["Huynh Đệ","Tử Tôn","Quan Quỷ","Phụ Mẫu"],a:1,rule:"Tử Tôn = thuốc men, phúc thần (khắc Quan Quỷ).",why:"Tử Tôn (B).",wrong:"Quan Quỷ=bệnh tật (ngược với thuốc)."},
+{id:"dt28",lt:3,t:"Nhận diện",q:"Hào <b>Quan Quỷ</b> còn đại diện cho nội dung nào?",o:["Chồng, bạn trai (của người nữ), thi thể","Đất đai, giấy tờ, cha mẹ","Châu báu, đạo lý, lương thực","Cốt tủy, buồng trứng, thú nuôi"],a:0,rule:"Quan Quỷ = chồng/bạn trai (với nữ), xác chết.",why:"A đúng: với nữ, chồng=Quan Quỷ.",wrong:"Đất đai=Phụ Mẫu; châu báu=Thê Tài; cốt tủy=Tử Tôn."},
+{id:"dt29",lt:1,t:"Dụng thần",q:"Hỏi về <b>ban thờ</b> trong nhà thì lấy hào nào?",o:["Phụ Mẫu","Tử Tôn","Huynh Đệ","Quan Quỷ"],a:1,rule:"Tử Tôn = ban thờ, phúc thần.",why:"Tử Tôn (B).",wrong:"Quan Quỷ=quỷ tiêu cực."},
+{id:"dt30",lt:2,t:"Nhận diện",q:"Trong quẻ, <b>bạn gái</b> (nam hỏi) thuộc hào nào?",o:["Thê Tài","Quan Quỷ","Huynh Đệ","Tử Tôn"],a:0,rule:"Thê Tài = vợ/bạn gái (khi người hỏi là nam).",why:"Thê Tài (A).",wrong:"Quan Quỷ=chồng/bạn trai CHỈ khi người hỏi là NỮ."},
+{id:"dt31",lt:4,t:"Dụng thần",q:"Hỏi về <b>đối thủ cạnh tranh</b> thì lấy hào nào?",o:["Quan Quỷ","Huynh Đệ","Phụ Mẫu","Thê Tài"],a:1,rule:"Huynh Đệ = đối thủ ngang hàng.",why:"Huynh Đệ (B).",wrong:"Quan Quỷ=kẻ thù quyền lực."},
+{id:"dt32",lt:1,t:"Nhận diện",q:"Hào <b>Tử Tôn</b> còn đại diện cho nội dung nào?",o:["Mạch máu, đường ống, mắt, tai, miệng","Kiện tụng, xác chết, công danh","Bạn bè, tay chân, răng","Nhà cửa, xe cộ, công ty"],a:0,rule:"Tử Tôn = mạch máu, đường ống nội tạng, mắt tai miệng.",why:"A đúng.",wrong:"Tay chân/răng=Huynh Đệ; nhà cửa=Phụ Mẫu."},
+{id:"dt33",lt:1,t:"Dụng thần",q:"Xem <b>mạch máu trong cơ thể</b> thì lấy hào nào?",o:["Huynh Đệ","Tử Tôn","Phụ Mẫu","Quan Quỷ"],a:1,rule:"Tử Tôn = mạch máu, đường ống bên trong.",why:"Tử Tôn (B).",wrong:"Huynh Đệ=tay chân (ngoại vi)."},
+{id:"dt34",lt:4,t:"Nhận diện",q:"Hào nào đại diện cho <b>dạ dày, bàng quang, tiêu hóa</b>?",o:["Huynh Đệ","Quan Quỷ","Tử Tôn","Phụ Mẫu"],a:0,rule:"Huynh Đệ = tiêu hóa, dạ dày, bàng quang.",why:"Huynh Đệ (A).",wrong:"Tử Tôn=mạch máu, đường dẫn dinh dưỡng."},
+{id:"dt35",lt:0,t:"Dụng thần",q:"Phần <b>giấy tờ thủ tục</b> hợp đồng mua đất nên xem hào nào?",o:["Quan Quỷ","Phụ Mẫu","Huynh Đệ","Tử Tôn"],a:1,rule:"Giấy tờ, thủ tục = Phụ Mẫu.",why:"Phụ Mẫu (B).",wrong:"Quan Quỷ=tranh chấp nếu có kiện tụng."},
+{id:"dt36",lt:3,t:"Nhận diện",q:"Hào <b>Quan Quỷ</b> đại diện cho nội dung nào?",o:["Xác chết, virus, phiền não","Châu báu, vật dụng, thù lao","Trưởng bối, nhà cửa, quần áo","Cháu chắt, nhũ phòng, công nhân"],a:0,rule:"Quan Quỷ = tiêu cực: xác chết, virus, phiền não.",why:"A đúng.",wrong:"Châu báu=Thê Tài; nhà cửa=Phụ Mẫu; cháu=Tử Tôn."},
+{id:"dt37",lt:1,t:"Dụng thần",q:"Hỏi về <b>thú nuôi đi lạc</b> thì hào nào làm dụng thần?",o:["Tử Tôn","Quan Quỷ","Phụ Mẫu","Thê Tài"],a:0,rule:"Tử Tôn = thú nuôi (như nuôi con).",why:"Tử Tôn (A).",wrong:"Thê Tài=gia súc kinh tế (bò, lợn)."},
+{id:"dt38",lt:0,t:"Nhận diện",q:"Hào <b>Phụ Mẫu</b> đại diện cho nội dung nào?",o:["Xe cộ, cấp trên, đất đai","Chồng, kiện tụng, virus","Bạn gái, lương thực, đòi nợ","Bác sĩ, cốt tủy, công an"],a:0,rule:"Phụ Mẫu = xe cộ, cấp trên, đất đai.",why:"A đúng.",wrong:"Chồng/kiện tụng=Quan Quỷ; bạn gái/lương thực=Thê Tài."},
+{id:"dt39",lt:1,t:"Nhận diện",q:"Hào nào đại diện cho <b>công an</b>?",o:["Quan Quỷ","Huynh Đệ","Tử Tôn","Phụ Mẫu"],a:2,rule:"Công an (bảo vệ dân) = Tử Tôn.",why:"Tử Tôn (C): chức năng bảo vệ = phúc thần.",wrong:"Quan Quỷ=quyền lực gây áp lực."},
+{id:"dt40",lt:1,t:"Nhận diện",q:"Trong quẻ, <b>thực quản, ruột, cốt tủy</b> lấy hào nào?",o:["Tử Tôn","Quan Quỷ","Huynh Đệ","Phụ Mẫu"],a:0,rule:"Tử Tôn = nội tạng sâu: thực quản, ruột, cốt tủy.",why:"Tử Tôn (A).",wrong:"Huynh Đệ=dạ dày/tiêu hóa."},
+{id:"dt41",lt:2,t:"Dụng thần",q:"Xem <b>sức khỏe của vợ</b> thì lấy dụng thần nào?",o:["Quan Quỷ","Thê Tài","Tử Tôn","Huynh Đệ"],a:1,rule:"Vợ (của nam) = Thê Tài.",why:"Thê Tài (B).",wrong:"Quan Quỷ=bệnh tật, không phải người bệnh."},
+{id:"dt42",lt:1,t:"Nhận diện",q:"Hào <b>Tử Tôn</b> đại diện cho nội dung nào?",o:["Bộ phận sinh dục, buồng trứng, trứng","Hợp đồng, công ty, quần áo","Vợ, bảo mẫu, nô bộc","Bạn bè, răng, vách tường"],a:0,rule:"Tử Tôn = bộ phận sinh sản, tái sinh.",why:"A đúng.",wrong:"Hợp đồng=Phụ Mẫu; bảo mẫu=Thê Tài; răng=Huynh Đệ."},
+{id:"dt43",lt:1,t:"Dụng thần",q:"Hỏi về <b>mắt, tai, miệng</b> thì lấy hào nào?",o:["Phụ Mẫu","Quan Quỷ","Tử Tôn","Huynh Đệ"],a:2,rule:"Tử Tôn = mắt, tai, miệng.",why:"Tử Tôn (C).",wrong:"Huynh Đệ=tay chân, răng."},
+{id:"dt44",lt:2,t:"Dụng thần",q:"Trong quẻ, <b>nhân viên đang làm thuê dưới quyền</b>, lấy hào nào?",o:["Phụ Mẫu","Thê Tài","Huynh Đệ","Quan Quỷ"],a:1,rule:"Thê Tài = người làm thuê, nô bộc.",why:"Thê Tài (B).",wrong:"Tử Tôn=đệ tử học nghề; Huynh Đệ=đồng nghiệp ngang."},
+{id:"dt45",lt:2,t:"Dụng thần",q:"Xem <b>tiền chi tiêu hằng ngày, lương thực</b> thì lấy hào nào?",o:["Tử Tôn","Quan Quỷ","Thê Tài","Phụ Mẫu"],a:2,rule:"Thê Tài = tiền chi tiêu, lương thực hằng ngày.",why:"Thê Tài (C).",wrong:"Phụ Mẫu=nhà cửa cố định."},
+{id:"dt46",lt:4,t:"Nhận diện",q:"Hào <b>Huynh Đệ</b> đại diện cho nội dung nào?",o:["Anh em họ, bạn bè, em chồng","Chồng, công danh, cơ quan nhà nước","Bảo mẫu, châu báu, tiền lương","Ban thờ, bác sĩ, phúc thần"],a:0,rule:"Huynh Đệ = người đồng vai: anh em họ, bạn bè.",why:"A đúng.",wrong:"Chồng/cơ quan=Quan Quỷ; bảo mẫu/tiền=Thê Tài; bác sĩ=Tử Tôn."},
+{id:"dt47",lt:0,t:"Nhận diện",q:"Hào nào đại diện cho <b>cấp trên</b> của mình?",o:["Phụ Mẫu","Huynh Đệ","Tử Tôn","Thê Tài"],a:0,rule:"Phụ Mẫu = cấp trên.",why:"Phụ Mẫu (A).",wrong:"Huynh Đệ=đồng nghiệp ngang hàng."},
+{id:"dt48",lt:3,t:"Nhận diện",q:"Hào nào đại diện cho <b>chồng, bạn trai</b> (quẻ của người nữ)?",o:["Huynh Đệ","Quan Quỷ","Thê Tài","Phụ Mẫu"],a:1,rule:"Nữ hỏi: chồng/bạn trai = Quan Quỷ.",why:"Quan Quỷ (B).",wrong:"Thê Tài=vợ của NAM."},
+{id:"dt49",lt:2,t:"Dụng thần",q:"Hỏi về <b>vay nợ, trả tiền, khoản tiền lớn</b> thì lấy hào nào?",o:["Quan Quỷ","Phụ Mẫu","Thê Tài","Tử Tôn"],a:2,rule:"Thê Tài = tiền bạc, giao dịch tài chính.",why:"Thê Tài (C).",wrong:"Phụ Mẫu=hợp đồng vay (giấy tờ)."},
+{id:"dt50",lt:2,t:"Nhận diện",q:"Hào <b>Thê Tài</b> đại diện cho nội dung nào?",o:["Đòi nợ, vay nợ, tang vật","Mồ mả, ruộng vườn, xe cộ","Bạn bè, cánh tay, chân","Bệnh tật, quan chức, virus"],a:0,rule:"Thê Tài = đòi nợ, vay nợ, tang vật.",why:"A đúng.",wrong:"Mồ mả/xe cộ=Phụ Mẫu; tay chân=Huynh Đệ; bệnh=Quan Quỷ."},
+{id:"dt51",lt:0,t:"Dụng thần",q:"Hỏi về <b>ông sếp trực tiếp</b> thì lấy hào nào?",o:["Phụ Mẫu","Quan Quỷ","Huynh Đệ","Tử Tôn"],a:0,rule:"Phụ Mẫu = cấp trên trực tiếp.",why:"Phụ Mẫu (A).",wrong:"Quan Quỷ=cơ quan công quyền."},
+{id:"dt52",lt:3,t:"Dụng thần",q:"Trong quẻ, <b>nữ hỏi bạn trai</b> lấy hào nào?",o:["Tử Tôn","Quan Quỷ","Huynh Đệ","Thê Tài"],a:1,rule:"Nữ: bạn trai = Quan Quỷ.",why:"Quan Quỷ (B).",wrong:"Thê Tài=bạn gái chỉ khi người hỏi là NAM."},
+{id:"dt53",lt:0,t:"Tình huống",q:"Một người hỏi: '<b>Bố mẹ tôi có bình an không?</b>' Dụng thần nên lấy là:",o:["Tử Tôn","Huynh Đệ","Quan Quỷ","Phụ Mẫu"],a:3,rule:"Bố mẹ = Phụ Mẫu.",why:"Phụ Mẫu (D).",wrong:"Quan Quỷ=tai họa, không phải người hỏi về."},
+{id:"dt54",lt:2,t:"Tình huống",q:"Một người hỏi: '<b>Người giúp việc có thật thà không?</b>' Dụng thần nên lấy là:",o:["Quan Quỷ","Tử Tôn","Thê Tài","Phụ Mẫu"],a:2,rule:"Người giúp việc/làm thuê = Thê Tài.",why:"Thê Tài (C).",wrong:"Tử Tôn=đệ tử học nghề."},
+{id:"dt55",lt:0,t:"Tình huống",q:"Một người hỏi: '<b>Thủ tục hợp đồng có trục trặc không?</b>' Dụng thần nên lấy là:",o:["Phụ Mẫu","Huynh Đệ","Tử Tôn","Quan Quỷ"],a:0,rule:"Hợp đồng, giấy tờ = Phụ Mẫu.",why:"Phụ Mẫu (A).",wrong:"Quan Quỷ=tranh chấp nếu có kiện tụng."},
+{id:"dt56",lt:2,t:"Tình huống",q:"Một người hỏi: '<b>Khoản tiền kia có thu về được không?</b>' Dụng thần nên lấy là:",o:["Phụ Mẫu","Thê Tài","Huynh Đệ","Quan Quỷ"],a:1,rule:"Khoản tiền = Thê Tài.",why:"Thê Tài (B).",wrong:"Phụ Mẫu=giấy tờ hợp đồng."},
+{id:"dt57",lt:0,t:"Tình huống",q:"Xem <b>sức khỏe của mẹ</b> thì lấy dụng thần nào?",o:["Quan Quỷ","Huynh Đệ","Phụ Mẫu","Tử Tôn"],a:2,rule:"Mẹ = Phụ Mẫu.",why:"Phụ Mẫu (C).",wrong:"Quan Quỷ=bệnh tật."},
+{id:"dt58",lt:1,t:"Tình huống",q:"Một người hỏi: '<b>Đứa con nhỏ dạo này yếu, có đáng lo không?</b>' Dụng thần nên lấy là:",o:["Quan Quỷ","Phụ Mẫu","Tử Tôn","Thê Tài"],a:2,rule:"Con nhỏ = Tử Tôn.",why:"Tử Tôn (C).",wrong:"Quan Quỷ=bệnh (thứ gây hại)."},
+{id:"dt59",lt:1,t:"Tình huống",q:"Hào <b>Tử Tôn</b> đại diện cho nội dung nào?",o:["Cháu chắt, công nhân, thú nuôi","Cấp trên, hợp đồng, đất đai","Vợ, tiền bạc, bảo mẫu","Anh em, đối thủ, tiêu hóa"],a:0,rule:"Tử Tôn = cháu chắt, công nhân, thú nuôi.",why:"A đúng.",wrong:"Cấp trên/đất đai=Phụ Mẫu; vợ/tiền=Thê Tài; anh em=Huynh Đệ."},
+];
+const VS_DEF=[
+{id:"vs0",phan:0,q:"Hào Mão trong tháng Tý xét thế nào?",o:["Vượng","Suy","Trung hòa",""],a:0,e:"Mão=Mộc, Tý=Thủy. Thủy sinh Mộc → Được sinh → VƯỢNG.",ew:"❌B: nhầm chiều sinh. ❌C: sinh thuần → Vượng rõ."},
+{id:"vs1",phan:0,q:"Hào Thìn trong ngày Tuất xét thế nào?",o:["Vượng","Suy","Trung hòa",""],a:1,e:"Thìn=Thổ, Tuất=Thổ. Tuy cùng hành nhưng Thìn-Tuất = LỤC XUNG → SUY.",ew:"❌A: thấy cùng hành nhưng xung làm suy. ❌C: lục xung → Suy."},
+{id:"vs2",phan:0,q:"Hào Tý trong tháng Sửu xét thế nào?",o:["Vượng","Suy","Trung hòa",""],a:0,e:"Tý=Thủy, Sửu=Thổ. Tý-Sửu = NHỊ HỢP → hào được tháng hợp → VƯỢNG.",ew:"❌B: chỉ xét Thổ khắc Thủy, bỏ qua nhị hợp. Nhị hợp ưu tiên hơn sinh khắc. ❌C: nhị hợp → Vượng."},
+{id:"vs3",phan:0,q:"Hào Mão trong ngày Dậu xét thế nào?",o:["Vượng","Suy","Trung hòa",""],a:1,e:"Mão=Mộc, Dậu=Kim. Kim khắc Mộc (bị khắc) + Mão-Dậu LỤC XUNG → SUY nặng.",ew:"❌A: nhầm chiều khắc. ❌C: hai yếu tố tiêu cực → không thể trung hòa."},
+{id:"vs4",phan:0,q:"Hào Tị trong tháng Thân xét thế nào?",o:["Vượng","Suy","Trung hòa",""],a:0,e:"Tị=Hỏa, Thân=Kim. Tị-Thân = NHỊ HỢP → được tháng hợp → VƯỢNG.",ew:"❌B: xét Hỏa khắc Kim=khắc xuất, nhưng nhị hợp ưu tiên hơn. ❌C: nhị hợp → Vượng."},
+{id:"vs5",phan:0,q:"Hào Hợi trong ngày Tị xét thế nào?",o:["Vượng","Suy","Trung hòa",""],a:1,e:"Hợi=Thủy, Tị=Hỏa. Hợi-Tị = LỤC XUNG + khắc xuất → hao tổn nặng → SUY.",ew:"❌A: khắc xuất+lục xung = tiêu hao, không phải mạnh. ❌C: hai yếu tố tiêu cực."},
+{id:"vs6",phan:0,q:"Hào Tý trong ngày Dần xét thế nào?",o:["Vượng","Suy","Trung hòa",""],a:1,e:"Tý=Thủy, Dần=Mộc. Thủy sinh Mộc → hào SINH XUẤT ngày = mất lực → SUY.",ew:"❌A: sinh xuất = CHO ĐI, không phải nhận. Chỉ Được sinh mới Vượng. ❌C: không có cân bằng."},
+{id:"vs7",phan:0,q:"Hào Sửu trong tháng Tị xét thế nào?",o:["Vượng","Suy","Trung hòa",""],a:0,e:"Sửu=Thổ, Tị=Hỏa. Hỏa sinh Thổ → hào ĐƯỢC SINH bởi tháng → VƯỢNG.",ew:"❌B: nhầm chiều – Hỏa sinh Thổ, hào được sinh. ❌C: sinh rõ ràng → Vượng."},
+{id:"vs8",phan:0,q:"Hào Mão trong tháng Tuất xét thế nào?",o:["Vượng","Suy","Trung hòa",""],a:0,e:"Mão=Mộc, Tuất=Thổ. Mão-Tuất = NHỊ HỢP → được tháng hợp → VƯỢNG.",ew:"❌B: thấy Mộc khắc Thổ=khắc xuất, nhưng nhị hợp ưu tiên. ❌C: nhị hợp → Vượng."},
+{id:"vs9",phan:0,q:"Hào Mùi trong tháng Hợi xét thế nào?",o:["Vượng","Suy","Trung hòa",""],a:1,e:"Mùi=Thổ, Hợi=Thủy. Thổ khắc Thủy → hào KHẮC XUẤT = tiêu hao năng lượng → SUY.",ew:"❌A: khắc xuất=hao lực → Suy (giống sinh xuất). ❌C: không có trung hòa."},
+{id:"vs10",phan:1,q:"Hào Tý trong tháng Sửu gọi là:",o:["Nhị hợp","Bị xung","Nhập mộ","Được sinh"],a:0,e:"Tý=Thủy, Sửu=Thổ. Tý-Sửu = NHỊ HỢP (六合). Ưu tiên gọi tên nhị hợp trước ngũ hành.",ew:"❌B: Tý xung NGỌ, không xung Sửu. ❌C: Thủy mộ tại Thìn. ❌D: có nhị hợp → ưu tiên nhị hợp."},
+{id:"vs11",phan:1,q:"Hào Dậu trong ngày Hợi gọi là:",o:["Sinh xuất","Được sinh","Khắc xuất","Bị xung"],a:0,e:"Dậu=Kim, Hợi=Thủy. Kim sinh Thủy → hào SINH XUẤT ngày = năng lượng chảy ra.",ew:"❌B (Được sinh): nhầm chiều – Kim sinh Thủy là HÀO sinh ngày. ❌C: Kim không khắc Thủy. ❌D: Dậu xung Mão."},
+{id:"vs12",phan:1,q:"Hào Hợi trong ngày Sửu gọi là:",o:["Được sinh","Bị khắc","Khắc xuất","Nhị hợp"],a:1,e:"Hợi=Thủy, Sửu=Thổ. Thổ khắc Thủy → hào BỊ KHẮC bởi ngày.",ew:"❌A: Thổ KHẮC Thủy, không sinh. ❌C: Thủy không khắc Thổ. ❌D: Hợi hợp Dần, không hợp Sửu."},
+{id:"vs13",phan:1,q:"Hào Thìn trong tháng Thìn gọi là:",o:["Nguyệt kiến","Nhật kiến","Được sinh","Nhập mộ"],a:0,e:"Thìn=Thổ, tháng Thìn=Thổ. Hào trùng với tháng → NGUYỆT KIẾN (月建). Phân biệt: trùng tháng=Nguyệt kiến; trùng ngày=Nhật kiến.",ew:"❌B: Nhật kiến=trùng NGÀY. ❌C: cùng chi → Nguyệt kiến, mạnh hơn. ❌D: Thổ mộ tại Tuất."},
+{id:"vs14",phan:1,q:"Hào Mão trong tháng Tý gọi là:",o:["Nguyệt kiến","Nhật kiến","Được sinh","Nhập mộ"],a:2,e:"Mão=Mộc, Tý=Thủy. Thủy sinh Mộc → hào ĐƯỢC SINH bởi tháng. Không trùng chi → không phải Nguyệt/Nhật kiến.",ew:"❌A: Nguyệt kiến chỉ khi trùng chi với tháng (vd hào Tý trong tháng Tý). ❌B: câu hỏi về THÁNG. ❌D: Tý-Mão không có quan hệ mộ."},
+{id:"vs15",phan:1,q:"Hào Mão trong tháng Tuất gọi là:",o:["Nhập mộ","Nhị hợp","Bị xung","Bị khắc"],a:1,e:"Mão=Mộc, Tuất=Thổ. Mão-Tuất = NHỊ HỢP (六合). Khóa học ưu tiên địa chi → Nhị hợp.",ew:"❌A: một số trường phái coi Tuất là Hỏa khố nhưng khóa học ưu tiên nhị hợp. ❌C: Mão xung DẬU. ❌D: Mộc khắc Thổ = hào khắc tháng chứ không bị khắc."},
+{id:"vs16",phan:1,q:"Hào Tị trong ngày Tị gọi là:",o:["Nguyệt kiến","Nhật kiến","Được sinh","Được phò trợ"],a:1,e:"Tị=Hỏa, ngày Tị=Hỏa. Hào trùng với ngày → NHẬT KIẾN (日建).",ew:"❌A: Nguyệt kiến=trùng THÁNG. Đây trùng NGÀY → Nhật kiến. ❌C: cùng chi → Nhật kiến mạnh hơn."},
+{id:"vs17",phan:1,q:"Hào Thân trong ngày Mão gọi là:",o:["Khắc xuất","Bị khắc","Sinh xuất","Được sinh"],a:0,e:"Thân=Kim, Mão=Mộc. Kim khắc Mộc → hào KHẮC XUẤT ngày. Phân biệt: Khắc xuất=hào khắc; Bị khắc=ngày khắc hào.",ew:"❌B: nhầm chiều – Kim khắc Mộc, hào là bên KHẮC. ❌C: Kim không sinh Mộc. ❌D: Mộc không sinh Kim."},
+{id:"vs18",phan:1,q:"Hào Dần trong tháng Mùi xét theo quan hệ địa chi gọi là:",o:["Nhật kiến","Nhập mộ","Nhị hợp","Khắc xuất"],a:1,e:"Dần=Mộc, Mùi=Thổ. MỘC MỘ TẠI MÙI → hào nhập mộ vào tháng Mùi = NHẬP MỘ. 5 mộ: Mộc→Mùi, Hỏa→Tuất, Kim→Sửu, Thủy→Thìn.",ew:"❌A: Dần≠Mùi, không trùng. ❌C: Dần hợp HỢI. ❌D: dù Mộc khắc Thổ, Mùi là mộ Mộc → ưu tiên nhập mộ."},
+{id:"vs19",phan:1,q:"Hào Mùi trong ngày Sửu xét theo quan hệ địa chi gọi là:",o:["Nhị hợp","Bị xung","Nhập mộ","Được sinh trợ"],a:1,e:"Mùi=Thổ, Sửu=Thổ. Sửu-Mùi = LỤC XUNG (六冲). Cùng hành nhưng xung → BỊ XUNG.",ew:"❌A: Mùi hợp NGỌ. ❌C: Thổ mộ tại Tuất. ❌D: cùng hành Thổ nhưng lục xung mạnh hơn."},
+{id:"vs20",phan:2,q:"Hào Tý trong ngày Sửu, tháng Mùi là:",o:["0,25","0","-0,25","0,5"],a:1,e:"Tý=Thủy. ①Tháng Mùi(Thổ): Bị khắc→-1. ②Ngày Sửu(Thổ): Tý-Sửu Nhị hợp→+1. Tổng=-1+1=0.",ew:"❌A(0,25), ❌D(0,5): nhầm điểm. ❌C(-0,25): nhầm nhị hợp=+0,75. Đúng: Bị khắc=-1, Nhị hợp=+1."},
+{id:"vs21",phan:2,q:"Hào Tý trong ngày Dậu, tháng Thân là:",o:["2,25","1,75","2,5","2"],a:3,e:"Tý=Thủy. ①Tháng Thân(Kim): Được sinh→+1. ②Ngày Dậu(Kim): Được sinh→+1. Tổng=+2.",ew:"❌A(2,25), ❌C(2,5): cộng thừa. ❌B(1,75): thiếu. Đúng: 2×Được sinh=+2."},
+{id:"vs22",phan:2,q:"Hào Tý trong ngày Ngọ, tháng Tuất là:",o:["-1,5","-2","-1,25","-1"],a:1,e:"Tý=Thủy. ①Tháng Tuất(Thổ): Bị khắc→-1. ②Ngày Ngọ(Hỏa): Tý-Ngọ Lục xung→-1. Tổng=-2.",ew:"❌A(-1,5): nhầm lục xung=-0,5. ❌C(-1,25), ❌D(-1): tính sai. Đúng: Bị khắc=-1, Lục xung=-1."},
+{id:"vs23",phan:2,q:"Hào Sửu trong ngày Tý, tháng Hợi là:",o:["0,75","0,25","0,5","1"],a:2,e:"Sửu=Thổ. ①Tháng Hợi(Thủy): Khắc xuất→-0,5. ②Ngày Tý(Thủy): Tý-Sửu Nhị hợp→+1. Tổng=+0,5.",ew:"❌A(0,75): nhầm khắc xuất=-0,25. ❌B(0,25): nhầm nhị hợp=+0,75. ❌D(1): quên trừ khắc xuất."},
+{id:"vs24",phan:2,q:"Hào Sửu trong ngày Thìn, tháng Tý là:",o:["2","2,25","1,75","2,5"],a:0,e:"Sửu=Thổ. ①Tháng Tý(Thủy): Tý-Sửu Nhị hợp→+1. ②Ngày Thìn(Thổ): Cùng hành→+1. Tổng=+2.",ew:"❌B(2,25), ❌D(2,5): cộng thừa. ❌C(1,75): trừ nhầm."},
+{id:"vs25",phan:2,q:"Hào Sửu trong ngày Hợi, tháng Mão là:",o:["-1","-1,75","-1,5","-1,25"],a:2,e:"Sửu=Thổ. ①Tháng Mão(Mộc): Bị khắc→-1. ②Ngày Hợi(Thủy): Khắc xuất→-0,5. Tổng=-1,5.",ew:"❌A(-1): quên khắc xuất. ❌B(-1,75): tính sai. ❌D(-1,25): tính sai. Đúng: -1+(-0,5)=-1,5."},
+{id:"vs26",phan:2,q:"Hào Dần trong ngày Mùi, tháng Sửu là:",o:["-0,5","-1","-0,75","-0,25"],a:2,e:"Dần=Mộc. ①Tháng Sửu(Thổ): Khắc xuất→-0,5. ②Ngày Mùi(Thổ): Mộc mộ tại Mùi=Nhập mộ→-0,25. Tổng=-0,75.",ew:"❌A(-0,5): quên nhập mộ. ❌B(-1): nhầm nhập mộ=-0,5. ❌D(-0,25): chỉ tính nhập mộ."},
+{id:"vs27",phan:2,q:"Hào Dần trong ngày Tý, tháng Mão là:",o:["2,25","1,75","2,5","2"],a:3,e:"Dần=Mộc. ①Tháng Mão(Mộc): Cùng hành→+1. ②Ngày Tý(Thủy): Được sinh→+1. Tổng=+2.",ew:"❌A(2,25), ❌C(2,5): cộng thừa. ❌B(1,75): thiếu. Đúng: +1+1=+2."},
+{id:"vs28",phan:2,q:"Hào Mão trong ngày Tuất, tháng Thân là:",o:["0,25","-0,25","0,5","0"],a:3,e:"Mão=Mộc. ①Tháng Thân(Kim): Bị khắc→-1. ②Ngày Tuất(Thổ): Mão-Tuất Nhị hợp→+1. Tổng=0.",ew:"❌A(0,25), ❌B(-0,25): nhầm điểm. ❌C(0,5): nhầm nhị hợp>bị khắc. Đúng: triệt tiêu=0."},
+{id:"vs29",phan:2,q:"Hào Mão trong ngày Hợi, tháng Dần là:",o:["2","2,25","1,75","2,5"],a:0,e:"Mão=Mộc. ①Tháng Dần(Mộc): Cùng hành→+1. ②Ngày Hợi(Thủy): Được sinh→+1. Tổng=+2.",ew:"❌B(2,25): cộng thêm điểm nhị hợp Dần-Hợi (sai, chỉ xét quan hệ với hào). ❌C(1,75): trừ sai."},
+{id:"vs30",phan:2,q:"Hào Mão trong ngày Dậu, tháng Tị là:",o:["-1,5","-2,25","-2","-1,25"],a:2,e:"Mão=Mộc. ①Tháng Tị(Hỏa): Sinh xuất→-1. ②Ngày Dậu(Kim): Mão-Dậu Lục xung→-1. Tổng=-2.",ew:"❌A(-1,5): nhầm sinh xuất=-0,5 (thực tế=-1). ❌B(-2,25): trừ quá. ❌D(-1,25): tính sai."},
+{id:"vs31",phan:2,q:"Hào Thìn trong ngày Dậu, tháng Hợi là:",o:["0,75","0,25","0,5","1"],a:2,e:"Thìn=Thổ. ①Tháng Hợi(Thủy): Khắc xuất→-0,5. ②Ngày Dậu(Kim): Thìn-Dậu Nhị hợp→+1. Tổng=+0,5.",ew:"❌A(0,75): nhầm khắc xuất=-0,25. ❌B(0,25): nhầm nhị hợp=+0,75. ❌D(1): quên trừ."},
+{id:"vs32",phan:2,q:"Hào Thìn trong ngày Mùi, tháng Sửu là:",o:["2,25","1,75","2,5","2"],a:3,e:"Thìn=Thổ. ①Tháng Sửu(Thổ): Cùng hành→+1. ②Ngày Mùi(Thổ): Cùng hành→+1. Tổng=+2. Sửu-Mùi xung nhau nhưng không ảnh hưởng hào Thìn.",ew:"❌A(2,25), ❌C(2,5): cộng thừa. ❌B(1,75): trừ nhầm."},
+{id:"vs33",phan:2,q:"Hào Tị trong ngày Tuất, tháng Dậu là:",o:["-0,5","-1","-0,75","-0,25"],a:2,e:"Tị=Hỏa. ①Tháng Dậu(Kim): Khắc xuất→-0,5. ②Ngày Tuất(Thổ): Hỏa mộ tại Tuất=Nhập mộ→-0,25. Tổng=-0,75.",ew:"❌A(-0,5): quên nhập mộ. ❌B(-1): nhầm nhập mộ=-0,5. ❌D(-0,25): chỉ tính nhập mộ."},
+{id:"vs34",phan:2,q:"Hào Tị trong ngày Mão, tháng Ngọ là:",o:["2,25","1,75","2,5","2"],a:3,e:"Tị=Hỏa. ①Tháng Ngọ(Hỏa): Cùng hành→+1. ②Ngày Mão(Mộc): Được sinh→+1. Tổng=+2.",ew:"❌A(2,25), ❌C(2,5): cộng thừa. ❌B(1,75): trừ nhầm."},
+{id:"vs35",phan:2,q:"Hào Tý trong năm Tý, ngày Sửu, tháng Thân là:",o:["2,5","2,25","2","2,75"],a:2,e:"Tý=Thủy. ①Tháng Thân(Kim): Được sinh→+1. ②Ngày Sửu(Thổ): Nhị hợp→+1. ③Năm Tý: Lâm Thái Tuế→±0. Tổng=+2.",ew:"❌A(2,5): nhầm Thái Tuế=+0,5. ❌B(2,25): nhầm Thái Tuế=+0,25. ❌D(2,75): cộng quá nhiều. Thái Tuế=±0."},
+{id:"vs36",phan:2,q:"Hào Sửu trong năm Mùi, ngày Tý, tháng Hợi là:",o:["0,5","0","0,25","0,75"],a:2,e:"Sửu=Thổ. ①Tháng Hợi(Thủy): Khắc xuất→-0,5. ②Ngày Tý(Thủy): Nhị hợp→+1. ③Năm Mùi: Sửu-Mùi Xung=Tuế phá→-0,25. Tổng=+0,25.",ew:"❌A(0,5): quên trừ Tuế phá. ❌B(0): nhầm Tuế phá=-0,5. ❌D(0,75): tính sai. Tuế phá=-0,25."},
+{id:"vs37",phan:2,q:"Hào Mão trong năm Dậu, ngày Tuất, tháng Hợi là:",o:["2","1,5","2,25","1,75"],a:3,e:"Mão=Mộc. ①Tháng Hợi(Thủy): Được sinh→+1. ②Ngày Tuất(Thổ): Nhị hợp→+1. ③Năm Dậu: Mão-Dậu Xung=Tuế phá→-0,25. Tổng=+1,75.",ew:"❌A(2): quên trừ Tuế phá. ❌B(1,5): nhầm Tuế phá=-0,5. ❌C(2,25): cộng Tuế phá thành +0,25."},
+{id:"vs38",phan:2,q:"Hào Thìn trong năm Thìn, ngày Dậu, tháng Mùi là:",o:["2,5","2","2,25","2,75"],a:1,e:"Thìn=Thổ. ①Tháng Mùi(Thổ): Cùng hành→+1. ②Ngày Dậu(Kim): Nhị hợp→+1. ③Năm Thìn: Lâm Thái Tuế→±0. Tổng=+2.",ew:"❌A(2,5): nhầm Thái Tuế=+0,5. ❌C(2,25): nhầm Thái Tuế=+0,25. ❌D(2,75): cộng quá. Thái Tuế=±0."},
+{id:"vs39",phan:2,q:"Hào Ngọ trong năm Ngọ, ngày Mùi, tháng Dậu là:",o:["1","0,5","0,75","1,25"],a:1,e:"Ngọ=Hỏa. ①Tháng Dậu(Kim): Khắc xuất→-0,5. ②Ngày Mùi(Thổ): Ngọ-Mùi Nhị hợp→+1. ③Năm Ngọ: Lâm Thái Tuế→±0. Tổng=+0,5.",ew:"❌A(1): nhầm Thái Tuế=+0,5. ❌C(0,75): nhầm Thái Tuế=+0,25. ❌D(1,25): cộng quá. Lâm Thái Tuế=±0."},
+];
+
+
+// Load data
+const DCK='lh_dc_questions',DTK='lh_dt_questions',VSK='lh_vs_questions';
+const ldQ=(k,d)=>{try{const s=localStorage.getItem(k);return s?JSON.parse(s):[...d.map(q=>({...q}))]}catch{return[...d.map(q=>({...q}))]}};
+const svQ=(k,a)=>{try{localStorage.setItem(k,JSON.stringify(a))}catch{}};
+
+const BK={
+  dc:{key:DCK,wk:'lh_dc_wrong',secs:DC_SECS,catKey:'s',def:null,q:[]},
+  dt:{key:DTK,wk:'lh_dt_wrong',secs:DT_LT,catKey:'lt',def:null,q:[]},
+  vs:{key:VSK,wk:'lh_vs_wrong',secs:VS_SECS,catKey:'phan',def:null,q:[]},
+};
+
+// Per-bank game state
+const GS={
+  dc:{view:'home',pool:[],idx:0,score:0,xp:0,streak:0,mode:-1,sc:{},st:{},startedAt:0},
+  dt:{view:'home',pool:[],idx:0,score:0,xp:0,streak:0,mode:-1,sc:{},st:{},startedAt:0},
+  vs:{view:'home',pool:[],idx:0,score:0,xp:0,streak:0,mode:-1,sc:{},st:{},startedAt:0},
+};
+
+let activeTab='dc', adminBank='dc', adminLoggedIn=false;
+let eMode=false, eIdx=-1;
+let currentUser=null; // {id, name, email, picture, type:'google'|'guest'}
+
+// Per-user localStorage key namespacing
+function getUK(key){return currentUser?`lh_u_${currentUser.id}_${key}`:key;}
+
+function loadWrong(b){try{return new Set(JSON.parse(localStorage.getItem(getUK(b+'_wrong'))||'[]'))}catch{return new Set()}}
+function saveWrong(b,s){try{localStorage.setItem(getUK(b+'_wrong'),JSON.stringify([...s]))}catch{}}
+function getCreds(){try{return JSON.parse(localStorage.getItem(CKEY)||'null')||{user:'admin',pass:'luchao2024'}}catch{return{user:'admin',pass:'luchao2024'}}}
+
+function getBankColor(b){return b==='dc'?'#e74c3c':b==='dt'?'#3498db':'#2ab8c8'}
+function getBankTitle(b){return b==='dc'?'🎴 12 Địa Chi':b==='dt'?'🔮 Dụng Thần':'⚡ Vượng Suy'}
+function getBankSub(b){return b==='dc'?'81 câu · 9 chủ đề':b==='dt'?'60 câu · 5 lục thân':'40 câu · 3 phần'}
+
+
+// === STARS CANVAS ===
+const sf=document.getElementById('sf');
+const sctx=sf.getContext('2d');
+let stars=[], shoots=[], W=0, H=0;
+
+function resizeSF(){
+  W=sf.width=window.innerWidth;
+  H=sf.height=window.innerHeight;
+  stars=[];
+  for(let i=0;i<2200;i++){
+    const bright=Math.random()<.05;
+    stars.push({x:Math.random()*W,y:Math.random()*H,r:bright?Math.random()*1.5+.5:Math.random()*.9+.1,
+      a:Math.random(),sp:Math.random()*.004+.001,ph:Math.random()*Math.PI*2,bright});
+  }
+}
+function animateSF(t){
+  sctx.clearRect(0,0,W,H);
+  // stars
+  stars.forEach(s=>{
+    const tw=.45+.55*Math.sin(t*.001*s.sp*1000+s.ph);
+    const al=s.bright?(0.6+.4*tw):(s.a*.7*tw+.1);
+    sctx.beginPath();
+    sctx.arc(s.x,s.y,s.bright?s.r*1.6:s.r,0,Math.PI*2);
+    sctx.fillStyle=`rgba(${s.bright?'255,248,210':'220,235,255'},${al})`;
+    sctx.fill();
+    if(s.bright&&s.r>.8){
+      sctx.strokeStyle=`rgba(255,248,210,${al*.25})`;
+      sctx.lineWidth=.5;
+      sctx.beginPath();
+      sctx.moveTo(s.x-s.r*4,s.y);sctx.lineTo(s.x+s.r*4,s.y);
+      sctx.moveTo(s.x,s.y-s.r*4);sctx.lineTo(s.x,s.y+s.r*4);
+      sctx.stroke();
+    }
+  });
+  // shooting stars
+  for(let i=shoots.length-1;i>=0;i--){
+    const s=shoots[i];
+    s.x+=s.vx;s.y+=s.vy;s.life-=1;
+    if(s.life<=0){shoots.splice(i,1);continue}
+    const al=s.life/s.maxLife;
+    const grd=sctx.createLinearGradient(s.x,s.y,s.x-s.vx*s.tail,s.y-s.vy*s.tail);
+    grd.addColorStop(0,`rgba(255,255,240,${al})`);
+    grd.addColorStop(1,'rgba(255,255,240,0)');
+    sctx.strokeStyle=grd;sctx.lineWidth=1.8;
+    sctx.beginPath();sctx.moveTo(s.x,s.y);sctx.lineTo(s.x-s.vx*s.tail,s.y-s.vy*s.tail);sctx.stroke();
+  }
+  requestAnimationFrame(animateSF);
+}
+function spawnShoot(){
+  const ang=Math.PI/5+Math.random()*Math.PI/6;
+  const spd=10+Math.random()*8;
+  shoots.push({x:Math.random()*W*.7,y:Math.random()*H*.5,vx:Math.cos(ang)*spd,vy:Math.sin(ang)*spd,tail:12+Math.random()*10,life:60+Math.random()*30,maxLife:90});
+  setTimeout(spawnShoot,1800+Math.random()*3500);
+}
+window.addEventListener('resize',resizeSF);
+resizeSF();requestAnimationFrame(animateSF);
+setTimeout(spawnShoot,1000);
+
+// === SOLAR SYSTEM ===
+const PLANETS=[
+  {r:4,orb:240,per:4,col:'#a09080',sc:'radial-gradient(circle at 35% 35%,#c0b8a8,#706050)'},
+  {r:7,orb:330,per:9,col:'#e0c060',sc:'radial-gradient(circle at 35% 35%,#f0d878,#c09030)',glow:'rgba(240,200,80,.3)'},
+  {r:5,orb:440,per:15,col:'#c05030',sc:'radial-gradient(circle at 35% 35%,#e07050,#a03820)',glow:'rgba(200,80,50,.25)'},
+  {r:18,orb:580,per:30,col:'#c89060',sc:'radial-gradient(circle at 35% 35%,#e8c080,#a86828)'},
+  {r:14,orb:720,per:50,col:'#d8c060',sc:'radial-gradient(circle at 35% 35%,#ecd870,#b89838)',ring:true},
+  {r:11,orb:860,per:70,col:'#78c8e0',sc:'radial-gradient(circle at 35% 35%,#a0e0f0,#4098c8)',glow:'rgba(100,200,230,.2)'},
+  {r:10,orb:990,per:95,col:'#2840e0',sc:'radial-gradient(circle at 35% 35%,#5060e8,#1828b0)',glow:'rgba(40,60,220,.3)'},
+];
+(function buildSolar(){
+  const w=document.getElementById('solar');
+  PLANETS.forEach(p=>{
+    // orbit ring
+    const ring=document.createElement('div');
+    ring.className='orbit-ring';
+    ring.style.cssText=`width:${p.orb*2}px;height:${p.orb*2}px;margin-left:-${p.orb}px;margin-top:-${p.orb}px;`;
+    w.appendChild(ring);
+    // wrapper
+    const wrap=document.createElement('div');
+    wrap.className='p-wrap';
+    wrap.style.animationDuration=`${p.per}s`;
+    // body
+    const body=document.createElement('div');
+    body.className='p-body';
+    body.style.cssText=`width:${p.r*2}px;height:${p.r*2}px;top:-${p.orb+p.r}px;left:-${p.r}px;background:${p.sc};border-radius:50%;${p.glow?`box-shadow:0 0 ${p.r*3}px ${p.glow};`:''}`;
+    body.style.animationDuration=`${p.per}s`;
+    if(p.ring){
+      const pr=document.createElement('div');
+      pr.className='p-ring';
+      pr.style.cssText=`width:${p.r*5}px;height:${p.r*1.4}px;top:${p.r}px;left:${p.r}px;`;
+      body.appendChild(pr);
+    }
+    wrap.appendChild(body);w.appendChild(wrap);
+  });
+})();
+
+
+// === TAB SWITCHING ===
+function sw(tab){
+  activeTab=tab;
+  // Highlight sidebar item
+  document.querySelectorAll('.sb-item[id^="nav-"]').forEach(el=>{
+    el.classList.toggle('active', el.id==='nav-'+tab);
+  });
+  // Show correct pane
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  const pane=document.getElementById('pane-'+tab);
+  if(pane) pane.classList.add('on');
+  // Close mobile sidebar
+  closeSidebar();
+  // Render content
+  if(tab==='home') renderHome_page();
+  else if(tab==='admin') renderAdmin();
+  else if(tab==='report') renderReport();
+  else if(tab==='feedback') renderFeedbackTab();
+  else if(tab==='software') renderSoftware();
+  else renderBank(tab);
+  updateSidebarBadges();
+}
+
+function toggleSidebar(){
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sb-overlay').classList.toggle('open');
+}
+function closeSidebar(){
+  document.getElementById('sidebar')?.classList.remove('open');
+  document.getElementById('sb-overlay')?.classList.remove('open');
+}
+
+function updateSidebarBadges(){
+  ['dc','dt','vs'].forEach(b=>{
+    const w=loadWrong(b).size;
+    const el=document.getElementById('sb-badge-'+b);
+    if(el){el.textContent=w>0?w+'✗':'';el.style.background=w>0?'rgba(150,50,200,.25)':'rgba(80,140,255,.2)';el.style.color=w>0?'#cc99ff':'#88c4f0';}
+  });
+}
+
+
+// === QUIZ RENDER ===
+function renderBank(b){
+  const g=GS[b];
+  const p=document.getElementById('pane-'+b);
+  if(g.view==='home') renderHome(b,p);
+  else if(g.view==='game') renderQ(b,p);
+  else renderEnd(b,p);
+}
+
+function renderHome(b,p){
+  const bk=BK[b], secs=bk.secs, q=bk.q, w=loadWrong(b);
+  const col=getBankColor(b);
+  const secCounts=secs.map((_,i)=>q.filter(x=>x[bk.catKey]===i).length);
+
+  // Per-section stats from report data
+  const rd=getReportData(b);
+
+  // Wrong counts per section
+  const wrongSet=loadWrong(b);
+  const wrongPerSec=secs.map((_,i)=>{
+    let wc=0;
+    wrongSet.forEach(qi=>{const it=q[qi];if(it&&it[bk.catKey]===i)wc++;});
+    return wc;
+  });
+  // Total wrong for whole bank
+  const allWrong=w.size;
+
+  p.innerHTML=`<div class="glass" style="padding:14px 16px 18px;margin-bottom:10px;">
+    <div class="bank-logo" style="font-size:2.91rem;color:${col}">${getBankTitle(b)}</div>
+    <div class="bank-sub">${getBankSub(b)}</div>
+    <div style="text-align:center"><span class="bank-badge">${q.length} câu · ${secs.length} phần · Giải thích từng câu</span></div>
+  </div>
+  <div class="glass" style="padding:14px;margin-bottom:10px;">
+    <div style="font-size:0.9rem;color:var(--muted);margin-bottom:8px;padding-left:2px">Chọn phần để học:</div>
+    <div class="sec-grid">${secs.map((s,i)=>{
+      const total=secCounts[i];
+      const sd=rd.sec[i];
+      const correct=sd?sd.correct:0;
+      const attempts=sd?sd.attempts:0;
+      const answered=sd?sd.answered:0;
+      const wc=wrongPerSec[i];
+      // best correct per unique question = answered correctly at least once
+      // use correct/attempts as proxy, but cap at total
+      const bestCorrect=Math.min(answered,total); // answered = unique questions touched
+      const accPct=attempts>0?Math.round(sd.correct/sd.attempts*100):null;
+      // color coding
+      const progCol=answered===0?'var(--muted)':accPct>=80?'#6ddc94':accPct>=50?'#f0c94b':'#ff8888';
+      const statTxt=answered===0
+        ?`<span style="color:var(--muted);font-size:0.86rem">${total} câu</span>`
+        :`<span style="color:${progCol};font-size:0.9rem;font-weight:700">${bestCorrect}/${total}</span>
+         <span style="color:var(--muted);font-size:0.82rem;margin-left:3px">${accPct}%</span>
+         ${wc>0?`<span style="background:#9b59b6;color:#fff;border-radius:10px;padding:0 6px;font-size:0.78rem;margin-left:3px">${wc}✗</span>`:''}`;
+      return `<div class="sec-tile" onclick="openPreLaunch('${b}',${i})" style="border-left-color:${s.c}">
+        <span class="si">${s.i}</span>
+        <span class="sn" style="color:${s.c};flex:1">${b==='dt'?s.n+' '+s.h:s.n}</span>
+        <span class="sc" style="display:flex;align-items:center;gap:3px">${statTxt}</span>
+      </div>`;
+    }).join('')}
+    </div>
+
+    <!-- All bank launch row -->
+    <div style="margin-top:4px;border-top:1px solid rgba(80,140,255,.12);padding-top:12px">
+      ${(()=>{
+        const ov=rd.overall;
+        const pct=ov.attempts>0?Math.round(ov.correct/ov.attempts*100):null;
+        const pc=pct===null?'var(--muted)':pct>=80?'#6ddc94':pct>=50?'#f0c94b':'#ff8888';
+        const statStr=pct!==null?`<span style="color:${pc};font-weight:700">${Math.min(ov.answered,q.length)}/${q.length}</span> · <span style="color:${pc}">${pct}%</span>`:`<span style="color:var(--muted)">${q.length} câu</span>`;
+        return `<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;padding:0 2px">
+          <span style="font-size:0.94rem;color:var(--muted)">Toàn bộ</span>
+          <span style="font-size:0.94rem">${statStr}${allWrong>0?` &nbsp;<span style="background:#9b59b6;color:#fff;border-radius:10px;padding:1px 8px;font-size:0.82rem">${allWrong} câu sai</span>`:''}</span>
+        </div>`;
+      })()}
+      <button class="btn-main" onclick="openPreLaunch('${b}',-1)">▶ Luyện toàn bộ (${q.length} câu)</button>
+    </div>
+  </div>`;
+}
+
+// Pre-launch modal: show options before starting
+function openPreLaunch(b, mode){
+  const bk=BK[b], secs=bk.secs, q=bk.q;
+  const col=getBankColor(b);
+  const wrongSet=loadWrong(b);
+  const rd=getReportData(b);
+
+  let title, subtitle, secColor, wrongCount, totalPool;
+
+  if(mode===-1){
+    title='Toàn bộ – '+getBankTitle(b);
+    subtitle=q.length+' câu';
+    secColor=col;
+    wrongCount=wrongSet.size;
+    totalPool=q.length;
+  } else {
+    const sec=secs[mode];
+    title=(b==='dt'?sec.n+' '+sec.h:sec.n);
+    const pool=q.filter(x=>x[bk.catKey]===mode);
+    totalPool=pool.length;
+    secColor=sec.c;
+    // wrong in this section
+    wrongCount=0;
+    wrongSet.forEach(qi=>{const it=q[qi];if(it&&it[bk.catKey]===mode)wrongCount++;});
+    const sd=rd.sec[mode];
+    const correct=sd?sd.correct:0;
+    const att=sd?sd.attempts:0;
+    const ans=sd?sd.answered:0;
+    const pct=att>0?Math.round(correct/att*100):null;
+    subtitle=pct!==null?`${Math.min(ans,totalPool)}/${totalPool} câu · ${pct}% đúng`:`${totalPool} câu`;
+  }
+
+  // Create overlay
+  const ov=document.createElement('div');
+  ov.id='pre-launch-ov';
+  ov.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:300;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(6px)';
+  ov.onclick=e=>{if(e.target===ov)ov.remove();};
+
+  const wrongLabel=wrongCount===1?'câu sai':'câu sai';
+  const hasWrong=wrongCount>0;
+
+  ov.innerHTML=`<div style="background:rgba(6,14,36,.96);border:1px solid rgba(80,140,255,.25);border-radius:18px;padding:24px 22px;width:100%;max-width:400px;box-shadow:0 24px 80px rgba(0,0,0,.7)">
+    <div style="text-align:center;margin-bottom:18px">
+      <div style="font-size:1.72rem;font-weight:700;color:${secColor};margin-bottom:4px">${title}</div>
+      <div style="font-size:0.97rem;color:var(--muted)">${subtitle}</div>
+    </div>
+
+    <!-- options -->
+    <div style="display:flex;flex-direction:column;gap:10px">
+
+      ${hasWrong?`<button onclick="document.getElementById('pre-launch-ov').remove();startGame('${b}',${mode===-1?-2:-1},${mode===-1?-1:mode},'wrong')"
+        style="background:linear-gradient(135deg,rgba(100,20,150,.5),rgba(80,10,120,.7));border:1px solid rgba(160,80,220,.4);border-radius:13px;padding:16px 18px;cursor:pointer;text-align:left;width:100%;font-family:'Readex Pro',sans-serif">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:1.6rem">🔁</span>
+          <div>
+            <div style="font-size:1.09rem;font-weight:700;color:#cc99ff">Ôn ${wrongCount} ${wrongLabel}</div>
+            <div style="font-size:0.9rem;color:rgba(180,140,220,.7);margin-top:2px">Chỉ các câu trả lời sai trước đó</div>
+          </div>
+        </div>
+      </button>`:''}
+
+      <button onclick="document.getElementById('pre-launch-ov').remove();startGame('${b}',${mode})"
+        style="background:linear-gradient(135deg,rgba(20,50,100,.6),rgba(15,40,90,.8));border:1px solid rgba(80,140,255,.3);border-radius:13px;padding:16px 18px;cursor:pointer;text-align:left;width:100%;font-family:'Readex Pro',sans-serif">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:1.6rem">${hasWrong?'🔄':'▶'}</span>
+          <div>
+            <div style="font-size:1.09rem;font-weight:700;color:#88c4f0">${hasWrong?'Làm lại toàn bộ':'Bắt đầu học'}</div>
+            <div style="font-size:0.9rem;color:rgba(130,180,220,.65);margin-top:2px">${totalPool} câu, thứ tự ngẫu nhiên</div>
+          </div>
+        </div>
+      </button>
+
+      <button onclick="document.getElementById('pre-launch-ov').remove()"
+        style="background:none;border:1px solid rgba(80,100,140,.3);border-radius:10px;padding:10px;cursor:pointer;color:var(--muted);font-family:'Readex Pro',sans-serif;font-size:0.97rem">
+        Huỷ
+      </button>
+    </div>
+  </div>`;
+
+  document.body.appendChild(ov);
+}
+
+function startGame(b, mode, secMode, wrongMode){
+  const bk=BK[b],g=GS[b];
+  // wrongMode: ôn câu sai chỉ trong một section cụ thể
+  if(wrongMode==='wrong' && secMode!==-1 && secMode!==undefined){
+    // Wrong questions in this section only
+    const wrongSet=loadWrong(b);
+    const pool=[];
+    wrongSet.forEach(qi=>{const it=bk.q[qi];if(it&&it[bk.catKey]===secMode)pool.push(it);});
+    if(!pool.length){showToast('Không có câu sai trong phần này!',1);return;}
+    g.mode=-2;g.view='game';
+    g.pool=[...pool];
+    for(let i=g.pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[g.pool[i],g.pool[j]]=[g.pool[j],g.pool[i]];}
+    g.idx=0;g.score=0;g.xp=0;g.streak=0;g.sc={};g.st={};g.startedAt=Date.now();
+    g.pool.forEach(q=>{const k=q[bk.catKey];g.st[k]=(g.st[k]||0)+1;g.sc[k]=g.sc[k]||0;});
+    renderQ(b, document.getElementById('pane-'+b));
+    return;
+  }
+  g.mode=mode;g.view='game';
+  g.pool=mode===-1?[...bk.q]:mode===-2?[]:[ ...bk.q.filter(q=>q[bk.catKey]===mode)];
+  if(mode===-2){const ids=[...loadWrong(b)];g.pool=ids.map(i=>bk.q[i]).filter(Boolean);}
+  for(let i=g.pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[g.pool[i],g.pool[j]]=[g.pool[j],g.pool[i]];}
+  g.idx=0;g.score=0;g.xp=0;g.streak=0;g.sc={};g.st={};g.startedAt=Date.now();
+  g.pool.forEach(q=>{const k=q[BK[b].catKey];g.st[k]=(g.st[k]||0)+1;g.sc[k]=g.sc[k]||0;});
+  renderQ(b, document.getElementById('pane-'+b));
+}
+
+function startReview(b){
+  const ids=[...loadWrong(b)];
+  if(!ids.length){showToast('Chưa có câu sai nào!',1);return;}
+  startGame(b,-2);
+}
+function clearWrong(b){if(confirm('Xóa toàn bộ lịch sử câu sai?')){saveWrong(b,new Set());renderHome(b,document.getElementById('pane-'+b));updateSidebarBadges();}}
+
+function renderQ(b,p){
+  const g=GS[b],bk=BK[b],q=g.pool[g.idx];
+  if(!q){showEnd(b,p);return;}
+  const secs=bk.secs, sec=secs[q[bk.catKey]];
+  const col=sec?sec.c:getBankColor(b);
+  const isRev=g.mode===-2;
+  const pct=Math.round((g.idx/g.pool.length)*100);
+  const MAX_XP=400;
+
+  // type badge
+  let badgeHTML='';
+  if(b==='dt'){
+    const bc=q.t==='Nhận diện'?{bg:'#1a2a3a',c:'#5a9fd4'}:q.t==='Dụng thần'?{bg:'#1a2a1a',c:'#5acd7a'}:{bg:'#2a1a2a',c:'#c07ad4'};
+    badgeHTML=`<span class="qbadge" style="background:${bc.bg};color:${bc.c};border:1px solid ${bc.c}50">${q.t}</span>`;
+  } else if(b==='vs'){
+    const vc=q.phan===0?{bg:'#2a1818',c:'#e98080'}:q.phan===1?{bg:'#182030',c:'#6aacdc'}:{bg:'#182818',c:'#6acc88'};
+    const vl=q.phan===0?'Vượng/Suy':q.phan===1?'Gọi tên':'Căn Lực';
+    badgeHTML=`<span class="qbadge" style="background:${vc.bg};color:${vc.c};border:1px solid ${vc.c}50">${vl}</span>`;
+  }
+
+  const opts=q.o.filter(o=>o); // filter empty for VS phan 0
+  p.innerHTML=`
+    <div class="ghead glass">
+      <div class="ghead-top">
+        <div class="xp-wrap"><div class="xp-bg"><div class="xp-bar" id="${b}-xpb" style="width:${(g.xp/MAX_XP)*100}%"></div></div><span class="xp-val">${g.xp} XP</span></div>
+        <div class="streak" id="${b}-str">🔥 ${g.streak}</div>
+        <span style="font-size:1.03rem;color:var(--muted)">${g.idx+1}/${g.pool.length}</span>
+      </div>
+      <div class="prog-bg"><div class="prog-bar" style="width:${pct}%"></div></div>
+      <div class="sec-lbl" style="color:${isRev?'#cc99ff':col}">${isRev?'🔁 Ôn câu sai · ':''}${sec?sec.i+' '+sec.n+(b==='dt'?' '+sec.h:''):''}</div>
+    </div>
+    <div class="qcard">
+      <div class="qmeta"><span class="qnum">Câu ${g.idx+1}</span>${badgeHTML}</div>
+      <div class="qtext">${q.q}</div>
+    </div>
+    <div class="opts">${opts.map((o,i)=>{
+      // find real index in q.o
+      const ri=q.o.indexOf(o);
+      return `<button class="opt" onclick="answerQ('${b}',${ri})" id="${b}-opt${ri}"><span class="ltr">${'ABCD'[ri]}</span><span>${o}</span></button>`;
+    }).join('')}</div>
+    <div class="exbox" id="${b}-ex"></div>
+    <button class="btn-next" id="${b}-nxt" onclick="nextQ('${b}')">Câu tiếp theo →</button>`;
+}
+
+function answerQ(b,chosen){
+  const g=GS[b],bk=BK[b],q=g.pool[g.idx];
+  const MAX_XP=400;
+  // disable all opts
+  document.querySelectorAll(`#pane-${b} .opt`).forEach(btn=>btn.onclick=null);
+  const correct=q.a===chosen;
+  const co=document.getElementById(`${b}-opt${chosen}`);
+  const ca=document.getElementById(`${b}-opt${q.a}`);
+  if(co)co.classList.add(correct?'correct':'wrong');
+  if(!correct&&ca)ca.classList.add('correct');
+
+  const ws=loadWrong(b);
+  const qi=bk.q.indexOf(q);
+  if(correct){
+    ws.delete(qi);g.score++;g.streak++;
+    const mult=g.streak>=5?2:g.streak>=3?1.5:1;
+    const gain=Math.round(10*mult);g.xp=Math.min(g.xp+gain,MAX_XP);
+    g.sc[q[bk.catKey]]=(g.sc[q[bk.catKey]]||0)+1;
+    showXPPop(`+${gain} XP${mult>1?' 🔥×'+mult:''}`);
+  } else {if(qi>=0)ws.add(qi);g.streak=0;}
+  saveWrong(b,ws);
+  // track per-question stats for report
+  trackStat(b, q.id||String(qi), q[bk.catKey], correct);
+
+  const str=document.getElementById(`${b}-str`);
+  if(str)str.textContent=`🔥 ${g.streak}`;
+  const xpb=document.getElementById(`${b}-xpb`);
+  if(xpb)xpb.style.width=`${(g.xp/MAX_XP)*100}%`;
+
+  // build explanation
+  let exHTML='';
+  const hdrStyle=`background:${correct?'#0a2015':'#220a0a'};color:${correct?'#6ddc94':'#ff8888'}`;
+  const hdrTxt=correct?`✅ Chính xác!`:`❌ Chưa đúng — Đáp án: ${'ABCD'[q.a]}`;
+  if(b==='dc'){
+    exHTML=`<div class="exhdr" style="${hdrStyle}">${hdrTxt}</div>
+    <div class="exbody"><div class="exright">${q.e||''}</div></div>`;
+  } else if(b==='dt'){
+    exHTML=`<div class="exhdr" style="${hdrStyle}">${hdrTxt}</div>
+    <div class="exbody">
+      <div class="exrule">📌 <b>Quy tắc:</b> ${q.rule||''}</div>
+      <div class="exwhy"><b>Tại sao đúng:</b> ${q.why||''}</div>
+      <div class="exwrong">⚠️ <b>Bẫy hay gặp:</b> ${q.wrong||''}</div>
+    </div>`;
+  } else {
+    exHTML=`<div class="exhdr" style="${hdrStyle}">${hdrTxt}</div>
+    <div class="exbody">
+      <div class="exright"><b>💡 Giải thích:</b> ${q.e||''}</div>
+      <div class="exwrong"><b>Phân tích sai:</b> ${q.ew||''}</div>
+    </div>`;
+  }
+  const exEl=document.getElementById(`${b}-ex`);
+  if(exEl){exEl.innerHTML=exHTML;exEl.classList.add('show');}
+  const nxt=document.getElementById(`${b}-nxt`);
+  if(nxt)nxt.classList.add('show');
+}
+
+function nextQ(b){
+  const g=GS[b];g.idx++;
+  if(g.idx>=g.pool.length){g.view='end';renderEnd(b,document.getElementById('pane-'+b));}
+  else renderQ(b,document.getElementById('pane-'+b));
+}
+
+function showEnd(b,p){
+  const g=GS[b],bk=BK[b];g.view='end';
+  const pct=Math.round((g.score/g.pool.length)*100);
+  const rem=loadWrong(b).size;
+  const secs=bk.secs;
+  // Log this session
+  logSession({
+    bank:b,
+    mode:g.mode,
+    score:g.score,
+    total:g.pool.length,
+    pct,
+    durationMs:g.startedAt?Date.now()-g.startedAt:0,
+  });
+  p.innerHTML=`<div class="glass end-wrap" style="margin-bottom:10px">
+    <div class="end-medals">${pct>=90?'🏆🏆🏆':pct>=70?'🏆🏆':pct>=50?'🏆':'📖'}</div>
+    <div class="end-title">${g.mode===-2?'Kết quả ôn tập':'Kết quả'}</div>
+    <div class="end-score">${g.score}/${g.pool.length}</div>
+    <div class="end-det">${pct}% chính xác · ${g.xp} XP</div>
+    <div class="end-rnote" style="color:${rem>0?'#ff9999':'#6ddc94'}">${rem>0?`📌 Còn ${rem} câu sai cần ôn`:'✅ Không còn câu sai!'}</div>
+    <div class="sec-res">${Object.keys(g.st).map(si=>{
+      const c=g.sc[si]||0,t=g.st[si],pc=Math.round((c/t)*100),sec=secs[si];
+      return `<div class="sr-row"><span style="flex:1;text-align:left">${sec?sec.i+' '+sec.n+(b==='dt'?' '+sec.h:''):si}</span><span class="sr-score">${pc>=80?'🟢':pc>=50?'🟡':'🔴'} ${c}/${t}</span></div>`;
+    }).join('')}</div>
+    <div class="end-btns">
+      <button class="btn-retry" onclick="startGame('${b}',GS['${b}'].mode)">🔄 Chơi lại</button>
+      ${rem>0?`<button class="btn-retry" onclick="startReview('${b}')" style="color:#cc99ff">🔁 Ôn câu sai</button>`:''}
+      <button class="btn-retry" onclick="GS['${b}'].view='home';renderHome('${b}',document.getElementById('pane-${b}'))">🏠 Về Menu</button>
+    </div>
+  </div>
+  <div class="mini-fb" id="mini-fb-${b}">
+    <div class="mini-fb-title">💬 Bộ câu hỏi này thế nào?</div>
+    <div style="display:flex;gap:10px;justify-content:center;margin-bottom:10px" id="mini-stars-${b}">
+      ${[1,2,3,4,5].map(n=>`<span class="mini-star" data-v="${n}" onclick="miniRate('${b}',${n})">☆</span>`).join('')}
+    </div>
+    <textarea class="fb-textarea" id="mini-text-${b}" placeholder="Nhận xét về nội dung, độ khó, câu hỏi chưa rõ... (tuỳ chọn)" rows="2" style="min-height:56px;font-size:0.92rem"></textarea>
+    <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap" id="mini-tags-${b}">
+      ${['Nội dung tốt','Câu hỏi rõ ràng','Cần thêm câu','Có câu sai/nhầm','Giải thích hay','Độ khó vừa','Quá dễ','Quá khó'].map(t=>
+        `<button class="fb-tag" onclick="toggleMiniTag(this)">${t}</button>`).join('')}
+    </div>
+    <button onclick="submitMiniFb('${b}')" style="width:100%;margin-top:10px;background:linear-gradient(135deg,#1e3a5f,#2a6090);color:#fff;border:none;border-radius:9px;padding:9px;font-family:'Readex Pro',sans-serif;font-size:0.94rem;font-weight:600;cursor:pointer">📤 Gửi góp ý</button>
+  </div>`;
+}
+
+function showXPPop(txt){const el=document.createElement('div');el.className='xppop';el.textContent=txt;document.body.appendChild(el);setTimeout(()=>el.remove(),900);}
+renderEnd=showEnd; // alias
+
+
+// === ACTIVITY LOG ===
+const LOG_KEY='lh_activity_log';
+const LOG_MAX=500;
+function loadLog(){try{return JSON.parse(localStorage.getItem(LOG_KEY)||'[]')}catch{return[]}}
+function saveLog(a){try{localStorage.setItem(LOG_KEY,JSON.stringify(a))}catch{}}
+function logSession({bank,mode,score,total,pct,durationMs}){
+  const u=currentUser||{name:'Unknown',type:'guest',id:'?'};
+  const entry={ts:Date.now(),uid:u.id,uname:u.name,utype:u.type,bank,mode,score,total,pct,dur:Math.round((durationMs||0)/1000)};
+  const log=loadLog();log.unshift(entry);if(log.length>LOG_MAX)log.length=LOG_MAX;saveLog(log);
+}
+function fmtDur(s){if(!s||s<1)return '–';if(s<60)return s+'s';const m=Math.floor(s/60),sec=s%60;return m+'m'+(sec>0?sec+'s':'');}
+function fmtTime(ts){const d=new Date(ts);const pad=n=>String(n).padStart(2,'0');return `${pad(d.getDate())}/${pad(d.getMonth()+1)} ${pad(d.getHours())}:${pad(d.getMinutes())}`;}
+function bankLabel(b){return b==='dc'?'Địa Chi':b==='dt'?'Dụng Thần':'Vượng Suy';}
+function bankCol(b){return b==='dc'?'#e74c3c':b==='dt'?'#3498db':'#2ab8c8';}
+
+// === ADMIN ===
+let adminTab='questions';
+
+function renderAdmin(){
+  const p=document.getElementById('pane-admin');
+  if(!adminLoggedIn){
+    p.innerHTML=`<div class="glass admin-login" style="padding:32px 26px;max-width:400px;margin:20px auto">
+      <div style="font-family:'Noto Serif',serif;font-size:2.65rem;color:var(--gold);text-align:center;margin-bottom:4px">⚙️ Admin</div>
+      <div style="color:var(--muted);font-size:0.94rem;text-align:center;margin-bottom:22px">Quản lý ngân hàng câu hỏi</div>
+      <div class="fi"><label>Tên đăng nhập</label><input id="lu" placeholder="Nhập tên đăng nhập" autocomplete="username"></div>
+      <div class="fi" style="position:relative">
+        <label>Mật khẩu</label>
+        <input type="password" id="lp" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()" style="padding-right:42px">
+        <button onclick="togglePwVis('lp','lpEye')" id="lpEye" style="position:absolute;right:10px;bottom:10px;background:none;border:none;cursor:pointer;font-size:1.15rem;color:var(--muted);line-height:1;padding:2px">👁</button>
+      </div>
+      <button class="btn-main" onclick="doLogin()">Đăng nhập →</button>
+      <div class="err-msg" id="lerr"></div>
+    </div>`;
+    return;
+  }
+  renderAdminDash();
+}
+
+function togglePwVis(inputId,btnId){
+  const inp=document.getElementById(inputId);const btn=document.getElementById(btnId);if(!inp)return;
+  const h=inp.type==='password';inp.type=h?'text':'password';if(btn)btn.textContent=h?'🙈':'👁';
+}
+
+function doLogin(){
+  const u=document.getElementById('lu')?.value.trim();
+  const pp=document.getElementById('lp')?.value;
+  const c=getCreds();
+  if(u===c.user&&pp===c.pass){adminLoggedIn=true;renderAdminDash();}
+  else{const e=document.getElementById('lerr');if(e)e.textContent='Sai tên đăng nhập hoặc mật khẩu!';}
+}
+function doLogout(){adminLoggedIn=false;adminTab='questions';renderAdmin();}
+function chgPw(){adminTab='settings';renderAdminDash();}
+
+function renderAdminDash(){
+  const p=document.getElementById('pane-admin');
+  const logCount=loadLog().length;
+  p.innerHTML=`
+    <div class="glass" style="padding:12px 14px;margin-bottom:8px">
+      <div class="admin-head">
+        <span style="font-family:'Noto Serif',serif;font-size:1.45rem;color:var(--gold)">⚙️ Admin Panel</span>
+        <div style="margin-left:auto;display:flex;gap:6px;flex-wrap:wrap">
+          <button class="btn-rst" onclick="doLogout()">⏻ Đăng xuất</button>
+        </div>
+      </div>
+      <div class="admin-tabs" style="margin-top:10px">
+        <button class="atab${adminTab==='questions'?' active':''}" onclick="adminTab='questions';renderAdminDash()">📚 Câu hỏi</button>
+        <button class="atab${adminTab==='log'?' active':''}" onclick="adminTab='log';renderAdminDash()">📋 Nhật ký<span style="background:rgba(80,140,255,.25);border-radius:8px;padding:0 6px;font-size:0.88rem;margin-left:4px">${logCount}</span></button>
+        <button class="atab${adminTab==='settings'?' active':''}" onclick="adminTab='settings';renderAdminDash()">🔐 Cài đặt</button>
+      </div>
+    </div>
+    <div id="admin-content"></div>`;
+  if(adminTab==='questions')renderAdminQuestions();
+  else if(adminTab==='log')renderAdminLog();
+  else renderAdminSettings();
+}
+
+function renderAdminQuestions(){
+  const el=document.getElementById('admin-content');if(!el)return;
+  const b=adminBank,bk=BK[b],q=bk.q,secs=bk.secs;
+  const isDC=b==='dc',isDT=b==='dt',isVS=b==='vs',ck=bk.catKey;
+  const wc=(()=>{try{return[...loadWrong(b)].length}catch{return 0}})();
+  const newC=q.filter(x=>x.id&&x.id.includes('_')&&x.id.length>8).length;
+  el.innerHTML=`
+    <div class="glass" style="padding:12px 14px;margin-bottom:8px">
+      <div style="display:flex;gap:5px;margin-bottom:12px">
+        <button class="atab${b==='dc'?' active':''}" onclick="adminBank='dc';renderAdminDash()">🎯 Địa Chi (${BK.dc.q.length})</button>
+        <button class="atab${b==='dt'?' active':''}" onclick="adminBank='dt';renderAdminDash()">🔮 Dụng Thần (${BK.dt.q.length})</button>
+        <button class="atab${b==='vs'?' active':''}" onclick="adminBank='vs';renderAdminDash()">⚡ Vượng Suy (${BK.vs.q.length})</button>
+      </div>
+      <div class="astats">
+        <div class="astat"><div class="asv">${q.length}</div><div class="asl">Tổng câu</div></div>
+        <div class="astat"><div class="asv">${secs.length}</div><div class="asl">${isDC?'Chủ đề':isDT?'Lục thân':'Phần'}</div></div>
+        <div class="astat"><div class="asv">${wc}</div><div class="asl">Đang sai</div></div>
+        <div class="astat"><div class="asv">${newC}</div><div class="asl">Đã thêm</div></div>
+      </div>
+    </div>
+    <div class="glass" style="padding:12px 14px;margin-bottom:8px">
+      <div class="toolbar">
+        <input class="srch" type="text" id="asrch" placeholder="🔍 Tìm câu hỏi..." oninput="renderAdminTable()">
+        <select class="fsel" id="afsec" onchange="renderAdminTable()">
+          <option value="">Tất cả</option>
+          ${secs.map((s,i)=>`<option value="${i}">${isDC?s.n:isDT?s.n+' '+s.h:s.n}</option>`).join('')}
+        </select>
+        <button class="btn-rst" onclick="resetDef()">↺ Mặc định</button>
+        <button class="btn-add" onclick="openAddMo()">＋ Thêm</button>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="qtbl">
+          <thead><tr><th style="width:36px">#</th><th>Câu hỏi</th><th>Phần</th><th style="width:50px">ĐA</th><th style="width:100px">Thao tác</th></tr></thead>
+          <tbody id="atbody"></tbody>
+        </table>
+      </div>
+    </div>`;
+  renderAdminTable();
+}
+
+function renderAdminLog(){
+  const el=document.getElementById('admin-content');if(!el)return;
+  const log=loadLog();
+  const total=log.length;
+  const uniqueUsers=new Set(log.map(e=>e.uid)).size;
+  const avgPct=total>0?Math.round(log.reduce((a,e)=>a+e.pct,0)/total):0;
+  const fBank=window._logFB||'',fUser=window._logFU||'';
+  const uniqueUnames=[...new Set(log.map(e=>e.uname))].sort();
+  const filtered=log.filter(e=>(fBank?e.bank===fBank:true)&&(fUser?e.uname===fUser:true));
+  const fbSum=getFeedbackSummary();
+  el.innerHTML=`
+    <div class="glass" style="padding:12px 14px;margin-bottom:8px">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:8px">
+        <div class="astat"><div class="asv">${total}</div><div class="asl">Tổng phiên</div></div>
+        <div class="astat"><div class="asv">${uniqueUsers}</div><div class="asl">Người dùng</div></div>
+        <div class="astat"><div class="asv">${avgPct}%</div><div class="asl">TB đúng</div></div>
+        <div class="astat"><div class="asv">${[...new Set(log.map(e=>e.bank))].length}</div><div class="asl">Bộ đã dùng</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px">
+        <div class="astat"><div class="asv">${fbSum.total}</div><div class="asl">Góp ý nhận được</div></div>
+        <div class="astat"><div class="asv">${fbSum.avgRating>0?fbSum.avgRating+'⭐':'–'}</div><div class="asl">TB đánh giá</div></div>
+        <div class="astat"><div class="asv" style="cursor:pointer;color:var(--teal)" onclick="sw('feedback')">${fbSum.bankCount}</div><div class="asl">Góp ý bộ câu</div></div>
+      </div>
+      <div class="toolbar" style="margin-bottom:0">
+        <select class="fsel" onchange="window._logFB=this.value;renderAdminLog()">
+          <option value="">Tất cả bộ</option>
+          <option value="dc" ${fBank==='dc'?'selected':''}>🎯 Địa Chi</option>
+          <option value="dt" ${fBank==='dt'?'selected':''}>🔮 Dụng Thần</option>
+          <option value="vs" ${fBank==='vs'?'selected':''}>⚡ Vượng Suy</option>
+        </select>
+        <select class="fsel" onchange="window._logFU=this.value;renderAdminLog()">
+          <option value="">Tất cả user</option>
+          ${uniqueUnames.map(n=>`<option value="${n}" ${fUser===n?'selected':''}>${n}</option>`).join('')}
+        </select>
+        <button class="btn-rst" onclick="if(confirm('Xóa toàn bộ nhật ký?')){localStorage.removeItem(LOG_KEY);window._logFB='';window._logFU='';renderAdminDash();showToast('🗑 Đã xóa nhật ký');}">🗑 Xóa</button>
+      </div>
+    </div>
+    <div class="glass" style="padding:0;margin-bottom:8px;overflow:hidden">
+      ${filtered.length===0
+        ?`<div style="text-align:center;padding:28px;color:var(--muted)">Chưa có phiên học nào</div>`
+        :`<div style="overflow-x:auto"><table class="qtbl">
+          <thead><tr><th>Thời gian</th><th>Người dùng</th><th>Bộ</th><th>Chế độ</th><th style="width:80px">Kết quả</th><th style="width:55px">TG</th></tr></thead>
+          <tbody>${filtered.slice(0,200).map(e=>{
+            const pc=e.pct>=80?'#6ddc94':e.pct>=50?'#f0c94b':'#ff8888';
+            const md=e.mode===-1?'Toàn bộ':e.mode===-2?'Ôn sai':'Phần '+(e.mode+1);
+            return `<tr>
+              <td style="white-space:nowrap;color:var(--muted);font-size:0.88rem">${fmtTime(e.ts)}</td>
+              <td><div style="font-size:0.88rem">${e.utype==='google'?'🌐':'👤'} ${e.uname}</div><div style="font-size:0.78rem;color:var(--muted)">${e.utype==='guest'?'Guest':'Google'}</div></td>
+              <td><span class="bdg" style="background:${bankCol(e.bank)}22;color:${bankCol(e.bank)}">${bankLabel(e.bank)}</span></td>
+              <td style="font-size:0.88rem;color:var(--muted)">${md}</td>
+              <td style="white-space:nowrap"><span style="color:${pc};font-weight:700">${e.score}/${e.total}</span> <span style="color:${pc};font-size:0.81rem">${e.pct}%</span></td>
+              <td style="color:var(--muted);font-size:0.88rem">${fmtDur(e.dur)}</td>
+            </tr>`;
+          }).join('')}</tbody></table>
+          ${filtered.length>200?`<div style="text-align:center;padding:10px;color:var(--muted);font-size:0.88rem">Hiển thị 200/${filtered.length} bản ghi</div>`:''}</div>`}
+    </div>`;
+}
+
+function renderAdminSettings(){
+  const el=document.getElementById('admin-content');if(!el)return;
+  const hasCid=!!localStorage.getItem(GOOGLE_CID_KEY);
+  el.innerHTML=`
+    <div class="glass" style="padding:18px 16px;margin-bottom:8px">
+      <div style="font-size:1.13rem;font-weight:700;color:var(--text);margin-bottom:16px">🔐 Đổi mật khẩu Admin</div>
+      <div class="fi" style="position:relative">
+        <label>Mật khẩu hiện tại</label>
+        <input type="password" id="pw-cur" placeholder="••••••••" autocomplete="current-password" style="padding-right:42px">
+        <button onclick="togglePwVis('pw-cur','pce')" id="pce" style="position:absolute;right:10px;bottom:10px;background:none;border:none;cursor:pointer;font-size:1.15rem;color:var(--muted)">👁</button>
+      </div>
+      <div class="fi" style="position:relative">
+        <label>Mật khẩu mới</label>
+        <input type="password" id="pw-new" placeholder="Tối thiểu 6 ký tự" autocomplete="new-password" style="padding-right:42px">
+        <button onclick="togglePwVis('pw-new','pne')" id="pne" style="position:absolute;right:10px;bottom:10px;background:none;border:none;cursor:pointer;font-size:1.15rem;color:var(--muted)">👁</button>
+      </div>
+      <div class="fi" style="position:relative">
+        <label>Xác nhận mật khẩu mới</label>
+        <input type="password" id="pw-cf" placeholder="Nhập lại mật khẩu mới" autocomplete="new-password" style="padding-right:42px">
+        <button onclick="togglePwVis('pw-cf','pcfe')" id="pcfe" style="position:absolute;right:10px;bottom:10px;background:none;border:none;cursor:pointer;font-size:1.15rem;color:var(--muted)">👁</button>
+      </div>
+      <div class="err-msg" id="pw-err" style="min-height:1.2em;margin-bottom:6px"></div>
+      <button class="btn-main" onclick="submitChgPw()">💾 Lưu mật khẩu mới</button>
+    </div>
+    <div class="glass" style="padding:18px 16px;margin-bottom:8px">
+      <div style="font-size:1.13rem;font-weight:700;color:var(--text);margin-bottom:10px">🌐 Google Sign-In</div>
+      <div style="font-size:0.88rem;color:var(--muted);margin-bottom:12px">
+        ${hasCid?`<span style="color:#6ddc94">✅ Đã cấu hình Client ID</span>`:`<span style="color:#f0c94b">⚠️ Chưa cấu hình — Google Sign-In chưa hoạt động</span>`}
+      </div>
+      <button class="btn-add" onclick="showGoogleSetup()">⚙️ Cấu hình Google Client ID</button>
+    </div>
+    <div class="glass" style="padding:18px 16px;margin-bottom:8px">
+      <div style="font-size:1.13rem;font-weight:700;color:var(--text);margin-bottom:8px">📋 Nhật ký hoạt động</div>
+      <div style="font-size:0.88rem;color:var(--muted);margin-bottom:12px">${loadLog().length} phiên đã ghi · Tối đa ${LOG_MAX} bản ghi</div>
+      <button class="btn-rst" onclick="adminTab='log';renderAdminDash()">📋 Xem nhật ký</button>
+    </div>`;
+}
+
+function submitChgPw(){
+  const cur=document.getElementById('pw-cur')?.value;
+  const nw=document.getElementById('pw-new')?.value;
+  const cf=document.getElementById('pw-cf')?.value;
+  const err=document.getElementById('pw-err');
+  const c=getCreds();
+  const setErr=(msg,ok)=>{if(err){err.style.color=ok?'#6ddc94':'#ff8888';err.textContent=msg;}};
+  if(!cur||cur!==c.pass){setErr('❌ Mật khẩu hiện tại không đúng');return;}
+  if(!nw||nw.length<6){setErr('❌ Mật khẩu mới phải ít nhất 6 ký tự');return;}
+  if(nw!==cf){setErr('❌ Xác nhận mật khẩu không khớp');return;}
+  c.pass=nw;localStorage.setItem(CKEY,JSON.stringify(c));
+  setErr('✅ Đã đổi mật khẩu thành công!',true);
+  ['pw-cur','pw-new','pw-cf'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+}
+
+function renderAdminTable(){
+  const b=adminBank,bk=BK[b],q=bk.q,secs=bk.secs;
+  const ck=bk.catKey,isDC=b==='dc',isDT=b==='dt';
+  const srch=(document.getElementById('asrch')?.value||'').toLowerCase();
+  const sf=document.getElementById('afsec')?.value||'';
+  const rows=q.filter(it=>{
+    if(sf!==''&&String(it[ck])!==sf)return false;
+    if(srch&&!it.q.toLowerCase().includes(srch)&&!it.o.some(o=>o.toLowerCase().includes(srch)))return false;
+    return true;
+  });
+  const tbody=document.getElementById('atbody');
+  if(!tbody)return;
+  if(!rows.length){tbody.innerHTML='<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:24px">Không tìm thấy</td></tr>';return;}
+  tbody.innerHTML=rows.map(it=>{
+    const i=q.indexOf(it),cat=secs[it[ck]];
+    const cl=cat?cat.c:'#888',cn=cat?(isDT?cat.n+' '+cat.h:cat.n):it[ck];
+    return `<tr><td style="color:var(--muted);font-size:0.88rem">${i+1}</td>
+    <td class="qtxt">${it.q.replace(/<b>(.*?)<\/b>/g,'<b>$1</b>')}</td>
+    <td><span class="bdg" style="background:${cl}22;color:${cl}">${cn}</span></td>
+    <td><span class="ans">${'ABCD'[it.a]}</span></td>
+    <td class="acts"><button class="be" onclick="openEditMo(${i})">✏️</button><button class="bd" onclick="delQ(${i})">🗑</button></td></tr>`;
+  }).join('');
+}
+
+
+function openAddMo(){
+  eMode=false;eIdx=-1;
+  document.getElementById('moT').textContent='✨ Thêm câu hỏi mới';
+  buildMoBody(null);
+  document.getElementById('mo').classList.add('open');
+}
+function openEditMo(i){
+  eMode=true;eIdx=i;
+  const it=BK[adminBank].q[i];
+  document.getElementById('moT').textContent=`✏️ Sửa câu hỏi #${i+1}`;
+  buildMoBody(it);
+  document.getElementById('mo').classList.add('open');
+}
+function closeMo(){document.getElementById('mo').classList.remove('open');}
+
+function buildMoBody(it){
+  const b=adminBank,bk=BK[b],secs=bk.secs,ck=bk.catKey;
+  const isDC=b==='dc',isDT=b==='dt',isVS=b==='vs';
+  const cv=it?it[ck]:0;
+  const catSel=`<select id="fCat">${secs.map((s,i)=>`<option value="${i}" ${i==cv?'selected':''}>${isDC?s.n:isDT?s.n+' '+s.h:s.n}</option>`).join('')}</select>`;
+  let catRow=`<div class="fr"><label>${isDC?'Chủ đề':isDT?'Lục thân':'Phần'}</label>${catSel}</div>`;
+  if(isDT)catRow+=`<div class="fr"><label>Loại</label><select id="fType">${DT_TYPES.map(t=>`<option value="${t}" ${it&&it.t===t?'selected':''}>${t}</option>`).join('')}</select></div>`;
+  if(isVS)catRow+=`<div class="fr"><p style="font-size:0.99rem;color:var(--muted);padding:5px 0">Phần I chỉ có 3 đáp án — để trống ô D.</p></div>`;
+
+  const opts=['A','B','C','D'].map((l,i)=>`
+    <div class="oi ${i===(it?it.a:0)?' sel':''}" id="oi${i}">
+      <input type="radio" name="ca" value="${i}" ${i===(it?it.a:0)?'checked':''} onchange="hlOi()">
+      <span class="ol">${l}</span>
+      <input type="text" id="op${i}" value="${it?it.o[i]||'':''}" placeholder="Đáp án ${l}">
+    </div>`).join('');
+
+  let exFields='';
+  if(isDC)exFields=`<div class="fr"><label>Giải thích</label><textarea id="fE" rows="3">${it?it.e||'':''}</textarea></div>`;
+  else if(isDT)exFields=`
+    <div class="fr"><label>Quy tắc</label><textarea id="fRu" rows="2">${it?it.rule||'':''}</textarea></div>
+    <div class="fr"><label>Tại sao đúng</label><textarea id="fWh" rows="2">${it?it.why||'':''}</textarea></div>
+    <div class="fr"><label>Bẫy hay gặp</label><textarea id="fWr" rows="2">${it?it.wrong||'':''}</textarea></div>`;
+  else exFields=`
+    <div class="fr"><label>Giải thích đúng</label><textarea id="fE" rows="3">${it?it.e||'':''}</textarea></div>
+    <div class="fr"><label>Phân tích sai</label><textarea id="fEW" rows="3">${it?it.ew||'':''}</textarea></div>`;
+
+  document.getElementById('moB').innerHTML=`
+    <div class="fr"><label>Câu hỏi (cho phép &lt;b&gt;)</label><textarea id="fQ" rows="3">${it?it.q:''}</textarea></div>
+    <div class="fr2">${catRow}</div>
+    <div class="fr"><label>4 Đáp án — chọn radio = đáp án ĐÚNG</label><div class="og">${opts}</div></div>
+    ${exFields}`;
+}
+
+function hlOi(){
+  const s=document.querySelector('input[name=ca]:checked');
+  if(!s)return;
+  [0,1,2,3].forEach(i=>{const el=document.getElementById('oi'+i);if(el)el.className='oi'+(i==s.value?' sel':'');});
+}
+
+function saveQ(){
+  const q=document.getElementById('fQ')?.value.trim();if(!q){showToast('Nhập câu hỏi!',1);return;}
+  const o=['op0','op1','op2','op3'].map(id=>document.getElementById(id)?.value.trim()||'');
+  const isVS=adminBank==='vs';
+  if(!isVS&&o.some(x=>!x)){showToast('Nhập đủ 4 đáp án!',1);return;}
+  if(isVS&&!o[0]&&!o[1]&&!o[2]){showToast('Nhập ít nhất 3 đáp án!',1);return;}
+  const s=document.querySelector('input[name=ca]:checked');if(!s){showToast('Chọn đáp án đúng!',1);return;}
+  const a=parseInt(s.value),cat=parseInt(document.getElementById('fCat')?.value||'0');
+  const arr=BK[adminBank].q,ni={q,o,a};
+  const b=adminBank;
+  if(b==='dc'){ni.s=cat;ni.e=document.getElementById('fE')?.value.trim()||'';}
+  else if(b==='dt'){ni.lt=cat;ni.t=document.getElementById('fType')?.value||'Nhận diện';ni.rule=document.getElementById('fRu')?.value.trim()||'';ni.why=document.getElementById('fWh')?.value.trim()||'';ni.wrong=document.getElementById('fWr')?.value.trim()||'';}
+  else{ni.phan=cat;ni.e=document.getElementById('fE')?.value.trim()||'';ni.ew=document.getElementById('fEW')?.value.trim()||'';}
+  if(eMode){ni.id=arr[eIdx].id||('x_'+Date.now());arr[eIdx]=ni;}
+  else{ni.id='x_'+Date.now()+'_'+Math.random().toString(36).slice(2,5);arr.push(ni);}
+  svQ(BK[b].key,arr);
+  closeMo();renderAdminDash();showToast(eMode?'✅ Đã cập nhật!':'✅ Đã thêm câu hỏi!');
+}
+
+function delQ(i){
+  if(!confirm(`Xóa câu #${i+1}?`))return;
+  const arr=BK[adminBank].q;arr.splice(i,1);
+  svQ(BK[adminBank].key,arr);
+  renderAdminDash();showToast('🗑 Đã xóa.');
+}
+
+function resetDef(){
+  const nm=adminBank==='dc'?'12 Địa Chi':adminBank==='dt'?'Dụng Thần':'Vượng Suy';
+  if(!confirm(`Đặt lại toàn bộ ${nm} về mặc định? Mọi chỉnh sửa sẽ bị xóa.`))return;
+  const bk=BK[adminBank];
+  bk.q=[...bk.def.map(q=>({...q}))];
+  svQ(bk.key,bk.q);
+  renderAdminDash();showToast('↺ Đã đặt lại mặc định.');
+}
+
+
+// === TOAST ===
+let tT=null;
+function showToast(msg,e=0){const t=document.getElementById('toast');t.textContent=msg;t.className='toast'+(e?' err':'');requestAnimationFrame(()=>requestAnimationFrame(()=>t.classList.add('show')));if(tT)clearTimeout(tT);tT=setTimeout(()=>t.classList.remove('show'),2800);}
+
+// === STATS TRACKING ===
+const STATS_KEY='stats';
+function loadStats(){try{return JSON.parse(localStorage.getItem(getUK(STATS_KEY))||'{}')}catch{return{}}}
+function saveStats(s){try{localStorage.setItem(getUK(STATS_KEY),JSON.stringify(s))}catch{}}
+
+function trackStat(b,qid,secIdx,correct){
+  const all=loadStats();
+  if(!all[b])all[b]={};
+  const k=String(qid);
+  if(!all[b][k])all[b][k]={s:secIdx,t:0,c:0};
+  all[b][k].t++;
+  if(correct)all[b][k].c++;
+  saveStats(all);
+}
+
+function getReportData(b){
+  const bk=BK[b],secs=bk.secs,q=bk.q;
+  const all=loadStats();
+  const bdata=all[b]||{};
+  // per-section: {total_q, answered, attempts, correct}
+  const sec=secs.map((_,i)=>({total:0,answered:0,attempts:0,correct:0}));
+  q.forEach((item,idx)=>{
+    const si=item[bk.catKey];
+    if(si===undefined||si===null)return;
+    sec[si].total++;
+    const qid=String(item.id||idx);
+    if(bdata[qid]){sec[si].answered++;sec[si].attempts+=bdata[qid].t;sec[si].correct+=bdata[qid].c;}
+  });
+  // also from legacy index-based keys
+  Object.keys(bdata).forEach(k=>{
+    const d=bdata[k];if(d&&d.s!==undefined){
+      // already counted above if id matches; this handles index keys
+    }
+  });
+  const overall={total:q.length,answered:0,attempts:0,correct:0};
+  sec.forEach(s=>{overall.answered+=s.answered;overall.attempts+=s.attempts;overall.correct+=s.correct;});
+  return{sec,overall};
+}
+
+// === REPORT RENDER ===
+function renderReport(){
+  const p=document.getElementById('pane-report');
+
+  const BANKS=[
+    {id:'dc',label:'12 Địa Chi',icon:'🎯',col:'#e74c3c',secKey:'dc_secs'},
+    {id:'dt',label:'Dụng Thần',icon:'🔮',col:'#3498db',secKey:'dt_lt'},
+    {id:'vs',label:'Vượng Suy',icon:'⚡',col:'#2ab8c8',secKey:'vs_secs'},
+  ];
+
+  // Gather data
+  const rdata=BANKS.map(bk=>({...bk,...getReportData(bk.id),secs:BK[bk.id].secs}));
+  const grandTotal=rdata.reduce((a,b)=>({total:a.total+b.overall.total,answered:a.answered+b.overall.answered,attempts:a.attempts+b.overall.attempts,correct:a.correct+b.overall.correct}),{total:0,answered:0,attempts:0,correct:0});
+
+  function pct(a,b){return b>0?Math.round((a/b)*100):0;}
+  function fmtPct(a,b){const v=pct(a,b);return `<span style="color:${v>=80?'#6ddc94':v>=50?'#f0c94b':'#ff8888'}">${v}%</span>`;}
+
+  p.innerHTML=`
+  <div style="padding-bottom:16px">
+
+    <!-- HEADER -->
+    <div class="glass" style="padding:14px 16px;margin-bottom:10px;text-align:center">
+      <div style="font-family:'Noto Serif',serif;font-size:2.12rem;color:var(--gold);margin-bottom:4px">📊 Báo cáo Kết quả</div>
+      <div style="font-size:0.98rem;color:var(--muted)">Tổng hợp toàn bộ lịch sử làm bài</div>
+    </div>
+
+    <!-- TỔNG QUAN 4 CARD -->
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:10px">
+      ${[
+        {v:grandTotal.total,l:'Tổng câu hỏi',i:'📚'},
+        {v:grandTotal.answered,l:'Đã làm (câu)',i:'✍️'},
+        {v:grandTotal.attempts,l:'Lượt trả lời',i:'🔄'},
+        {v:(grandTotal.attempts>0?Math.round(grandTotal.correct/grandTotal.attempts*100):0)+'%',l:'Tỷ lệ đúng chung',i:'🎯'},
+      ].map(c=>`<div class="glass" style="padding:12px 14px;text-align:center">
+        <div style="font-size:1.32rem;margin-bottom:3px">${c.i}</div>
+        <div style="font-size:2.09rem;font-weight:800;color:var(--gold)">${c.v}</div>
+        <div style="font-size:0.9rem;color:var(--muted);margin-top:2px">${c.l}</div>
+      </div>`).join('')}
+    </div>
+
+    <!-- OVERALL PROGRESS CHART (canvas) -->
+    <div class="glass" style="padding:14px 16px;margin-bottom:10px">
+      <div style="font-size:1.08rem;font-weight:700;color:var(--text);margin-bottom:12px">📈 Tiến độ tổng thể theo bộ</div>
+      <canvas id="cv-overall" height="160" style="width:100%;display:block"></canvas>
+    </div>
+
+    <!-- PER-BANK SECTIONS -->
+    ${rdata.map(bk=>`
+    <div class="glass" style="padding:14px 16px;margin-bottom:10px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+        <span style="font-size:1.55rem">${bk.icon}</span>
+        <span style="font-size:1.2rem;font-weight:700;color:${bk.col}">${bk.label}</span>
+        <span style="margin-left:auto;font-size:0.93rem;color:var(--muted)">
+          ${bk.overall.answered}/${bk.overall.total} câu · 
+          ${bk.overall.attempts>0?Math.round(bk.overall.correct/bk.overall.attempts*100):0}% đúng
+        </span>
+      </div>
+      <!-- mini donut + section bars -->
+      <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:12px">
+        <canvas id="cv-donut-${bk.id}" width="80" height="80" style="flex-shrink:0"></canvas>
+        <div style="flex:1">
+          ${bk.sec.map((s,i)=>{
+            const sname=bk.secs[i]?(bk.id==='dt'?bk.secs[i].n+' '+bk.secs[i].h:bk.secs[i].n):'?';
+            const scol=bk.secs[i]?bk.secs[i].c:bk.col;
+            const prog=pct(s.answered,s.total);
+            const acc=s.attempts>0?Math.round(s.correct/s.attempts*100):0;
+            return `<div style="margin-bottom:7px">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px">
+                <span style="font-size:0.9rem;color:${scol};font-weight:600;max-width:65%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${sname}</span>
+                <span style="font-size:0.86rem;color:var(--muted);white-space:nowrap">${s.answered}/${s.total} · ${acc>0?acc+'% ✓':'–'}</span>
+              </div>
+              <div style="height:7px;background:rgba(255,255,255,.07);border-radius:4px;overflow:hidden">
+                <div style="height:100%;width:${prog}%;background:${scol};border-radius:4px;transition:width .6s;opacity:.85"></div>
+              </div>
+            </div>`;
+          }).join('')}
+        </div>
+      </div>
+      <!-- section accuracy chart -->
+      <canvas id="cv-bar-${bk.id}" height="120" style="width:100%;display:block"></canvas>
+    </div>`).join('')}
+
+    <!-- RESET BUTTON -->
+    <div style="text-align:center;padding:8px 0 4px">
+      <button onclick="resetStats()" style="background:none;border:1px solid rgba(200,80,60,.4);color:#c08078;border-radius:8px;padding:8px 18px;font-size:0.93rem;font-family:'Readex Pro',sans-serif;cursor:pointer">🗑 Xóa toàn bộ dữ liệu thống kê</button>
+    </div>
+
+  </div>`;
+
+  // Draw charts after DOM inserted
+  requestAnimationFrame(()=>{
+    drawOverallChart(rdata);
+    rdata.forEach(bk=>{
+      drawDonut(bk);
+      drawBarChart(bk);
+    });
+  });
+}
+
+function resetStats(){
+  if(!confirm('Xóa toàn bộ dữ liệu thống kê?\n(Lịch sử câu sai vẫn giữ nguyên)'))return;
+  localStorage.removeItem(getUK(STATS_KEY));
+  renderReport();
+  showToast('🗑 Đã xóa dữ liệu thống kê.');
+}
+
+// ── CHART: Overall grouped bar (answered%, accuracy%) ──
+function drawOverallChart(rdata){
+  const cv=document.getElementById('cv-overall');
+  if(!cv)return;
+  const W=cv.offsetWidth||cv.parentElement.offsetWidth||320;
+  cv.width=W;cv.height=160;
+  const ctx=cv.getContext('2d');
+  ctx.clearRect(0,0,W,160);
+
+  const labels=rdata.map(b=>b.label);
+  const colors=rdata.map(b=>b.col);
+  const vals1=rdata.map(b=>b.overall.total>0?Math.round(b.overall.answered/b.overall.total*100):0); // progress
+  const vals2=rdata.map(b=>b.overall.attempts>0?Math.round(b.overall.correct/b.overall.attempts*100):0); // accuracy
+
+  const n=labels.length,pad=32,bw=18,gap=6,gw=(bw*2+gap),grpGap=22;
+  const totalW=n*(gw+grpGap)-grpGap;
+  const startX=(W-totalW)/2;
+  const maxH=110,baseY=135;
+
+  // grid lines
+  [0,25,50,75,100].forEach(v=>{
+    const y=baseY-v/100*maxH;
+    ctx.beginPath();ctx.moveTo(pad,y);ctx.lineTo(W-pad,y);
+    ctx.strokeStyle=`rgba(255,255,255,.07)`;ctx.lineWidth=1;ctx.stroke();
+    ctx.fillStyle='rgba(200,220,255,.35)';ctx.font=`${10}px Readex Pro,sans-serif`;
+    ctx.textAlign='right';ctx.fillText(v+'%',pad-4,y+3);
+  });
+
+  rdata.forEach((bk,i)=>{
+    const gx=startX+i*(gw+grpGap);
+    // bar1: progress (lighter)
+    const h1=vals1[i]/100*maxH;
+    ctx.fillStyle=hexAlpha(colors[i],.45);
+    roundRect(ctx,gx,baseY-h1,bw,h1,3);ctx.fill();
+    // bar2: accuracy (solid)
+    const h2=vals2[i]/100*maxH;
+    ctx.fillStyle=colors[i];
+    roundRect(ctx,gx+bw+gap,baseY-h2,bw,h2,3);ctx.fill();
+    // values
+    ctx.fillStyle='rgba(220,240,255,.8)';ctx.font=`bold ${10}px Readex Pro,sans-serif`;ctx.textAlign='center';
+    if(vals1[i]>0)ctx.fillText(vals1[i]+'%',gx+bw/2,baseY-h1-4);
+    if(vals2[i]>0)ctx.fillText(vals2[i]+'%',gx+bw*1.5+gap,baseY-h2-4);
+    // label
+    ctx.fillStyle='rgba(180,200,230,.7)';ctx.font=`${10}px Readex Pro,sans-serif`;ctx.textAlign='center';
+    ctx.fillText(bk.icon,gx+bw+gap/2,baseY+13);
+  });
+
+  // legend
+  const ly=baseY+26;
+  [[hexAlpha('#aabbdd',.45),'Tiến độ'],[rdata[0].col,'Tỷ lệ đúng']].forEach(([c,l],i)=>{
+    const lx=W/2-60+i*90;
+    ctx.fillStyle=i===0?'rgba(160,190,230,.45)':'rgba(220,240,255,.7)';
+    roundRect(ctx,lx,ly,10,10,2);ctx.fill();
+    ctx.fillStyle='rgba(180,200,230,.75)';ctx.font=`${10}px Readex Pro,sans-serif`;ctx.textAlign='left';
+    ctx.fillText(l,lx+13,ly+9);
+  });
+}
+
+// ── CHART: Mini donut ──
+function drawDonut(bk){
+  const cv=document.getElementById('cv-donut-'+bk.id);
+  if(!cv)return;
+  const ctx=cv.getContext('2d');
+  ctx.clearRect(0,0,80,80);
+  const acc=bk.overall.attempts>0?bk.overall.correct/bk.overall.attempts:0;
+  const prog=bk.overall.total>0?bk.overall.answered/bk.overall.total:0;
+  const cx=40,cy=40,ri=24,ro=36;
+  // bg ring
+  ctx.beginPath();ctx.arc(cx,cy,ro,0,Math.PI*2);ctx.strokeStyle='rgba(255,255,255,.08)';ctx.lineWidth=ro-ri;ctx.stroke();
+  // outer: progress
+  if(prog>0){
+    ctx.beginPath();ctx.arc(cx,cy,ro,-Math.PI/2,-Math.PI/2+prog*Math.PI*2);
+    ctx.strokeStyle=hexAlpha(bk.col,.45);ctx.lineWidth=ro-ri;ctx.stroke();
+  }
+  // inner: accuracy
+  const ri2=ri-4,ro2=ri;
+  ctx.beginPath();ctx.arc(cx,cy,(ri2+ro2)/2,0,Math.PI*2);ctx.strokeStyle='rgba(255,255,255,.06)';ctx.lineWidth=ro2-ri2;ctx.stroke();
+  if(acc>0){
+    ctx.beginPath();ctx.arc(cx,cy,(ri2+ro2)/2,-Math.PI/2,-Math.PI/2+acc*Math.PI*2);
+    ctx.strokeStyle=bk.col;ctx.lineWidth=ro2-ri2;ctx.stroke();
+  }
+  // center text
+  ctx.fillStyle='rgba(220,240,255,.85)';ctx.font=`bold ${11}px Readex Pro,sans-serif`;ctx.textAlign='center';
+  ctx.fillText(bk.overall.attempts>0?Math.round(acc*100)+'%':'–',cx,cy+4);
+  // legend below
+  ctx.fillStyle='rgba(160,190,230,.5)';ctx.font=`${9}px Readex Pro,sans-serif`;
+  ctx.fillText('đúng',cx,cy+14);
+}
+
+// ── CHART: Horizontal bar per section (accuracy) ──
+function drawBarChart(bk){
+  const cv=document.getElementById('cv-bar-'+bk.id);
+  if(!cv)return;
+  const W=cv.offsetWidth||cv.parentElement.offsetWidth||300;
+  const n=bk.sec.length,rowH=20,padT=4,padL=10;
+  cv.width=W;cv.height=n*rowH+padT;
+  const ctx=cv.getContext('2d');
+  ctx.clearRect(0,0,W,n*rowH+padT);
+
+  bk.sec.forEach((s,i)=>{
+    const y=padT+i*rowH,col=(bk.secs[i]?bk.secs[i].c:bk.col);
+    const acc=s.attempts>0?s.correct/s.attempts:0;
+    const prog=s.total>0?s.answered/s.total:0;
+    const maxW=W-padL-46;
+
+    // bg bar
+    ctx.fillStyle='rgba(255,255,255,.05)';
+    roundRect(ctx,padL,y+3,maxW,12,3);ctx.fill();
+    // progress bar (dim)
+    if(prog>0){ctx.fillStyle=hexAlpha(col,.25);roundRect(ctx,padL,y+3,maxW*prog,12,3);ctx.fill();}
+    // accuracy bar
+    if(acc>0){ctx.fillStyle=col;roundRect(ctx,padL,y+3,maxW*acc,12,3);ctx.fill();
+      // glow
+      ctx.fillStyle=hexAlpha(col,.18);roundRect(ctx,padL,y+1,maxW*acc,16,4);ctx.fill();
+    }
+    // section number label
+    ctx.fillStyle='rgba(180,200,230,.6)';ctx.font=`${10}px Readex Pro,sans-serif`;ctx.textAlign='left';
+    ctx.fillText('P'+(i+1),padL+3,y+13);
+    // right label
+    ctx.fillStyle='rgba(200,220,255,.75)';ctx.textAlign='right';
+    const txt=s.attempts>0?Math.round(acc*100)+'%':'0%';
+    ctx.fillText(txt,W-2,y+13);
+  });
+}
+
+function roundRect(ctx,x,y,w,h,r){if(w<=0)return;ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.arcTo(x+w,y,x+w,y+r,r);ctx.lineTo(x+w,y+h-r);ctx.arcTo(x+w,y+h,x+w-r,y+h,r);ctx.lineTo(x+r,y+h);ctx.arcTo(x,y+h,x,y+h-r,r);ctx.lineTo(x,y+r);ctx.arcTo(x,y,x+r,y,r);ctx.closePath();}
+function hexAlpha(hex,a){const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);return`rgba(${r},${g},${b},${a})`;}
+
+// === AUTH SYSTEM ===
+const USER_SESSION_KEY='lh_current_session';
+const SAVED_USERS_KEY='lh_saved_users';
+const GOOGLE_CID_KEY='lh_google_client_id';
+
+function getSavedUsers(){try{return JSON.parse(localStorage.getItem(SAVED_USERS_KEY)||'[]')}catch{return[]}}
+function addSavedUser(u){
+  let all=getSavedUsers().filter(x=>x.id!==u.id);
+  all.unshift(u); // most recent first
+  if(all.length>8)all=all.slice(0,8);
+  localStorage.setItem(SAVED_USERS_KEY,JSON.stringify(all));
+}
+function removeSavedUser(id){
+  const all=getSavedUsers().filter(x=>x.id!==id);
+  localStorage.setItem(SAVED_USERS_KEY,JSON.stringify(all));
+}
+
+function setCurrentUser(u){
+  currentUser=u;
+  localStorage.setItem(USER_SESSION_KEY,JSON.stringify(u));
+  addSavedUser(u);
+  updateUserBadge();
+}
+
+function updateUserBadge(){
+  if(!currentUser)return;
+  const nameLabel=document.getElementById('u-name-label');
+  const letter=document.getElementById('u-avatar-letter');
+  if(!letter)return;
+
+  const initial=(currentUser.name||'?')[0].toUpperCase();
+  // Update avatar: use innerHTML instead of outerHTML to avoid losing the element
+  if(currentUser.picture&&currentUser.type==='google'){
+    letter.innerHTML=`<img src="${currentUser.picture}" style="width:28px;height:28px;border-radius:50%;object-fit:cover" onerror="this.style.display='none'">`;
+    letter.style.background='none';
+  } else {
+    letter.innerHTML='';
+    letter.textContent=initial;
+    letter.style.background='linear-gradient(135deg,#243a7a,#162a58)';
+    letter.title=currentUser.name;
+  }
+  if(nameLabel) nameLabel.textContent=currentUser.type==='guest'?'Khách':currentUser.name.split(' ').pop();
+
+  // Update popup content
+  const upName=document.getElementById('upop-name');
+  const upEmail=document.getElementById('upop-email');
+  const upAv=document.getElementById('upop-avatar');
+  if(upName)upName.textContent=currentUser.name;
+  if(upEmail)upEmail.textContent=currentUser.type==='guest'?'Chế độ khách — dữ liệu lưu cục bộ':currentUser.email||'';
+  if(upAv){
+    if(currentUser.picture&&currentUser.type==='google'){
+      upAv.innerHTML=`<img src="${currentUser.picture}" style="width:44px;height:44px;border-radius:50%;object-fit:cover" onerror="this.parentElement.textContent='${initial}'">`;
+    } else {
+      upAv.innerHTML='';
+      upAv.textContent=currentUser.type==='guest'?'👤':initial;
+      upAv.style.fontSize='1.5rem';
+    }
+  }
+}
+
+function toggleUserPopup(e){
+  if(e) e.stopPropagation();
+  const pop=document.getElementById('upop');
+  const arrow=document.getElementById('upop-arrow');
+  if(!pop)return;
+  const isOpen=pop.style.display!=='none';
+  if(isOpen){
+    pop.style.display='none';
+    if(arrow)arrow.textContent='▴';
+    document.removeEventListener('click',_upopOutside);
+  } else {
+    pop.style.display='block';
+    if(arrow)arrow.textContent='▾';
+    // Close when clicking anywhere outside after this event finishes
+    setTimeout(()=>document.addEventListener('click',_upopOutside,{once:true}),0);
+  }
+}
+function _upopOutside(e){
+  const pop=document.getElementById('upop');
+  const badge=document.getElementById('user-badge');
+  if(pop&&badge&&!badge.contains(e.target)&&!pop.contains(e.target)){
+    pop.style.display='none';
+    const arrow=document.getElementById('upop-arrow');
+    if(arrow)arrow.textContent='▴';
+  } else if(pop&&pop.style.display!=='none'){
+    // re-register if click was inside popup (on non-button area)
+    setTimeout(()=>document.addEventListener('click',_upopOutside,{once:true}),0);
+  }
+}
+function closeUpop(){
+  const pop=document.getElementById('upop');
+  if(pop)pop.style.display='none';
+  const arrow=document.getElementById('upop-arrow');
+  if(arrow)arrow.textContent='▴';
+  document.removeEventListener('click',_upopOutside);
+}
+function closePopupOutside(e){closeUpop();} // legacy alias
+
+function switchUser(){
+  closeUpop();
+  localStorage.removeItem(USER_SESSION_KEY);
+  currentUser=null;
+  showLoginScreen();
+}
+
+function logoutUser(){
+  if(!confirm('Đăng xuất?\n\nDữ liệu học tập của bạn vẫn được lưu trên máy này.'))return;
+  closeUpop();
+  localStorage.removeItem(USER_SESSION_KEY);
+  currentUser=null;
+  showLoginScreen();
+}
+
+// ── Google Sign-In ──
+function initGoogleSignIn(){
+  const cid=localStorage.getItem(GOOGLE_CID_KEY);
+  if(!cid||typeof google==='undefined')return;
+  try{
+    google.accounts.id.initialize({
+      client_id:cid,
+      callback:handleGoogleCredential,
+      auto_select:false,
+    });
+  }catch(e){console.warn('GSI init failed:',e);}
+}
+
+function triggerGoogleLogin(){
+  const cid=localStorage.getItem(GOOGLE_CID_KEY);
+  if(!cid){showGoogleSetup();return;}
+  if(typeof google==='undefined'){
+    showToast('Google API chưa tải — kiểm tra kết nối mạng',1);return;
+  }
+  try{
+    google.accounts.id.prompt(notification=>{
+      if(notification.isNotDisplayed()||notification.isSkippedMoment()){
+        // fallback: render One Tap button popup
+        const tmp=document.createElement('div');tmp.style.cssText='position:fixed;z-index:9999;display:none';
+        document.body.appendChild(tmp);
+        google.accounts.id.renderButton(tmp,{type:'standard',theme:'outline',size:'large'});
+        tmp.querySelector('div[role=button]')?.click();
+        setTimeout(()=>tmp.remove(),3000);
+      }
+    });
+  }catch(e){showToast('Không thể mở Google Sign-In. Thử lại sau.',1);}
+}
+
+function handleGoogleCredential(response){
+  try{
+    // Decode JWT payload (no verification needed for client-side ID only)
+    const payload=JSON.parse(atob(response.credential.split('.')[1]));
+    const u={id:payload.sub, name:payload.name, email:payload.email, picture:payload.picture, type:'google'};
+    setCurrentUser(u);
+    hideLoginScreen();
+  }catch(e){showToast('Lỗi xử lý thông tin Google',1);}
+}
+
+// ── Guest login ──
+function loginGuest(){
+  const gid='guest_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,6);
+  const u={id:gid, name:'Khách '+gid.slice(-4).toUpperCase(), email:'', picture:'', type:'guest'};
+  setCurrentUser(u);
+  hideLoginScreen();
+  sw('home'); // refresh home with user info
+}
+
+function loginAsSaved(id){
+  const all=getSavedUsers();
+  const u=all.find(x=>x.id===id);
+  if(!u)return;
+  setCurrentUser(u);
+  // re-init Google if it's a Google user
+  if(u.type==='google'){const cid=localStorage.getItem(GOOGLE_CID_KEY);if(cid&&typeof google!=='undefined'){try{google.accounts.id.initialize({client_id:cid,callback:handleGoogleCredential});}catch{}}}
+  hideLoginScreen();
+}
+
+// ── Google Client ID setup ──
+function showGoogleSetup(){
+  const cur=localStorage.getItem(GOOGLE_CID_KEY)||'';
+  const ov=document.createElement('div');
+  ov.id='gcid-ov';
+  ov.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:600;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(6px)';
+  ov.innerHTML=`<div style="background:rgba(6,14,36,.97);border:1px solid rgba(80,140,255,.25);border-radius:18px;padding:24px 22px;width:100%;max-width:440px;box-shadow:0 24px 80px rgba(0,0,0,.8)">
+    <div style="font-size:1.17rem;font-weight:700;color:var(--gold);margin-bottom:6px">⚙️ Cấu hình Google Sign-In</div>
+    <p style="font-size:0.88rem;color:var(--muted);margin-bottom:16px;line-height:1.6">Cần tạo OAuth 2.0 Client ID tại <a href="https://console.cloud.google.com/apis/credentials" target="_blank" style="color:#88c4f0">Google Cloud Console</a>. Thêm URL trang vào <b style="color:var(--text)">Authorized JavaScript origins</b>.</p>
+    <div class="fi" style="margin-bottom:12px">
+      <label>Google OAuth Client ID</label>
+      <input type="text" id="gcid-inp" value="${cur}" placeholder="xxxxxx.apps.googleusercontent.com" style="font-size:0.88rem">
+    </div>
+    <div style="display:flex;gap:8px">
+      <button onclick="saveGoogleClientId()" style="flex:1;background:linear-gradient(135deg,#1e4a1e,var(--green));color:#fff;border:none;border-radius:9px;padding:10px;font-family:'Readex Pro',sans-serif;font-size:0.92rem;font-weight:700;cursor:pointer">💾 Lưu</button>
+      <button onclick="document.getElementById('gcid-ov').remove()" style="background:rgba(10,20,45,.8);border:1px solid var(--gb);color:var(--muted);border-radius:9px;padding:10px 16px;font-family:'Readex Pro',sans-serif;font-size:0.92rem;cursor:pointer">Huỷ</button>
+    </div>
+    ${cur?`<button onclick="localStorage.removeItem('${GOOGLE_CID_KEY}');document.getElementById('gcid-ov').remove();showToast('Đã xóa Client ID')" style="background:none;border:none;color:rgba(220,90,90,.5);font-size:0.81rem;cursor:pointer;margin-top:10px;font-family:'Readex Pro',sans-serif">🗑 Xóa Client ID</button>`:''}
+  </div>`;
+  document.body.appendChild(ov);
+  ov.addEventListener('click',e=>{if(e.target===ov)ov.remove();});
+}
+
+function saveGoogleClientId(){
+  const v=document.getElementById('gcid-inp')?.value.trim();
+  if(!v){showToast('Nhập Client ID trước!',1);return;}
+  localStorage.setItem(GOOGLE_CID_KEY,v);
+  document.getElementById('gcid-ov')?.remove();
+  initGoogleSignIn();
+  showToast('✅ Đã lưu Google Client ID');
+}
+
+// ── Login screen show/hide ──
+function showLoginScreen(){
+  const ls=document.getElementById('login-screen');
+  ls.classList.remove('hidden');
+  renderSavedUsers();
+}
+function hideLoginScreen(){
+  document.getElementById('login-screen').classList.add('hidden');
+}
+
+function renderSavedUsers(){
+  const all=getSavedUsers();
+  const sec=document.getElementById('lsaved');
+  const list=document.getElementById('lsaved-list');
+  if(!all.length||!sec||!list){if(sec)sec.style.display='none';return;}
+  sec.style.display='block';
+  list.innerHTML=all.map(u=>`
+    <div class="su-item">
+      <div style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#243a7a,#162a58);display:flex;align-items:center;justify-content:center;font-size:0.88rem;font-weight:700;color:#88c4f0;flex-shrink:0;overflow:hidden">
+        ${u.picture&&u.type==='google'?`<img src="${u.picture}" style="width:30px;height:30px;border-radius:50%;object-fit:cover" onerror="this.style.display='none'">`:u.name[0].toUpperCase()}
+      </div>
+      <div style="flex:1;min-width:0;cursor:pointer" onclick="loginAsSaved('${u.id}')">
+        <div class="su-name">${u.name}</div>
+        <div class="su-sub">${u.type==='guest'?'Chế độ khách':u.email||''}</div>
+      </div>
+      <button class="su-del" onclick="removeSavedUser('${u.id}');renderSavedUsers()" title="Xóa">×</button>
+    </div>`).join('');
+}
+
+// === FEEDBACK SYSTEM ===
+const FB_KEY='lh_feedback';
+const FB_MAX=300;
+
+function loadFeedbacks(){try{return JSON.parse(localStorage.getItem(FB_KEY)||'[]')}catch{return[]}}
+function saveFeedbacks(a){try{localStorage.setItem(FB_KEY,JSON.stringify(a))}catch{}}
+
+function submitFeedback({type,bank,rating,text,tags}){
+  const u=currentUser||{name:'Guest',id:'guest',type:'guest'};
+  const entry={
+    id:'fb_'+Date.now(),
+    ts:Date.now(),
+    uid:u.id,uname:u.name,utype:u.type,
+    type,bank:bank||null,
+    rating:rating||0,
+    text:(text||'').trim(),
+    tags:tags||[],
+  };
+  const all=loadFeedbacks();
+  all.unshift(entry);
+  if(all.length>FB_MAX)all.length=FB_MAX;
+  saveFeedbacks(all);
+  return entry;
+}
+
+// ── Mini feedback (end of quiz) ──
+let _miniRatings={};
+function miniRate(b,v){
+  _miniRatings[b]=v;
+  const row=document.getElementById('mini-stars-'+b);
+  if(!row)return;
+  row.querySelectorAll('.mini-star').forEach(s=>{
+    const sv=parseInt(s.dataset.v);
+    s.textContent=sv<=v?'⭐':'☆';
+    s.classList.toggle('lit',sv<=v);
+  });
+}
+function toggleMiniTag(el){el.classList.toggle('on');}
+function submitMiniFb(b){
+  const rating=_miniRatings[b]||0;
+  const text=document.getElementById('mini-text-'+b)?.value||'';
+  const tags=[...document.querySelectorAll(`#mini-tags-${b} .fb-tag.on`)].map(t=>t.textContent);
+  if(!rating&&!text.trim()&&!tags.length){showToast('Chọn số sao hoặc nhập nhận xét nhé!',1);return;}
+  submitFeedback({type:'bank',bank:b,rating,text,tags});
+  const box=document.getElementById('mini-fb-'+b);
+  if(box)box.innerHTML=`<div class="mini-fb-sent">✅ Cảm ơn bạn đã góp ý! 🙏</div>`;
+  showToast('✅ Đã gửi góp ý!');
+}
+
+// ── Full feedback tab ──
+let _fbRating=0;
+let _fbBankRating={dc:0,dt:0,vs:0};
+
+function renderFeedbackTab(){
+  const p=document.getElementById('pane-feedback');
+  if(!p)return;
+  const all=loadFeedbacks();
+  const appFbs=all.filter(f=>f.type==='app');
+  const bankFbs=all.filter(f=>f.type==='bank');
+  const u=currentUser;
+
+  // Stars renderer helper (for display in form)
+  const starHTML=(prefix,cur)=>[1,2,3,4,5].map(n=>
+    `<span class="star${n<=cur?' lit':''}" data-v="${n}" onclick="${prefix}Rate(${n})">${n<=cur?'⭐':'☆'}</span>`
+  ).join('');
+
+  p.innerHTML=`
+  <!-- HEADER -->
+  <div class="glass" style="padding:14px 16px;margin-bottom:10px;text-align:center">
+    <div style="font-family:'Noto Serif',serif;font-size:1.98rem;color:var(--gold);margin-bottom:4px">💬 Góp ý & Đánh giá</div>
+    <div style="font-size:0.88rem;color:var(--muted)">Ý kiến của bạn giúp cải thiện ứng dụng</div>
+  </div>
+
+  <!-- APP FEEDBACK FORM -->
+  <div class="glass" style="padding:16px;margin-bottom:10px">
+    <div style="font-size:1.04rem;font-weight:700;color:var(--text);margin-bottom:12px">🌟 Đánh giá tổng thể ứng dụng</div>
+    <div style="text-align:center;margin-bottom:10px">
+      <div style="font-size:0.88rem;color:var(--muted);margin-bottom:8px">Bạn thấy ứng dụng này thế nào?</div>
+      <div class="star-row" id="app-stars-row">${starHTML('app',_fbRating)}</div>
+      <div style="font-size:0.88rem;color:var(--gold);margin-top:4px;min-height:1.3em" id="app-rating-lbl">${_fbRating>0?['','Chưa hài lòng','Cần cải thiện','Tạm được','Khá tốt','Rất tuyệt! 🎉'][_fbRating]:''}</div>
+    </div>
+    <div style="font-size:0.88rem;color:var(--muted);margin-bottom:8px">Chủ đề góp ý (chọn nhiều):</div>
+    <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px" id="app-tags-row">
+      ${['Giao diện đẹp','Dễ sử dụng','Nội dung hay','Cần thêm câu hỏi','Báo cáo hữu ích',
+         'Thiếu tính năng','Có lỗi kỹ thuật','Câu hỏi chưa rõ','Giải thích tốt','Khác']
+        .map(t=>`<button class="fb-tag" onclick="this.classList.toggle('on')">${t}</button>`).join('')}
+    </div>
+    <textarea class="fb-textarea" id="app-fb-text" placeholder="Nhận xét thêm, đề xuất tính năng, báo lỗi... (tuỳ chọn)"></textarea>
+    <button onclick="submitAppFb()" style="width:100%;margin-top:10px;background:linear-gradient(135deg,#1e3a5f,#2a6090);color:#fff;border:none;border-radius:10px;padding:11px;font-family:'Readex Pro',sans-serif;font-size:0.99rem;font-weight:700;cursor:pointer">📤 Gửi đánh giá</button>
+  </div>
+
+  <!-- BANK FEEDBACK FORMS -->
+  <div class="glass" style="padding:16px;margin-bottom:10px">
+    <div style="font-size:1.04rem;font-weight:700;color:var(--text);margin-bottom:14px">📚 Góp ý theo bộ câu hỏi</div>
+    ${['dc','dt','vs'].map(b=>{
+      const bk=BK[b],col=bankCol(b);
+      const r=_fbBankRating[b]||0;
+      return `<div style="border-bottom:1px solid rgba(80,140,255,.12);padding-bottom:14px;margin-bottom:14px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+          <span style="font-size:1.25rem">${bk.secs[0]?.i||'📖'}</span>
+          <span style="font-size:0.99rem;font-weight:700;color:${col}">${getBankTitle(b)}</span>
+        </div>
+        <div style="text-align:center;margin-bottom:8px">
+          <div class="star-row" id="bank-stars-${b}">${[1,2,3,4,5].map(n=>
+            `<span class="star${n<=r?' lit':''}" data-v="${n}" onclick="bankRate('${b}',${n})">${n<=r?'⭐':'☆'}</span>`).join('')}
+          </div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px" id="bank-tags-${b}">
+          ${['Nội dung tốt','Câu hỏi rõ ràng','Giải thích hay','Cần thêm câu','Có câu sai/nhầm','Độ khó vừa','Quá dễ','Quá khó']
+            .map(t=>`<button class="fb-tag" onclick="this.classList.toggle('on')">${t}</button>`).join('')}
+        </div>
+        <textarea class="fb-textarea" id="bank-text-${b}" placeholder="Câu nào chưa rõ? Góp ý nội dung bộ ${getBankTitle(b)}..." rows="2" style="min-height:56px"></textarea>
+        <button onclick="submitBankFb('${b}')" style="width:100%;margin-top:8px;background:${col}20;color:${col};border:1px solid ${col}50;border-radius:9px;padding:9px;font-family:'Readex Pro',sans-serif;font-size:0.92rem;font-weight:600;cursor:pointer">📤 Gửi góp ý bộ này</button>
+        <div id="bank-sent-${b}" style="display:none;text-align:center;padding:8px;font-size:0.92rem;color:#6ddc94">✅ Đã gửi!</div>
+      </div>`;
+    }).join('')}
+  </div>
+
+  <!-- FEEDBACK HISTORY -->
+  ${all.length>0?`
+  <div class="glass" style="padding:16px;margin-bottom:10px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+      <div style="font-size:1.04rem;font-weight:700;color:var(--text)">📜 Góp ý đã gửi (${all.length})</div>
+      <button onclick="if(confirm('Xóa tất cả góp ý?')){localStorage.removeItem('${FB_KEY}');renderFeedbackTab();}" style="background:none;border:none;color:rgba(220,90,90,.5);font-size:0.81rem;cursor:pointer;font-family:'Readex Pro',sans-serif">🗑 Xóa tất cả</button>
+    </div>
+    ${all.slice(0,20).map(f=>`
+    <div class="fb-card">
+      <div class="fb-meta">
+        ${f.type==='bank'?`<span style="color:${bankCol(f.bank)}">${bankLabel(f.bank)}</span> · `:'🌟 Tổng thể · '}
+        ${fmtTime(f.ts)} · ${f.utype==='google'?'🌐':'👤'} ${f.uname}
+      </div>
+      ${f.rating>0?`<div class="fb-stars-small">${'⭐'.repeat(f.rating)}${'☆'.repeat(5-f.rating)}</div>`:''}
+      ${f.text?`<div class="fb-body">${f.text}</div>`:''}
+      ${f.tags?.length?`<div class="fb-tags-row">${f.tags.map(t=>`<span class="fb-tag-sm">${t}</span>`).join('')}</div>`:''}
+    </div>`).join('')}
+    ${all.length>20?`<div style="text-align:center;font-size:0.88rem;color:var(--muted);padding:8px">... và ${all.length-20} góp ý khác</div>`:''}
+  </div>`:''}
+  `;
+}
+
+function appRate(v){
+  _fbRating=v;
+  const row=document.getElementById('app-stars-row');
+  if(row)row.querySelectorAll('.star').forEach(s=>{
+    const sv=parseInt(s.dataset.v);
+    s.textContent=sv<=v?'⭐':'☆';s.classList.toggle('lit',sv<=v);
+  });
+  const lbl=document.getElementById('app-rating-lbl');
+  if(lbl)lbl.textContent=['','Chưa hài lòng 😕','Cần cải thiện 🤔','Tạm được 🙂','Khá tốt 😊','Rất tuyệt! 🎉'][v]||'';
+}
+function bankRate(b,v){
+  _fbBankRating[b]=v;
+  const row=document.getElementById('bank-stars-'+b);
+  if(row)row.querySelectorAll('.star').forEach(s=>{
+    const sv=parseInt(s.dataset.v);
+    s.textContent=sv<=v?'⭐':'☆';s.classList.toggle('lit',sv<=v);
+  });
+}
+function submitAppFb(){
+  const rating=_fbRating;
+  const text=document.getElementById('app-fb-text')?.value||'';
+  const tags=[...document.querySelectorAll('#app-tags-row .fb-tag.on')].map(t=>t.textContent);
+  if(!rating&&!text.trim()&&!tags.length){showToast('Chọn số sao hoặc nhập nhận xét nhé!',1);return;}
+  submitFeedback({type:'app',rating,text,tags});
+  _fbRating=0;
+  renderFeedbackTab();
+  showToast('✅ Cảm ơn bạn đã đánh giá! 🙏');
+  // scroll to top of pane
+  document.getElementById('pane-feedback')?.scrollTo({top:0,behavior:'smooth'});
+}
+function submitBankFb(b){
+  const rating=_fbBankRating[b]||0;
+  const text=document.getElementById('bank-text-'+b)?.value||'';
+  const tags=[...document.querySelectorAll(`#bank-tags-${b} .fb-tag.on`)].map(t=>t.textContent);
+  if(!rating&&!text.trim()&&!tags.length){showToast('Chọn số sao hoặc nhập nhận xét nhé!',1);return;}
+  submitFeedback({type:'bank',bank:b,rating,text,tags});
+  _fbBankRating[b]=0;
+  // Show sent confirmation inline without re-rendering whole tab
+  const sentEl=document.getElementById('bank-sent-'+b);
+  if(sentEl){
+    sentEl.style.display='block';
+    // reset form
+    const textEl=document.getElementById('bank-text-'+b);if(textEl)textEl.value='';
+    document.querySelectorAll(`#bank-tags-${b} .fb-tag.on`).forEach(t=>t.classList.remove('on'));
+    const row=document.getElementById('bank-stars-'+b);
+    if(row)row.querySelectorAll('.star').forEach(s=>{s.textContent='☆';s.classList.remove('lit');});
+    setTimeout(()=>{sentEl.style.display='none';},3000);
+  }
+  showToast('✅ Đã gửi góp ý!');
+}
+
+// Admin can view all feedbacks - add to renderAdminLog adjacent helper
+function getFeedbackSummary(){
+  const all=loadFeedbacks();
+  const avgApp=all.filter(f=>f.type==='app'&&f.rating>0);
+  const avg=avgApp.length>0?Math.round(avgApp.reduce((a,f)=>a+f.rating,0)/avgApp.length*10)/10:0;
+  return {total:all.length,avgRating:avg,appCount:avgApp.length,bankCount:all.filter(f=>f.type==='bank').length};
+}
+// === HOME PAGE ===
+function renderHome_page(){
+  const p=document.getElementById('pane-home');if(!p)return;
+  const u=currentUser;
+  const banks=[
+    {id:'dc',icon:'🎯',title:'12 Địa Chi',sub:'Nhận biết · Ngũ hành · Tam/Nhị hợp · Xung · Mộ',col:'#e74c3c'},
+    {id:'dt',icon:'🔮',title:'Dụng Thần',sub:'5 Lục thân · Nhận diện · Dụng thần · Tình huống',col:'#3498db'},
+    {id:'vs',icon:'⚡',title:'Vượng Suy Căn Lực',sub:'Xét Vượng/Suy · Gọi tên · Tính điểm',col:'#2ab8c8'},
+  ];
+  const totalQ=banks.reduce((a,b)=>a+BK[b.id].q.length,0);
+  const greeting=u?(u.type==='guest'?'Xin chào, Khách! 👋':`Xin chào, ${u.name.split(' ').pop()}! 👋`):'Xin chào! 👋';
+  const logCount=loadLog().length;
+  p.innerHTML=`
+  <div class="glass" style="padding:22px 20px;margin-bottom:10px;text-align:center">
+    <div style="font-size:2.29rem;margin-bottom:8px">🎴</div>
+    <div style="font-family:'Noto Serif',serif;font-size:1.98rem;color:var(--gold);margin-bottom:4px">Lục Hào Luyện Tập</div>
+    <div style="font-size:0.92rem;color:var(--muted);margin-bottom:14px">Kinh Dịch · Nạp Giáp · Lục Hào</div>
+    <div style="font-size:1.06rem;color:var(--text);margin-bottom:16px">${greeting}</div>
+    <div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap">
+      <div style="text-align:center"><div style="font-size:1.67rem;font-weight:800;color:var(--gold)">${totalQ}</div><div style="font-size:0.81rem;color:var(--muted)">Câu hỏi</div></div>
+      <div style="width:1px;background:rgba(80,140,255,.2)"></div>
+      <div style="text-align:center"><div style="font-size:1.67rem;font-weight:800;color:var(--teal)">3</div><div style="font-size:0.81rem;color:var(--muted)">Bộ học</div></div>
+      <div style="width:1px;background:rgba(80,140,255,.2)"></div>
+      <div style="text-align:center"><div style="font-size:1.67rem;font-weight:800;color:#6ddc94">${logCount}</div><div style="font-size:0.81rem;color:var(--muted)">Phiên học</div></div>
+    </div>
+  </div>
+  <div class="glass" style="padding:16px;margin-bottom:10px">
+    <div style="font-size:1.04rem;font-weight:700;color:var(--text);margin-bottom:12px">🚀 Bắt đầu nhanh</div>
+    ${banks.map(bk=>{const w=loadWrong(bk.id).size;return `
+    <div onclick="sw('${bk.id}')" style="display:flex;align-items:center;gap:12px;padding:11px 13px;background:rgba(8,18,42,.7);border:1px solid rgba(80,140,255,.1);border-left:3px solid ${bk.col};border-radius:11px;cursor:pointer;margin-bottom:7px;transition:background .18s"
+      onmouseover="this.style.background='rgba(20,40,80,.8)'" onmouseout="this.style.background='rgba(8,18,42,.7)'">
+      <span style="font-size:1.46rem">${bk.icon}</span>
+      <div style="flex:1"><div style="font-size:0.99rem;font-weight:700;color:${bk.col}">${bk.title}</div>
+      <div style="font-size:0.81rem;color:var(--muted);margin-top:2px">${bk.sub}</div></div>
+      <div style="text-align:right;flex-shrink:0">
+        <div style="font-size:0.88rem;font-weight:700;color:${bk.col}">${BK[bk.id].q.length} câu</div>
+        ${w>0?`<div style="font-size:0.75rem;color:#cc99ff">${w}✗ cần ôn</div>`:'<div style="font-size:0.75rem;color:#6ddc94">✓</div>'}
+      </div>
+    </div>`;}).join('')}
+  </div>
+  <div class="glass" style="padding:16px;margin-bottom:10px">
+    <div style="font-size:1.04rem;font-weight:700;color:var(--text);margin-bottom:12px">📖 Hướng dẫn sử dụng</div>
+    ${[
+      ['🎯','Chọn bộ học','Nhấn menu bên trái: Địa Chi, Dụng Thần hoặc Vượng Suy'],
+      ['📚','Chọn phần học','Luyện từng chủ đề hoặc toàn bộ — có hiển thị tiến độ đúng/sai'],
+      ['💡','Đọc giải thích','Sau mỗi câu có phân tích tại sao đúng/sai để hiểu sâu hơn'],
+      ['🔁','Ôn câu sai','Câu sai được lưu lại — nhấn "Ôn câu sai" để ôn tập riêng'],
+      ['📊','Theo dõi tiến độ','Mục Báo cáo hiện tỷ lệ đúng từng phần và biểu đồ tổng thể'],
+      ['💬','Góp ý & đánh giá','Nhấn Góp ý để đánh giá nội dung và đề xuất cải tiến'],
+    ].map(([i,t,d])=>`
+    <div style="display:flex;gap:10px;padding:9px 0;border-bottom:1px solid rgba(80,140,255,.07)">
+      <span style="font-size:1.25rem;flex-shrink:0">${i}</span>
+      <div><div style="font-size:0.92rem;font-weight:600;color:var(--text);margin-bottom:2px">${t}</div>
+      <div style="font-size:0.84rem;color:var(--muted);line-height:1.5">${d}</div></div>
+    </div>`).join('')}
+  </div>
+  <div class="glass" style="padding:16px;margin-bottom:10px;border-color:rgba(40,160,100,.2);background:rgba(8,22,12,.7)">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+      <span style="font-size:1.46rem">🔮</span>
+      <div style="flex:1"><div style="font-size:1.04rem;font-weight:700;color:#6ddc94">Gieo quẻ & Luận quẻ</div>
+      <div style="font-size:0.84rem;color:var(--muted)">Đang phát triển</div></div>
+      <span style="background:rgba(40,160,100,.2);color:#6ddc94;border:1px solid rgba(40,160,100,.3);border-radius:20px;padding:2px 10px;font-size:0.78rem">Soon</span>
+    </div>
+    <div style="font-size:0.88rem;color:var(--muted);line-height:1.6;margin-bottom:10px">Hỗ trợ 3 phương pháp gieo quẻ kết hợp phân tích AI.</div>
+    <button onclick="sw('software')" style="background:rgba(40,160,100,.15);border:1px solid rgba(40,160,100,.3);color:#6ddc94;border-radius:9px;padding:8px 16px;font-family:'Readex Pro',sans-serif;font-size:0.88rem;cursor:pointer">Xem lộ trình →</button>
+  </div>
+  <div style="height:16px"></div>`;
+}
+
+// === SOFTWARE PAGE ===
+function renderSoftware(){
+  const p=document.getElementById('pane-software');if(!p)return;
+  p.innerHTML=`
+  <div class="glass" style="padding:22px 20px;margin-bottom:10px;text-align:center">
+    <div style="font-size:3.12rem;margin-bottom:10px">🔮</div>
+    <div style="font-family:'Noto Serif',serif;font-size:1.77rem;color:var(--gold);margin-bottom:6px">Phần mềm Lục Hào</div>
+    <div style="font-size:0.92rem;color:var(--muted)">Gieo quẻ · Luận quẻ · Phân tích AI</div>
+  </div>
+  <div class="glass" style="padding:16px;margin-bottom:10px">
+    <div style="font-size:1.04rem;font-weight:700;color:var(--text);margin-bottom:14px">🗺️ Lộ trình phát triển</div>
+    ${[
+      ['🎲','Gieo quẻ Lục Hào','3 phương pháp: Tung đồng xu, Mai Hoa Dịch Số, Số Seri Tiền. Tự động nạp Can Chi theo Tiết Khí.','Đang phát triển','#f0c94b'],
+      ['📖','Luận quẻ tự động','Xác định Dụng Thần, xét Vượng Suy, tính Căn Lực, đoán Ứng Kỳ theo nguyên tắc Lục Hào Nạp Giáp.','Lên kế hoạch','#88c4f0'],
+      ['🤖','Phân tích AI','Hỗ trợ Claude, GPT, Gemini luận giải — waterfall failover. Nhập câu hỏi bằng tiếng Việt.','Lên kế hoạch','#cc99ff'],
+      ['📋','Lưu lịch sử quẻ','Lưu toàn bộ lịch sử gieo quẻ theo ngày, xuất/in kết quả, ghi chú đối chiếu thực tế.','Lên kế hoạch','#6ddc94'],
+    ].map(([icon,title,desc,status,col])=>`
+    <div style="display:flex;gap:12px;padding:12px;background:rgba(8,18,42,.6);border:1px solid rgba(80,140,255,.1);border-radius:11px;margin-bottom:8px">
+      <span style="font-size:1.56rem;flex-shrink:0">${icon}</span>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px">
+          <span style="font-size:0.99rem;font-weight:700;color:var(--text)">${title}</span>
+          <span style="background:${col}20;color:${col};border:1px solid ${col}40;border-radius:20px;padding:1px 9px;font-size:0.78rem">${status}</span>
+        </div>
+        <div style="font-size:0.85rem;color:var(--muted);line-height:1.6">${desc}</div>
+      </div>
+    </div>`).join('')}
+  </div>
+  <div class="glass" style="padding:16px;margin-bottom:10px;border-color:rgba(40,160,100,.2)">
+    <div style="font-size:1.04rem;font-weight:700;color:#6ddc94;margin-bottom:10px">💬 Bạn muốn tính năng gì?</div>
+    <div style="font-size:0.88rem;color:var(--muted);margin-bottom:12px;line-height:1.6">Góp ý giúp chúng tôi ưu tiên phát triển đúng tính năng bạn cần nhất.</div>
+    <button onclick="sw('feedback')" style="background:rgba(40,160,100,.15);border:1px solid rgba(40,160,100,.3);color:#6ddc94;border-radius:9px;padding:10px 20px;font-family:'Readex Pro',sans-serif;font-size:0.94rem;font-weight:600;cursor:pointer">💬 Gửi góp ý tính năng →</button>
+  </div>
+  <div style="height:16px"></div>`;
+}
+
+
+function init(){
+  BK.dc.def=DC_DEF;BK.dt.def=DT_DEF;BK.vs.def=VS_DEF;
+  BK.dc.q=ldQ(DCK,DC_DEF);BK.dt.q=ldQ(DTK,DT_DEF);BK.vs.q=ldQ(VSK,VS_DEF);
+  document.getElementById('mo').addEventListener('click',e=>{if(e.target===document.getElementById('mo'))closeMo();});
+
+  // Check session
+  try{
+    const sess=localStorage.getItem(USER_SESSION_KEY);
+    if(sess){
+      currentUser=JSON.parse(sess);
+      updateUserBadge();
+      hideLoginScreen();
+      if(currentUser.type==='google'){
+        if(typeof google!=='undefined') initGoogleSignIn();
+        else window.addEventListener('load',initGoogleSignIn);
+      }
+    } else {
+      renderSavedUsers();
+      if(typeof google!=='undefined') initGoogleSignIn();
+      else window.addEventListener('load',initGoogleSignIn);
+    }
+  }catch(e){renderSavedUsers();}
+
+  updateSidebarBadges();
+  sw('home');
+}
+
+init();
+
+</script>
+</body>
+</html>
