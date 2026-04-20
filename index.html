@@ -50,25 +50,26 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
 /* ── SIDEBAR ── */
 #sidebar{width:220px;flex-shrink:0;height:100vh;background:rgba(4,10,28,.94);backdrop-filter:blur(20px);border-right:1px solid rgba(80,140,255,.12);display:flex;flex-direction:column;z-index:20;transition:transform .25s}
 .sb-logo{padding:18px 16px 14px;border-bottom:1px solid rgba(80,140,255,.1);display:flex;align-items:center;gap:10px}
-.sb-logo-icon{font-family:'Noto Serif',serif;font-size:1.56rem;color:var(--gold);line-height:1}
-.sb-logo-text{font-family:'Noto Serif',serif;font-size:0.99rem;color:var(--gold);opacity:1;line-height:1.2}
-.sb-logo-sub{font-size:0.78rem;color:#8090aa;margin-top:2px}
-.sb-section{padding:14px 10px 4px;font-size:0.75rem;text-transform:uppercase;letter-spacing:.1em;color:#7090b0}
-.sb-item{display:flex;align-items:center;gap:9px;padding:10px 14px;border-radius:9px;margin:2px 8px;cursor:pointer;font-size:0.92rem;color:#c0d8f0;transition:background .15s,color .15s;border:1px solid transparent;user-select:none;-webkit-user-select:none;touch-action:manipulation;-webkit-tap-highlight-color:rgba(80,140,255,.3);outline:none}
+.sb-logo-icon{font-family:'Noto Serif',serif;font-size:1.89rem;color:var(--gold);line-height:1}
+.sb-logo-text{font-family:'Noto Serif',serif;font-size:1.2rem;color:var(--gold);opacity:1;line-height:1.2}
+.sb-logo-sub{font-size:0.94rem;color:#8090aa;margin-top:2px}
+.sb-section{padding:14px 10px 4px;font-size:0.91rem;text-transform:uppercase;letter-spacing:.1em;color:#7090b0}
+.sb-item{display:flex;align-items:center;gap:9px;padding:10px 14px;border-radius:9px;margin:2px 8px;cursor:pointer;font-size:1.11rem;color:#c0d8f0;transition:background .15s,color .15s;border:1px solid transparent;user-select:none;-webkit-user-select:none;touch-action:manipulation;-webkit-tap-highlight-color:rgba(80,140,255,.3);outline:none}
 .sb-item:focus-visible{border-color:rgba(100,160,255,.5)}
+.sb-item *{cursor:pointer;-webkit-tap-highlight-color:transparent}
 .sb-item:hover{background:rgba(80,140,255,.14);color:#fff}
 .sb-item:active{background:rgba(50,100,200,.45);color:#fff}
 .sb-item.active{background:rgba(50,100,200,.35);color:#fff;border-color:rgba(100,160,255,.35);font-weight:700}
-.sb-item .sb-ico{font-size:1.09rem;width:22px;text-align:center;flex-shrink:0}
-.sb-item .sb-badge{margin-left:auto;background:rgba(80,140,255,.2);border-radius:8px;padding:1px 7px;font-size:0.75rem;color:#88c4f0}
+.sb-item .sb-ico{font-size:1.32rem;width:22px;text-align:center;flex-shrink:0}
+.sb-item .sb-badge{margin-left:auto;background:rgba(80,140,255,.2);border-radius:8px;padding:1px 7px;font-size:0.91rem;color:#88c4f0}
 .sb-item.active .sb-badge{background:rgba(80,140,255,.35);color:var(--gold2)}
 .sb-sub{padding-left:24px}
-.sb-sub .sb-item{font-size:0.88rem;padding:7px 12px;border-radius:8px}
-.sb-expand-arrow{margin-left:auto;font-size:0.75rem;color:var(--muted);transition:transform .2s}
+.sb-sub .sb-item{font-size:1.06rem;padding:7px 12px;border-radius:8px}
+.sb-expand-arrow{margin-left:auto;font-size:0.91rem;color:var(--muted);transition:transform .2s}
 .sb-expand-arrow.open{transform:rotate(90deg)}
 .sb-footer{margin-top:auto;padding:12px;border-top:1px solid rgba(80,140,255,.1)}
 /* ── HAMBURGER (mobile) ── */
-#sb-toggle{display:none;position:fixed;top:10px;left:10px;z-index:100;background:rgba(4,14,34,.9);border:1px solid rgba(80,140,255,.2);border-radius:9px;width:42px;height:42px;align-items:center;justify-content:center;cursor:pointer;font-size:1.25rem;backdrop-filter:blur(10px);touch-action:manipulation;-webkit-tap-highlight-color:rgba(80,140,255,.2)}
+#sb-toggle{display:none;position:fixed;top:10px;left:10px;z-index:100;background:rgba(4,14,34,.9);border:1px solid rgba(80,140,255,.2);border-radius:9px;width:42px;height:42px;align-items:center;justify-content:center;cursor:pointer;font-size:1.51rem;backdrop-filter:blur(10px);touch-action:manipulation;-webkit-tap-highlight-color:rgba(80,140,255,.2)}
 #sb-overlay{display:none;position:fixed;inset:0;z-index:19;background:rgba(0,0,0,.5)}
 /* ── MAIN CONTENT ── */
 #main{flex:1;overflow:hidden;display:flex;align-items:flex-start;justify-content:center;padding:0;height:100vh}
@@ -80,13 +81,45 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
 #topbar{display:none}
 /* Legacy tab CSS kept for compatibility */
 .tab{display:none}
+/* ── BOTTOM TAB BAR (mobile ≤768px) ── */
+#bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:300;
+  background:rgba(4,10,28,.97);border-top:1px solid rgba(80,140,255,.18);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  height:58px;padding-bottom:env(safe-area-inset-bottom)}
+#bottom-nav button{
+  flex:1;height:58px;background:none;border:none;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  color:#8098b8;font-family:'Readex Pro',sans-serif;font-size:0.77rem;
+  cursor:pointer;touch-action:manipulation;
+  -webkit-tap-highlight-color:rgba(80,140,255,.2);
+  transition:color .15s,background .15s;padding:0;min-width:0;outline:none}
+#bottom-nav button .bico{font-size:1.51rem;line-height:1}
+#bottom-nav button .blbl{font-size:0.75rem;line-height:1;margin-top:1px}
+#bottom-nav button.active{color:#fff;background:rgba(50,100,200,.25)}
+#bottom-nav button:active{background:rgba(80,140,255,.2);color:#fff}
+/* More menu overlay for mobile */
+#mobile-more{display:none;position:fixed;bottom:58px;left:0;right:0;z-index:250;
+  background:rgba(4,10,28,.97);border-top:1px solid rgba(80,140,255,.18);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:8px 0}
+#mobile-more.open{display:block}
+#mobile-more button{
+  display:flex;align-items:center;gap:12px;width:100%;
+  background:none;border:none;padding:12px 20px;
+  color:#c0d8f0;font-family:'Readex Pro',sans-serif;font-size:1.15rem;
+  cursor:pointer;touch-action:manipulation;text-align:left;
+  -webkit-tap-highlight-color:rgba(80,140,255,.2)}
+#mobile-more button:active{background:rgba(80,140,255,.15)}
+#mobile-more .mico{font-size:1.45rem;width:26px;text-align:center}
+#mobile-more-overlay{display:none;position:fixed;inset:0;z-index:240;background:transparent}
+#mobile-more-overlay.open{display:block}
 @media(max-width:768px){
-  #sidebar{position:fixed;top:0;left:0;transform:translateX(-100%);z-index:200}
-  #sidebar.open{transform:translateX(0)}
-  #sb-toggle{display:flex}
-  #sb-overlay.open{display:block}
-  #main{padding:0;height:100vh}
-  .pane{height:100vh;padding:54px 10px 0}
+  #sidebar{display:none!important}
+  #sb-toggle{display:none!important}
+  #sb-overlay{display:none!important}
+  #bottom-nav{display:flex}
+  #main{padding:0;height:calc(100vh - 58px)}
+  .pane{height:calc(100vh - 58px);padding:10px 10px 0}
+  .upop{bottom:64px;left:8px;top:auto;right:auto;width:210px}
 }
 /* scrollbar */
 .pane::-webkit-scrollbar{width:4px}.pane::-webkit-scrollbar-track{background:transparent}.pane::-webkit-scrollbar-thumb{background:rgba(80,140,255,.3);border-radius:2px}
@@ -94,39 +127,39 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
 .glass{background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--gb);border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.04)}
 /* HOME */
 .bank-logo{font-family:'Noto Serif',serif;text-align:center;margin:18px 0 4px;line-height:1.2}
-.bank-sub{text-align:center;color:var(--muted);font-size:1.08rem;margin-bottom:8px}
-.bank-badge{display:inline-block;background:rgba(10,20,45,.8);border:1px solid var(--gb);border-radius:100px;padding:4px 14px;font-size:1.03rem;color:var(--teal);margin-bottom:14px}
+.bank-sub{text-align:center;color:var(--muted);font-size:1.31rem;margin-bottom:8px}
+.bank-badge{display:inline-block;background:rgba(10,20,45,.8);border:1px solid var(--gb);border-radius:100px;padding:4px 14px;font-size:1.25rem;color:var(--teal);margin-bottom:14px}
 .sec-grid{display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
 .sec-tile{background:rgba(8,18,40,.7);border-radius:11px;padding:11px 14px;border-left:3px solid;cursor:pointer;transition:all .18s;display:flex;align-items:center;gap:10px}
 .sec-tile:hover{background:rgba(20,40,80,.7);transform:translateX(3px)}
-.sec-tile .si{font-size:1.71rem;flex-shrink:0}
-.sec-tile .sn{font-size:1.19rem;font-weight:600;flex:1}
-.sec-tile .sc{font-size:0.99rem;color:var(--muted);text-align:right}
-.btn-main{display:block;width:100%;touch-action:manipulation;background:linear-gradient(135deg,#0e2840,#1a5090);color:#fff;border:1px solid rgba(80,140,255,.4);border-radius:12px;padding:13px;font-size:1.27rem;font-family:'Readex Pro',sans-serif;font-weight:700;cursor:pointer;margin-bottom:8px;transition:all .2s}
+.sec-tile .si{font-size:2.07rem;flex-shrink:0}
+.sec-tile .sn{font-size:1.44rem;font-weight:600;flex:1}
+.sec-tile .sc{font-size:1.2rem;color:var(--muted);text-align:right}
+.btn-main{display:block;width:100%;touch-action:manipulation;background:linear-gradient(135deg,#0e2840,#1a5090);color:#fff;border:1px solid rgba(80,140,255,.4);border-radius:12px;padding:13px;font-size:1.54rem;font-family:'Readex Pro',sans-serif;font-weight:700;cursor:pointer;margin-bottom:8px;transition:all .2s}
 .btn-main:hover{filter:brightness(1.15)}
-.btn-review{display:none;width:100%;background:rgba(60,10,90,.6);color:#cc99ff;border:1px solid rgba(140,60,200,.4);border-radius:12px;padding:12px;font-size:1.19rem;font-family:'Readex Pro',sans-serif;font-weight:700;cursor:pointer;margin-bottom:6px;transition:all .2s}
+.btn-review{display:none;width:100%;background:rgba(60,10,90,.6);color:#cc99ff;border:1px solid rgba(140,60,200,.4);border-radius:12px;padding:12px;font-size:1.44rem;font-family:'Readex Pro',sans-serif;font-weight:700;cursor:pointer;margin-bottom:6px;transition:all .2s}
 .btn-review:hover{background:rgba(80,20,120,.7)}
-.w-count{display:inline-block;background:#9b59b6;color:#fff;border-radius:20px;padding:1px 9px;font-size:1.01rem;margin-left:7px;font-weight:800;vertical-align:middle}
-.btn-clear{background:none;border:none;color:var(--muted);font-size:0.99rem;cursor:pointer;text-decoration:underline;font-family:'Readex Pro',sans-serif;margin-bottom:10px}
+.w-count{display:inline-block;background:#9b59b6;color:#fff;border-radius:20px;padding:1px 9px;font-size:1.22rem;margin-left:7px;font-weight:800;vertical-align:middle}
+.btn-clear{background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;text-decoration:underline;font-family:'Readex Pro',sans-serif;margin-bottom:10px}
 /* GAME */
 .ghead{position:sticky;top:0;z-index:5;background:rgba(4,14,34,.93);backdrop-filter:blur(14px);border-bottom:1px solid var(--gb);padding:9px 14px;border-radius:0;margin-bottom:10px}
 .ghead-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
 .xp-wrap{display:flex;align-items:center;gap:7px}
 .xp-bg{width:90px;height:5px;background:#0e2030;border-radius:3px;overflow:hidden}
 .xp-bar{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width .4s}
-.xp-val{font-size:0.99rem;color:var(--gold);font-weight:600}
-.streak{font-size:1.05rem;font-weight:700;color:#f39c12}
+.xp-val{font-size:1.2rem;color:var(--gold);font-weight:600}
+.streak{font-size:1.27rem;font-weight:700;color:#f39c12}
 .prog-bg{height:4px;background:#0e2030;border-radius:2px;overflow:hidden}
 .prog-bar{height:100%;background:linear-gradient(90deg,var(--teal),var(--gold2));transition:width .5s}
-.sec-lbl{font-size:0.99rem;color:var(--muted);margin-top:5px}
+.sec-lbl{font-size:1.2rem;color:var(--muted);margin-top:5px}
 .qcard{background:rgba(8,18,42,.8);border:1px solid var(--gb);border-radius:13px;padding:16px;margin-bottom:10px}
 .qmeta{display:flex;justify-content:space-between;margin-bottom:8px}
-.qnum{font-size:0.99rem;color:#7090b0}
-.qbadge{font-size:0.9rem;border-radius:5px;padding:2px 8px;font-weight:700}
-.qtext{font-size:1.27rem;line-height:1.7}
+.qnum{font-size:1.2rem;color:#7090b0}
+.qbadge{font-size:1.09rem;border-radius:5px;padding:2px 8px;font-weight:700}
+.qtext{font-size:1.54rem;line-height:1.7}
 .qtext b{color:var(--gold)}
 .opts{display:flex;flex-direction:column;gap:7px;margin-bottom:10px}
-.opt{background:rgba(10,22,48,.85);border:1px solid rgba(60,100,160,.3);border-radius:11px;padding:12px 14px;cursor:pointer;font-size:1.19rem;line-height:1.5;text-align:left;display:flex;gap:9px;transition:all .15s;color:var(--text);font-family:'Readex Pro',sans-serif;width:100%;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.opt{background:rgba(10,22,48,.85);border:1px solid rgba(60,100,160,.3);border-radius:11px;padding:12px 14px;cursor:pointer;font-size:1.44rem;line-height:1.5;text-align:left;display:flex;gap:9px;transition:all .15s;color:var(--text);font-family:'Readex Pro',sans-serif;width:100%;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 .opt .ltr{font-weight:700;color:var(--gold);min-width:18px;font-family:'Noto Serif',serif;flex-shrink:0}
 .opt:hover{border-color:rgba(100,180,255,.5);background:rgba(20,40,80,.8)}
 .opt.correct{background:#0a2015!important;border-color:#27ae60!important;color:#7dff9a!important}
@@ -136,73 +169,73 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
 .exbox{display:none;border-radius:11px;overflow:hidden;margin-bottom:10px;animation:exin .3s ease}
 .exbox.show{display:block}
 @keyframes exin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-.exhdr{padding:9px 14px;font-size:0.99rem;font-weight:700;display:flex;align-items:center;gap:6px}
+.exhdr{padding:9px 14px;font-size:1.2rem;font-weight:700;display:flex;align-items:center;gap:6px}
 .exbody{background:rgba(8,18,42,.9);border:1px solid var(--gb);border-top:none;border-radius:0 0 11px 11px;padding:12px 14px}
-.exright{font-size:1.11rem;line-height:1.8;color:#9be0ec;margin-bottom:7px}
+.exright{font-size:1.34rem;line-height:1.8;color:#9be0ec;margin-bottom:7px}
 .exright b,.exwhy{color:var(--gold2)}
-.exwhy{font-size:1.11rem;line-height:1.8;color:#b0d8f0;margin-bottom:7px}
+.exwhy{font-size:1.34rem;line-height:1.8;color:#b0d8f0;margin-bottom:7px}
 .exwhy b{color:var(--gold2)}
-.exwrong{font-size:1.03rem;color:var(--muted);border-top:1px solid rgba(60,100,160,.2);padding-top:7px;margin-top:2px;line-height:1.75}
-.exrule{font-size:1.05rem;color:#88b8d8;margin-bottom:6px;padding-bottom:6px;border-bottom:1px solid rgba(60,100,160,.2)}
-.btn-next{display:none;width:100%;background:linear-gradient(135deg,#0d2a0a,#1e5c14);color:#fff;border:none;border-radius:11px;padding:13px;font-size:1.24rem;font-family:'Readex Pro',sans-serif;font-weight:600;cursor:pointer;margin-bottom:12px}
+.exwrong{font-size:1.25rem;color:var(--muted);border-top:1px solid rgba(60,100,160,.2);padding-top:7px;margin-top:2px;line-height:1.75}
+.exrule{font-size:1.27rem;color:#88b8d8;margin-bottom:6px;padding-bottom:6px;border-bottom:1px solid rgba(60,100,160,.2)}
+.btn-next{display:none;width:100%;background:linear-gradient(135deg,#0d2a0a,#1e5c14);color:#fff;border:none;border-radius:11px;padding:13px;font-size:1.5rem;font-family:'Readex Pro',sans-serif;font-weight:600;cursor:pointer;margin-bottom:12px}
 .btn-next.show{display:block}
 .btn-next:hover{filter:brightness(1.1)}
-.xppop{position:fixed;top:64px;right:16px;font-size:1.48rem;font-weight:800;color:var(--gold);pointer-events:none;z-index:999;animation:xfpop .8s ease forwards}
+.xppop{position:fixed;top:64px;right:16px;font-size:1.79rem;font-weight:800;color:var(--gold);pointer-events:none;z-index:999;animation:xfpop .8s ease forwards}
 @keyframes xfpop{0%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-50px) scale(1.3)}}
 /* END */
 .end-wrap{padding:20px 4px;text-align:center}
-.end-medals{font-size:3.44rem;margin-bottom:8px}
-.end-title{font-family:'Noto Serif',serif;font-size:2.65rem;color:var(--gold);margin-bottom:6px}
-.end-score{font-size:4.49rem;font-weight:800;background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.1}
-.end-det{color:var(--muted);font-size:1.16rem;margin:6px 0 4px}
-.end-rnote{font-size:1.08rem;min-height:1.2em;margin-bottom:12px}
+.end-medals{font-size:4.16rem;margin-bottom:8px}
+.end-title{font-family:'Noto Serif',serif;font-size:3.21rem;color:var(--gold);margin-bottom:6px}
+.end-score{font-size:5.43rem;font-weight:800;background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.1}
+.end-det{color:var(--muted);font-size:1.4rem;margin:6px 0 4px}
+.end-rnote{font-size:1.31rem;min-height:1.2em;margin-bottom:12px}
 .sec-res{margin-bottom:14px}
-.sr-row{background:rgba(8,18,42,.8);border:1px solid var(--gb);border-radius:9px;padding:9px 13px;margin-bottom:5px;display:flex;justify-content:space-between;align-items:center;font-size:1.13rem}
+.sr-row{background:rgba(8,18,42,.8);border:1px solid var(--gb);border-radius:9px;padding:9px 13px;margin-bottom:5px;display:flex;justify-content:space-between;align-items:center;font-size:1.37rem}
 .sr-score{font-weight:700;color:var(--gold)}
 .end-btns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
-.btn-retry{background:rgba(8,18,42,.8);border:1px solid var(--gb);color:var(--text);border-radius:10px;padding:10px 20px;touch-action:manipulation;font-size:1.16rem;font-family:'Readex Pro',sans-serif;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-retry{background:rgba(8,18,42,.8);border:1px solid var(--gb);color:var(--text);border-radius:10px;padding:10px 20px;touch-action:manipulation;font-size:1.4rem;font-family:'Readex Pro',sans-serif;font-weight:600;cursor:pointer;transition:all .2s}
 .btn-retry:hover{background:rgba(20,40,80,.8)}
 /* === ADMIN === */
 .admin-login{padding:30px 20px;text-align:center}
 .admin-head{display:flex;align-items:center;gap:10px;margin-bottom:16px}
 .admin-tabs{display:flex;gap:6px;margin-bottom:14px;background:rgba(4,10,28,.6);padding:5px;border-radius:10px}
-.atab{flex:1;background:none;border:none;color:var(--muted);font-family:'Readex Pro',sans-serif;font-size:1.08rem;font-weight:600;cursor:pointer;padding:8px 6px;border-radius:7px;transition:all .15s}
+.atab{flex:1;background:none;border:none;color:var(--muted);font-family:'Readex Pro',sans-serif;font-size:1.31rem;font-weight:600;cursor:pointer;padding:8px 6px;border-radius:7px;transition:all .15s}
 .atab.active{background:rgba(40,80,160,.5);color:#fff}
 .toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center}
-.srch{flex:1;min-width:140px;background:rgba(8,18,42,.8);border:1px solid var(--gb);border-radius:8px;padding:8px 11px;color:var(--text);font-family:'Readex Pro',sans-serif;font-size:1.11rem;outline:none}
-.fsel{background:rgba(8,18,42,.8);border:1px solid var(--gb);border-radius:8px;padding:8px 10px;color:var(--text);font-family:'Readex Pro',sans-serif;font-size:1.08rem;outline:none;cursor:pointer}
-.btn-add{background:linear-gradient(135deg,#1e4a1e,var(--green));color:#fff;border:none;border-radius:8px;padding:8px 14px;font-size:1.11rem;font-family:'Readex Pro',sans-serif;font-weight:700;cursor:pointer;white-space:nowrap}
-.btn-rst{background:rgba(8,18,42,.8);border:1px solid var(--gb);color:var(--muted);border-radius:8px;padding:8px 12px;font-size:1.08rem;font-family:'Readex Pro',sans-serif;cursor:pointer;transition:all .2s}
+.srch{flex:1;min-width:140px;background:rgba(8,18,42,.8);border:1px solid var(--gb);border-radius:8px;padding:8px 11px;color:var(--text);font-family:'Readex Pro',sans-serif;font-size:1.34rem;outline:none}
+.fsel{background:rgba(8,18,42,.8);border:1px solid var(--gb);border-radius:8px;padding:8px 10px;color:var(--text);font-family:'Readex Pro',sans-serif;font-size:1.31rem;outline:none;cursor:pointer}
+.btn-add{background:linear-gradient(135deg,#1e4a1e,var(--green));color:#fff;border:none;border-radius:8px;padding:8px 14px;font-size:1.34rem;font-family:'Readex Pro',sans-serif;font-weight:700;cursor:pointer;white-space:nowrap}
+.btn-rst{background:rgba(8,18,42,.8);border:1px solid var(--gb);color:var(--muted);border-radius:8px;padding:8px 12px;font-size:1.31rem;font-family:'Readex Pro',sans-serif;cursor:pointer;transition:all .2s}
 .btn-rst:hover{border-color:var(--red);color:var(--red)}
 .astats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
 .astat{background:rgba(8,18,42,.8);border:1px solid var(--gb);border-radius:10px;padding:10px 12px}
-.asv{font-size:2.34rem;font-weight:800;color:var(--gold)}
-.asl{font-size:0.99rem;color:var(--muted);margin-top:2px}
-.qtbl{width:100%;border-collapse:collapse;font-size:1.1rem}
-.qtbl th{background:rgba(12,24,52,.9);font-size:0.94rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);padding:8px 10px;text-align:left;border-bottom:1px solid var(--gb)}
+.asv{font-size:2.83rem;font-weight:800;color:var(--gold)}
+.asl{font-size:1.2rem;color:var(--muted);margin-top:2px}
+.qtbl{width:100%;border-collapse:collapse;font-size:1.33rem}
+.qtbl th{background:rgba(12,24,52,.9);font-size:1.14rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);padding:8px 10px;text-align:left;border-bottom:1px solid var(--gb)}
 .qtbl td{padding:8px 10px;border-bottom:1px solid rgba(20,40,80,.5);vertical-align:middle}
 .qtbl tr:hover td{background:rgba(16,32,64,.5)}
 .qtxt{max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.bdg{display:inline-block;border-radius:5px;padding:2px 7px;font-size:0.9rem;font-weight:600;white-space:nowrap}
-.ans{display:inline-block;background:#1e3a1e;color:#6ddc94;border-radius:5px;padding:2px 8px;font-size:0.94rem;font-weight:700;min-width:26px;text-align:center}
+.bdg{display:inline-block;border-radius:5px;padding:2px 7px;font-size:1.09rem;font-weight:600;white-space:nowrap}
+.ans{display:inline-block;background:#1e3a1e;color:#6ddc94;border-radius:5px;padding:2px 8px;font-size:1.14rem;font-weight:700;min-width:26px;text-align:center}
 .acts{display:flex;gap:5px}
-.be{background:#1e2a42;border:1px solid rgba(60,100,160,.4);color:#8aafe0;border-radius:6px;padding:4px 9px;font-size:0.99rem;cursor:pointer;font-family:'Readex Pro',sans-serif}
+.be{background:#1e2a42;border:1px solid rgba(60,100,160,.4);color:#8aafe0;border-radius:6px;padding:4px 9px;font-size:1.2rem;cursor:pointer;font-family:'Readex Pro',sans-serif}
 .be:hover{border-color:#4a8fd4;color:#fff}
-.bd{background:#2a1010;border:1px solid rgba(120,40,40,.4);color:#e07070;border-radius:6px;padding:4px 9px;font-size:0.99rem;cursor:pointer;font-family:'Readex Pro',sans-serif}
+.bd{background:#2a1010;border:1px solid rgba(120,40,40,.4);color:#e07070;border-radius:6px;padding:4px 9px;font-size:1.2rem;cursor:pointer;font-family:'Readex Pro',sans-serif}
 .bd:hover{border-color:var(--red);color:#fff}
 /* === MODAL === */
 .mo-ov{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;display:none;align-items:center;justify-content:center;padding:14px}
 .mo-ov.open{display:flex}
 .mo-box{background:rgba(8,16,36,.96);border:1px solid var(--gb);border-radius:15px;width:100%;max-width:600px;max-height:90vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,.7)}
 .mo-head{display:flex;justify-content:space-between;align-items:center;padding:15px 20px;border-bottom:1px solid var(--gb);position:sticky;top:0;background:rgba(8,16,36,.97);z-index:1}
-.mo-title{font-size:1.27rem;font-weight:700}
-.mo-close{background:none;border:none;color:var(--muted);font-size:1.71rem;cursor:pointer;padding:0 4px;line-height:1}
+.mo-title{font-size:1.54rem;font-weight:700}
+.mo-close{background:none;border:none;color:var(--muted);font-size:2.07rem;cursor:pointer;padding:0 4px;line-height:1}
 .mo-close:hover{color:var(--text)}
 .mo-body{padding:18px 20px}
 .mo-foot{display:flex;justify-content:flex-end;gap:9px;padding:13px 20px;border-top:1px solid var(--gb);position:sticky;bottom:0;background:rgba(8,16,36,.97)}
 .fr{margin-bottom:14px}
-.fr label{display:block;font-size:0.99rem;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.05em}
-.fr textarea,.fr input[type=text],.fr select{width:100%;background:rgba(4,10,28,.9);border:1px solid var(--gb);border-radius:8px;padding:9px 11px;color:var(--text);font-family:'Readex Pro',sans-serif;font-size:1.13rem;outline:none;resize:vertical;transition:border-color .2s}
+.fr label{display:block;font-size:1.2rem;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.05em}
+.fr textarea,.fr input[type=text],.fr select{width:100%;background:rgba(4,10,28,.9);border:1px solid var(--gb);border-radius:8px;padding:9px 11px;color:var(--text);font-family:'Readex Pro',sans-serif;font-size:1.37rem;outline:none;resize:vertical;transition:border-color .2s}
 .fr textarea{min-height:60px}
 .fr textarea:focus,.fr input:focus,.fr select:focus{border-color:#4a8fd4}
 .fr2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -210,85 +243,85 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
 .oi{display:flex;align-items:center;gap:7px;background:rgba(4,10,28,.9);border:1px solid var(--gb);border-radius:8px;padding:7px 9px;transition:border-color .2s}
 .oi.sel{border-color:var(--green)}
 .oi input[type=radio]{accent-color:var(--green);cursor:pointer;flex-shrink:0}
-.oi input[type=text]{background:none;border:none;padding:0;flex:1;font-size:1.11rem;color:var(--text);font-family:'Readex Pro',sans-serif;outline:none}
-.ol{font-family:'Noto Serif',serif;font-weight:700;color:var(--gold);min-width:15px;font-size:1.19rem}
-.btn-sv{background:linear-gradient(135deg,#1e4a1e,var(--green));color:#fff;border:none;border-radius:8px;padding:9px 22px;font-size:1.13rem;font-family:'Readex Pro',sans-serif;font-weight:700;cursor:pointer}
-.btn-cn{background:rgba(10,20,45,.8);border:1px solid var(--gb);color:var(--muted);border-radius:8px;padding:9px 18px;font-size:1.13rem;font-family:'Readex Pro',sans-serif;cursor:pointer}
+.oi input[type=text]{background:none;border:none;padding:0;flex:1;font-size:1.34rem;color:var(--text);font-family:'Readex Pro',sans-serif;outline:none}
+.ol{font-family:'Noto Serif',serif;font-weight:700;color:var(--gold);min-width:15px;font-size:1.44rem}
+.btn-sv{background:linear-gradient(135deg,#1e4a1e,var(--green));color:#fff;border:none;border-radius:8px;padding:9px 22px;font-size:1.37rem;font-family:'Readex Pro',sans-serif;font-weight:700;cursor:pointer}
+.btn-cn{background:rgba(10,20,45,.8);border:1px solid var(--gb);color:var(--muted);border-radius:8px;padding:9px 18px;font-size:1.37rem;font-family:'Readex Pro',sans-serif;cursor:pointer}
 /* === TOAST === */
-.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(70px);background:rgba(10,40,20,.95);border:1px solid var(--green);color:#6ddc94;border-radius:9px;padding:9px 20px;font-size:1.13rem;font-weight:600;z-index:500;transition:transform .3s;white-space:nowrap;pointer-events:none}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(70px);background:rgba(10,40,20,.95);border:1px solid var(--green);color:#6ddc94;border-radius:9px;padding:9px 20px;font-size:1.37rem;font-weight:600;z-index:500;transition:transform .3s;white-space:nowrap;pointer-events:none}
 .toast.show{transform:translateX(-50%) translateY(0)}
 .toast.err{background:rgba(40,10,10,.95);border-color:var(--red);color:#ff9999}
 /* fields */
 .fi{margin-bottom:13px}
-.fi label{display:block;font-size:0.99rem;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.05em}
-.fi input{width:100%;background:rgba(4,10,28,.9);border:1px solid var(--gb);border-radius:9px;padding:11px 13px;color:var(--text);font-family:'Readex Pro',sans-serif;font-size:1.19rem;outline:none}
+.fi label{display:block;font-size:1.2rem;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.05em}
+.fi input{width:100%;background:rgba(4,10,28,.9);border:1px solid var(--gb);border-radius:9px;padding:11px 13px;color:var(--text);font-family:'Readex Pro',sans-serif;font-size:1.44rem;outline:none}
 .fi input:focus{border-color:#4a8fd4}
-.err-msg{color:#ff6b6b;font-size:1.03rem;text-align:center;margin-top:9px;min-height:1em}
+.err-msg{color:#ff6b6b;font-size:1.25rem;text-align:center;margin-top:9px;min-height:1em}
 @media(max-width:600px){
   .astats{grid-template-columns:repeat(2,1fr)}
   .og,.fr2{grid-template-columns:1fr}
-  .tab{padding:6px 8px;font-size:1.03rem}
+  .tab{padding:6px 8px;font-size:1.25rem}
   .logo-tab{display:none}
 }
 /* === FEEDBACK === */
 .star-row{display:flex;gap:6px;justify-content:center;margin:8px 0}
-.star{font-size:2.08rem;cursor:pointer;transition:transform .12s,filter .12s;line-height:1;user-select:none}
+.star{font-size:2.52rem;cursor:pointer;transition:transform .12s,filter .12s;line-height:1;user-select:none}
 .star:hover,.star.lit{filter:drop-shadow(0 0 6px rgba(240,200,80,.7))}
 .star.lit{transform:scale(1.12)}
-.fb-tag{background:rgba(20,40,80,.6);border:1px solid rgba(80,140,255,.2);border-radius:20px;padding:5px 12px;font-size:0.88rem;cursor:pointer;color:var(--muted);transition:all .15s;font-family:'Readex Pro',sans-serif}
+.fb-tag{background:rgba(20,40,80,.6);border:1px solid rgba(80,140,255,.2);border-radius:20px;padding:5px 12px;font-size:1.06rem;cursor:pointer;color:var(--muted);transition:all .15s;font-family:'Readex Pro',sans-serif}
 .fb-tag.on{background:rgba(40,80,160,.45);border-color:rgba(80,140,255,.55);color:var(--text)}
 .fb-tag:hover{border-color:rgba(80,140,255,.45)}
-.fb-textarea{width:100%;background:rgba(4,10,28,.85);border:1px solid var(--gb);border-radius:10px;padding:10px 12px;color:var(--text);font-family:'Readex Pro',sans-serif;font-size:0.94rem;resize:vertical;outline:none;min-height:80px;transition:border-color .2s}
+.fb-textarea{width:100%;background:rgba(4,10,28,.85);border:1px solid var(--gb);border-radius:10px;padding:10px 12px;color:var(--text);font-family:'Readex Pro',sans-serif;font-size:1.14rem;resize:vertical;outline:none;min-height:80px;transition:border-color .2s}
 .fb-textarea:focus{border-color:#4a8fd4}
 .fb-card{background:rgba(8,18,42,.7);border:1px solid var(--gb);border-radius:12px;padding:12px 14px;margin-bottom:8px}
-.fb-meta{font-size:0.81rem;color:var(--muted);margin-bottom:4px}
-.fb-stars-small{color:#f0c94b;font-size:0.99rem;letter-spacing:1px}
-.fb-body{font-size:0.92rem;color:var(--text);line-height:1.6;margin-top:4px}
+.fb-meta{font-size:0.98rem;color:var(--muted);margin-bottom:4px}
+.fb-stars-small{color:#f0c94b;font-size:1.2rem;letter-spacing:1px}
+.fb-body{font-size:1.11rem;color:var(--text);line-height:1.6;margin-top:4px}
 .fb-tags-row{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
-.fb-tag-sm{background:rgba(40,80,160,.3);border-radius:20px;padding:2px 9px;font-size:0.78rem;color:#88c4f0}
+.fb-tag-sm{background:rgba(40,80,160,.3);border-radius:20px;padding:2px 9px;font-size:0.94rem;color:#88c4f0}
 /* mini inline feedback at end of quiz */
 .mini-fb{background:rgba(6,14,36,.85);border:1px solid rgba(80,140,255,.2);border-radius:14px;padding:14px;margin-top:10px;margin-bottom:10px}
-.mini-fb-title{font-size:0.92rem;color:var(--muted);margin-bottom:8px;text-align:center}
-.mini-star{font-size:1.77rem;cursor:pointer;transition:transform .1s;user-select:none;line-height:1}
+.mini-fb-title{font-size:1.11rem;color:var(--muted);margin-bottom:8px;text-align:center}
+.mini-star{font-size:2.14rem;cursor:pointer;transition:transform .1s;user-select:none;line-height:1}
 .mini-star.lit{transform:scale(1.15);filter:drop-shadow(0 0 4px rgba(240,200,80,.6))}
-.mini-fb-sent{text-align:center;padding:8px 0;font-size:0.92rem;color:#6ddc94}
+.mini-fb-sent{text-align:center;padding:8px 0;font-size:1.11rem;color:#6ddc94}
 #login-screen{position:fixed;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,4,18,.6);backdrop-filter:blur(10px)}
 #login-screen.hidden{display:none}
 .lcard{background:rgba(6,12,32,.96);border:1px solid rgba(80,140,255,.22);border-radius:22px;padding:32px 26px 26px;width:100%;max-width:380px;box-shadow:0 32px 100px rgba(0,0,0,.85),inset 0 0 0 1px rgba(255,255,255,.04);text-align:center;position:relative}
-.lcard-logo{font-family:'Noto Serif',serif;font-size:2.64rem;color:var(--gold);text-shadow:0 0 40px rgba(200,168,75,.4);margin-bottom:6px;line-height:1.1}
-.lcard-tagline{font-family:'Noto Serif',serif;font-size:0.94rem;color:rgba(200,170,75,.55);margin-bottom:4px}
-.lcard-sub{color:var(--muted);font-size:0.88rem;margin-bottom:22px;line-height:1.5}
-.ldivider{display:flex;align-items:center;gap:10px;margin:16px 0;color:var(--muted);font-size:0.81rem}
+.lcard-logo{font-family:'Noto Serif',serif;font-size:3.19rem;color:var(--gold);text-shadow:0 0 40px rgba(200,168,75,.4);margin-bottom:6px;line-height:1.1}
+.lcard-tagline{font-family:'Noto Serif',serif;font-size:1.14rem;color:rgba(200,170,75,.55);margin-bottom:4px}
+.lcard-sub{color:var(--muted);font-size:1.06rem;margin-bottom:22px;line-height:1.5}
+.ldivider{display:flex;align-items:center;gap:10px;margin:16px 0;color:var(--muted);font-size:0.98rem}
 .ldivider::before,.ldivider::after{content:'';flex:1;height:1px;background:rgba(80,140,255,.15)}
-.btn-google{width:100%;background:rgba(255,255,255,.95);border:none;border-radius:11px;padding:12px 16px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;font-family:'Readex Pro',sans-serif;font-size:0.94rem;font-weight:700;color:#1f1f2e;transition:all .2s;box-shadow:0 2px 12px rgba(0,0,0,.35)}
+.btn-google{width:100%;background:rgba(255,255,255,.95);border:none;border-radius:11px;padding:12px 16px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;font-family:'Readex Pro',sans-serif;font-size:1.14rem;font-weight:700;color:#1f1f2e;transition:all .2s;box-shadow:0 2px 12px rgba(0,0,0,.35)}
 .btn-google:hover{background:#fff;transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,0,0,.45)}
-.btn-guest{width:100%;background:rgba(16,32,70,.7);border:1px solid rgba(80,140,255,.22);border-radius:11px;padding:12px 16px;cursor:pointer;font-family:'Readex Pro',sans-serif;font-size:0.94rem;font-weight:600;color:#88c4f0;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:9px}
+.btn-guest{width:100%;background:rgba(16,32,70,.7);border:1px solid rgba(80,140,255,.22);border-radius:11px;padding:12px 16px;cursor:pointer;font-family:'Readex Pro',sans-serif;font-size:1.14rem;font-weight:600;color:#88c4f0;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:9px}
 .btn-guest:hover{background:rgba(24,48,100,.8);border-color:rgba(80,140,255,.45);transform:translateY(-2px)}
-.lgoogle-note{font-size:0.78rem;color:var(--muted);margin-top:10px;line-height:1.6}
+.lgoogle-note{font-size:0.94rem;color:var(--muted);margin-top:10px;line-height:1.6}
 .lgoogle-note a{color:#88c4f0;text-decoration:none}
 .lsaved-section{margin-top:20px;border-top:1px solid rgba(80,140,255,.1);padding-top:16px;text-align:left}
-.lsaved-title{font-size:0.81rem;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em}
+.lsaved-title{font-size:0.98rem;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em}
 .su-item{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:9px;cursor:pointer;transition:background .15s;border:1px solid transparent}
 .su-item:hover{background:rgba(80,140,255,.08);border-color:rgba(80,140,255,.15)}
-.su-name{font-size:0.88rem;color:var(--text);flex:1}
-.su-sub{font-size:0.78rem;color:var(--muted)}
-.su-del{background:none;border:none;color:rgba(220,90,90,.4);cursor:pointer;font-size:1.04rem;padding:3px 5px;line-height:1;border-radius:5px}
+.su-name{font-size:1.06rem;color:var(--text);flex:1}
+.su-sub{font-size:0.94rem;color:var(--muted)}
+.su-del{background:none;border:none;color:rgba(220,90,90,.4);cursor:pointer;font-size:1.26rem;padding:3px 5px;line-height:1;border-radius:5px}
 .su-del:hover{background:rgba(220,90,90,.1);color:#e74c3c}
 /* User badge in tabbar */
 .user-badge{display:flex;align-items:center;gap:6px;margin-left:auto;cursor:pointer;padding:4px 9px;border-radius:8px;transition:background .2s;position:relative;flex-shrink:0}
 .user-badge:hover{background:rgba(80,140,255,.12)}
 .u-avatar{width:26px;height:26px;border-radius:50%;object-fit:cover;border:1px solid rgba(80,140,255,.35)}
-.u-letter{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#243a7a,#162a58);border:1px solid rgba(80,140,255,.35);display:flex;align-items:center;justify-content:center;font-size:0.81rem;font-weight:700;color:#88c4f0;flex-shrink:0}
-.u-name{font-size:0.84rem;color:var(--text);max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.u-guest-badge{font-size:0.78rem;background:rgba(40,80,160,.4);color:#7090cc;border:1px solid rgba(60,100,180,.3);border-radius:5px;padding:1px 6px;margin-left:2px}
+.u-letter{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#243a7a,#162a58);border:1px solid rgba(80,140,255,.35);display:flex;align-items:center;justify-content:center;font-size:0.98rem;font-weight:700;color:#88c4f0;flex-shrink:0}
+.u-name{font-size:1.02rem;color:var(--text);max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.u-guest-badge{font-size:0.94rem;background:rgba(40,80,160,.4);color:#7090cc;border:1px solid rgba(60,100,180,.3);border-radius:5px;padding:1px 6px;margin-left:2px}
 /* User popup menu */
 .upop{position:absolute;top:54px;right:0;background:rgba(6,14,36,.98);border:1px solid rgba(80,140,255,.22);border-radius:14px;padding:16px 14px 12px;min-width:230px;z-index:400;box-shadow:0 16px 60px rgba(0,0,0,.75);animation:popIn .18s ease}
 @keyframes popIn{from{opacity:0;transform:translateY(-8px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
-.upop-avatar{width:44px;height:44px;border-radius:50%;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:1.35rem;background:linear-gradient(135deg,#243a7a,#162a58);border:1px solid rgba(80,140,255,.3)}
-.upop-name{font-size:0.94rem;font-weight:700;color:var(--text);margin-bottom:2px}
-.upop-email{font-size:0.78rem;color:var(--muted);margin-bottom:14px;word-break:break-all}
+.upop-avatar{width:44px;height:44px;border-radius:50%;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:1.63rem;background:linear-gradient(135deg,#243a7a,#162a58);border:1px solid rgba(80,140,255,.3)}
+.upop-name{font-size:1.14rem;font-weight:700;color:var(--text);margin-bottom:2px}
+.upop-email{font-size:0.94rem;color:var(--muted);margin-bottom:14px;word-break:break-all}
 .upop-sep{height:1px;background:rgba(80,140,255,.1);margin:8px 0}
-.upop-btn{width:100%;background:none;border:none;border-radius:8px;padding:8px 10px;color:var(--text);font-family:'Readex Pro',sans-serif;font-size:0.88rem;cursor:pointer;text-align:left;display:flex;align-items:center;gap:9px;transition:background .15s}
+.upop-btn{width:100%;background:none;border:none;border-radius:8px;padding:8px 10px;color:var(--text);font-family:'Readex Pro',sans-serif;font-size:1.06rem;cursor:pointer;text-align:left;display:flex;align-items:center;gap:9px;transition:background .15s}
 .upop-btn:hover{background:rgba(80,140,255,.1)}
 .upop-btn.danger{color:#ff8888}
 .upop-btn.danger:hover{background:rgba(200,60,60,.12)}
@@ -310,7 +343,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
 <!-- LOGIN SCREEN -->
 <div id="login-screen" onclick="if(event.target===this)hideLoginScreen()">
   <div class="lcard">
-    <button onclick="hideLoginScreen()" style="position:absolute;top:12px;right:14px;background:none;border:none;color:var(--muted);font-size:1.4rem;cursor:pointer;line-height:1;padding:0">×</button>
+    <button onclick="hideLoginScreen()" style="position:absolute;top:12px;right:14px;background:none;border:none;color:var(--muted);font-size:1.69rem;cursor:pointer;line-height:1;padding:0">×</button>
     <div class="lcard-logo">🎴 Lục Hào</div>
     <div class="lcard-tagline">Kinh Dịch · Luyện Tập</div>
     <div class="lcard-sub">Đăng nhập để theo dõi tiến độ học tập của bạn</div>
@@ -339,7 +372,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
 </div>
 
 <!-- Hamburger toggle (mobile) -->
-<button id="sb-toggle" onclick="toggleSidebar()">☰</button>
+<button id="sb-toggle" onclick="toggleSidebar()" ontouchend="toggleSidebar();event.preventDefault()">☰</button>
 <div id="sb-overlay" onclick="closeSidebar()"></div>
 
 <div id="app">
@@ -387,12 +420,12 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
     <!-- User section at bottom -->
     <div class="sb-footer">
       <div class="sb-item" id="user-badge" onclick="toggleUserPopup(event)" style="margin:0;border-radius:10px;cursor:pointer;pointer-events:auto">
-        <div class="u-letter" id="u-avatar-letter" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#243a7a,#162a58);display:flex;align-items:center;justify-content:center;font-size:0.88rem;font-weight:700;color:#88c4f0;flex-shrink:0;pointer-events:none">?</div>
+        <div class="u-letter" id="u-avatar-letter" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#243a7a,#162a58);display:flex;align-items:center;justify-content:center;font-size:1.06rem;font-weight:700;color:#88c4f0;flex-shrink:0;pointer-events:none">?</div>
         <div style="flex:1;min-width:0;pointer-events:none">
-          <div class="u-name" id="u-name-label" style="font-size:0.88rem;color:#d8eeff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">—</div>
-          <div style="font-size:0.78rem;color:var(--muted)">Tài khoản</div>
+          <div class="u-name" id="u-name-label" style="font-size:1.06rem;color:#d8eeff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">—</div>
+          <div style="font-size:0.94rem;color:var(--muted)">Tài khoản</div>
         </div>
-        <span style="font-size:0.84rem;color:var(--muted);pointer-events:none" id="upop-arrow">▴</span>
+        <span style="font-size:1.02rem;color:var(--muted);pointer-events:none" id="upop-arrow">▴</span>
       </div>
     </div>
   </nav>
@@ -768,11 +801,21 @@ const PLANETS=[
 // === TAB SWITCHING ===
 function sw(tab){
   activeTab=tab;
-  // Highlight active sidebar item
+  // Highlight active sidebar item (desktop)
   ['home','dc','dt','vs','report','feedback','software','admin'].forEach(id=>{
     const el=document.getElementById('nav-'+id);
     if(el) el.classList.toggle('active', id===tab);
   });
+  // Highlight active bottom nav button (mobile)
+  document.querySelectorAll('#bottom-nav button[data-nav]').forEach(btn=>{
+    btn.classList.toggle('active', btn.getAttribute('data-nav')===tab);
+  });
+  // Highlight more menu active state
+  const moreBtn=document.getElementById('btn-more-mobile');
+  if(moreBtn){
+    const moreIds=['report','feedback','software','admin'];
+    moreBtn.classList.toggle('active', moreIds.includes(tab));
+  }
   // Switch panes using display style directly (more reliable than classList)
   ['home','dc','dt','vs','report','feedback','software','admin'].forEach(id=>{
     const el=document.getElementById('pane-'+id);
@@ -841,12 +884,12 @@ function renderHome(b,p){
   const allWrong=w.size;
 
   p.innerHTML=`<div class="glass" style="padding:14px 16px 18px;margin-bottom:10px;">
-    <div class="bank-logo" style="font-size:2.91rem;color:${col}">${getBankTitle(b)}</div>
+    <div class="bank-logo" style="font-size:3.52rem;color:${col}">${getBankTitle(b)}</div>
     <div class="bank-sub">${getBankSub(b)}</div>
     <div style="text-align:center"><span class="bank-badge">${q.length} câu · ${secs.length} phần · Giải thích từng câu</span></div>
   </div>
   <div class="glass" style="padding:14px;margin-bottom:10px;">
-    <div style="font-size:0.9rem;color:var(--muted);margin-bottom:8px;padding-left:2px">Chọn phần để học:</div>
+    <div style="font-size:1.09rem;color:var(--muted);margin-bottom:8px;padding-left:2px">Chọn phần để học:</div>
     <div class="sec-grid">${secs.map((s,i)=>{
       const total=secCounts[i];
       const sd=rd.sec[i];
@@ -861,10 +904,10 @@ function renderHome(b,p){
       // color coding
       const progCol=answered===0?'var(--muted)':accPct>=80?'#6ddc94':accPct>=50?'#f0c94b':'#ff8888';
       const statTxt=answered===0
-        ?`<span style="color:var(--muted);font-size:0.86rem">${total} câu</span>`
-        :`<span style="color:${progCol};font-size:0.9rem;font-weight:700">${bestCorrect}/${total}</span>
-         <span style="color:var(--muted);font-size:0.82rem;margin-left:3px">${accPct}%</span>
-         ${wc>0?`<span style="background:#9b59b6;color:#fff;border-radius:10px;padding:0 6px;font-size:0.78rem;margin-left:3px">${wc}✗</span>`:''}`;
+        ?`<span style="color:var(--muted);font-size:1.04rem">${total} câu</span>`
+        :`<span style="color:${progCol};font-size:1.09rem;font-weight:700">${bestCorrect}/${total}</span>
+         <span style="color:var(--muted);font-size:0.99rem;margin-left:3px">${accPct}%</span>
+         ${wc>0?`<span style="background:#9b59b6;color:#fff;border-radius:10px;padding:0 6px;font-size:0.94rem;margin-left:3px">${wc}✗</span>`:''}`;
       return `<div class="sec-tile" onclick="openPreLaunch('${b}',${i})" style="border-left-color:${s.c}">
         <span class="si">${s.i}</span>
         <span class="sn" style="color:${s.c};flex:1">${b==='dt'?s.n+' '+s.h:s.n}</span>
@@ -881,8 +924,8 @@ function renderHome(b,p){
         const pc=pct===null?'var(--muted)':pct>=80?'#6ddc94':pct>=50?'#f0c94b':'#ff8888';
         const statStr=pct!==null?`<span style="color:${pc};font-weight:700">${Math.min(ov.answered,q.length)}/${q.length}</span> · <span style="color:${pc}">${pct}%</span>`:`<span style="color:var(--muted)">${q.length} câu</span>`;
         return `<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;padding:0 2px">
-          <span style="font-size:0.94rem;color:var(--muted)">Toàn bộ</span>
-          <span style="font-size:0.94rem">${statStr}${allWrong>0?` &nbsp;<span style="background:#9b59b6;color:#fff;border-radius:10px;padding:1px 8px;font-size:0.82rem">${allWrong} câu sai</span>`:''}</span>
+          <span style="font-size:1.14rem;color:var(--muted)">Toàn bộ</span>
+          <span style="font-size:1.14rem">${statStr}${allWrong>0?` &nbsp;<span style="background:#9b59b6;color:#fff;border-radius:10px;padding:1px 8px;font-size:0.99rem">${allWrong} câu sai</span>`:''}</span>
         </div>`;
       })()}
       <button class="btn-main" onclick="openPreLaunch('${b}',-1)">▶ Luyện toàn bộ (${q.length} câu)</button>
@@ -933,8 +976,8 @@ function openPreLaunch(b, mode){
 
   ov.innerHTML=`<div style="background:rgba(6,14,36,.96);border:1px solid rgba(80,140,255,.25);border-radius:18px;padding:24px 22px;width:100%;max-width:400px;box-shadow:0 24px 80px rgba(0,0,0,.7)">
     <div style="text-align:center;margin-bottom:18px">
-      <div style="font-size:1.72rem;font-weight:700;color:${secColor};margin-bottom:4px">${title}</div>
-      <div style="font-size:0.97rem;color:var(--muted)">${subtitle}</div>
+      <div style="font-size:2.08rem;font-weight:700;color:${secColor};margin-bottom:4px">${title}</div>
+      <div style="font-size:1.17rem;color:var(--muted)">${subtitle}</div>
     </div>
 
     <!-- options -->
@@ -943,10 +986,10 @@ function openPreLaunch(b, mode){
       ${hasWrong?`<button onclick="document.getElementById('pre-launch-ov').remove();startGame('${b}',${mode===-1?-2:-1},${mode===-1?-1:mode},'wrong')"
         style="background:linear-gradient(135deg,rgba(100,20,150,.5),rgba(80,10,120,.7));border:1px solid rgba(160,80,220,.4);border-radius:13px;padding:16px 18px;cursor:pointer;text-align:left;width:100%;font-family:'Readex Pro',sans-serif">
         <div style="display:flex;align-items:center;gap:10px">
-          <span style="font-size:1.6rem">🔁</span>
+          <span style="font-size:1.94rem">🔁</span>
           <div>
-            <div style="font-size:1.09rem;font-weight:700;color:#cc99ff">Ôn ${wrongCount} ${wrongLabel}</div>
-            <div style="font-size:0.9rem;color:rgba(180,140,220,.7);margin-top:2px">Chỉ các câu trả lời sai trước đó</div>
+            <div style="font-size:1.32rem;font-weight:700;color:#cc99ff">Ôn ${wrongCount} ${wrongLabel}</div>
+            <div style="font-size:1.09rem;color:rgba(180,140,220,.7);margin-top:2px">Chỉ các câu trả lời sai trước đó</div>
           </div>
         </div>
       </button>`:''}
@@ -954,16 +997,16 @@ function openPreLaunch(b, mode){
       <button onclick="document.getElementById('pre-launch-ov').remove();startGame('${b}',${mode})"
         style="background:linear-gradient(135deg,rgba(20,50,100,.6),rgba(15,40,90,.8));border:1px solid rgba(80,140,255,.3);border-radius:13px;padding:16px 18px;cursor:pointer;text-align:left;width:100%;font-family:'Readex Pro',sans-serif">
         <div style="display:flex;align-items:center;gap:10px">
-          <span style="font-size:1.6rem">${hasWrong?'🔄':'▶'}</span>
+          <span style="font-size:1.94rem">${hasWrong?'🔄':'▶'}</span>
           <div>
-            <div style="font-size:1.09rem;font-weight:700;color:#88c4f0">${hasWrong?'Làm lại toàn bộ':'Bắt đầu học'}</div>
-            <div style="font-size:0.9rem;color:rgba(130,180,220,.65);margin-top:2px">${totalPool} câu, thứ tự ngẫu nhiên</div>
+            <div style="font-size:1.32rem;font-weight:700;color:#88c4f0">${hasWrong?'Làm lại toàn bộ':'Bắt đầu học'}</div>
+            <div style="font-size:1.09rem;color:rgba(130,180,220,.65);margin-top:2px">${totalPool} câu, thứ tự ngẫu nhiên</div>
           </div>
         </div>
       </button>
 
       <button onclick="document.getElementById('pre-launch-ov').remove()"
-        style="background:none;border:1px solid rgba(80,100,140,.3);border-radius:10px;padding:10px;cursor:pointer;color:var(--muted);font-family:'Readex Pro',sans-serif;font-size:0.97rem">
+        style="background:none;border:1px solid rgba(80,100,140,.3);border-radius:10px;padding:10px;cursor:pointer;color:var(--muted);font-family:'Readex Pro',sans-serif;font-size:1.17rem">
         Huỷ
       </button>
     </div>
@@ -1031,7 +1074,7 @@ function renderQ(b,p){
       <div class="ghead-top">
         <div class="xp-wrap"><div class="xp-bg"><div class="xp-bar" id="${b}-xpb" style="width:${(g.xp/MAX_XP)*100}%"></div></div><span class="xp-val">${g.xp} XP</span></div>
         <div class="streak" id="${b}-str">🔥 ${g.streak}</div>
-        <span style="font-size:1.03rem;color:var(--muted)">${g.idx+1}/${g.pool.length}</span>
+        <span style="font-size:1.25rem;color:var(--muted)">${g.idx+1}/${g.pool.length}</span>
       </div>
       <div class="prog-bg"><div class="prog-bar" style="width:${pct}%"></div></div>
       <div class="sec-lbl" style="color:${isRev?'#cc99ff':col}">${isRev?'🔁 Ôn câu sai · ':''}${sec?sec.i+' '+sec.n+(b==='dt'?' '+sec.h:''):''}</div>
@@ -1146,12 +1189,12 @@ function showEnd(b,p){
     <div style="display:flex;gap:10px;justify-content:center;margin-bottom:10px" id="mini-stars-${b}">
       ${[1,2,3,4,5].map(n=>`<span class="mini-star" data-v="${n}" onclick="miniRate('${b}',${n})">☆</span>`).join('')}
     </div>
-    <textarea class="fb-textarea" id="mini-text-${b}" placeholder="Nhận xét về nội dung, độ khó, câu hỏi chưa rõ... (tuỳ chọn)" rows="2" style="min-height:56px;font-size:0.92rem"></textarea>
+    <textarea class="fb-textarea" id="mini-text-${b}" placeholder="Nhận xét về nội dung, độ khó, câu hỏi chưa rõ... (tuỳ chọn)" rows="2" style="min-height:56px;font-size:1.11rem"></textarea>
     <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap" id="mini-tags-${b}">
       ${['Nội dung tốt','Câu hỏi rõ ràng','Cần thêm câu','Có câu sai/nhầm','Giải thích hay','Độ khó vừa','Quá dễ','Quá khó'].map(t=>
         `<button class="fb-tag" onclick="toggleMiniTag(this)">${t}</button>`).join('')}
     </div>
-    <button onclick="submitMiniFb('${b}')" style="width:100%;margin-top:10px;background:linear-gradient(135deg,#1e3a5f,#2a6090);color:#fff;border:none;border-radius:9px;padding:9px;font-family:'Readex Pro',sans-serif;font-size:0.94rem;font-weight:600;cursor:pointer">📤 Gửi góp ý</button>
+    <button onclick="submitMiniFb('${b}')" style="width:100%;margin-top:10px;background:linear-gradient(135deg,#1e3a5f,#2a6090);color:#fff;border:none;border-radius:9px;padding:9px;font-family:'Readex Pro',sans-serif;font-size:1.14rem;font-weight:600;cursor:pointer">📤 Gửi góp ý</button>
   </div>`;
 }
 
@@ -1181,13 +1224,13 @@ function renderAdmin(){
   const p=document.getElementById('pane-admin');
   if(!adminLoggedIn){
     p.innerHTML=`<div class="glass admin-login" style="padding:32px 26px;max-width:400px;margin:20px auto">
-      <div style="font-family:'Noto Serif',serif;font-size:2.65rem;color:var(--gold);text-align:center;margin-bottom:4px">⚙️ Admin</div>
-      <div style="color:var(--muted);font-size:0.94rem;text-align:center;margin-bottom:22px">Quản lý ngân hàng câu hỏi</div>
+      <div style="font-family:'Noto Serif',serif;font-size:3.21rem;color:var(--gold);text-align:center;margin-bottom:4px">⚙️ Admin</div>
+      <div style="color:var(--muted);font-size:1.14rem;text-align:center;margin-bottom:22px">Quản lý ngân hàng câu hỏi</div>
       <div class="fi"><label>Tên đăng nhập</label><input id="lu" placeholder="Nhập tên đăng nhập" autocomplete="username"></div>
       <div class="fi" style="position:relative">
         <label>Mật khẩu</label>
         <input type="password" id="lp" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()" style="padding-right:42px">
-        <button onclick="togglePwVis('lp','lpEye')" id="lpEye" style="position:absolute;right:10px;bottom:10px;background:none;border:none;cursor:pointer;font-size:1.15rem;color:var(--muted);line-height:1;padding:2px">👁</button>
+        <button onclick="togglePwVis('lp','lpEye')" id="lpEye" style="position:absolute;right:10px;bottom:10px;background:none;border:none;cursor:pointer;font-size:1.39rem;color:var(--muted);line-height:1;padding:2px">👁</button>
       </div>
       <button class="btn-main" onclick="doLogin()">Đăng nhập →</button>
       <div class="err-msg" id="lerr"></div>
@@ -1218,14 +1261,14 @@ function renderAdminDash(){
   p.innerHTML=`
     <div class="glass" style="padding:12px 14px;margin-bottom:8px">
       <div class="admin-head">
-        <span style="font-family:'Noto Serif',serif;font-size:1.45rem;color:var(--gold)">⚙️ Admin Panel</span>
+        <span style="font-family:'Noto Serif',serif;font-size:1.75rem;color:var(--gold)">⚙️ Admin Panel</span>
         <div style="margin-left:auto;display:flex;gap:6px;flex-wrap:wrap">
           <button class="btn-rst" onclick="doLogout()">⏻ Đăng xuất</button>
         </div>
       </div>
       <div class="admin-tabs" style="margin-top:10px">
         <button class="atab${adminTab==='questions'?' active':''}" onclick="adminTab='questions';renderAdminDash()">📚 Câu hỏi</button>
-        <button class="atab${adminTab==='log'?' active':''}" onclick="adminTab='log';renderAdminDash()">📋 Nhật ký<span style="background:rgba(80,140,255,.25);border-radius:8px;padding:0 6px;font-size:0.88rem;margin-left:4px">${logCount}</span></button>
+        <button class="atab${adminTab==='log'?' active':''}" onclick="adminTab='log';renderAdminDash()">📋 Nhật ký<span style="background:rgba(80,140,255,.25);border-radius:8px;padding:0 6px;font-size:1.06rem;margin-left:4px">${logCount}</span></button>
         <button class="atab${adminTab==='settings'?' active':''}" onclick="adminTab='settings';renderAdminDash()">🔐 Cài đặt</button>
       </div>
     </div>
@@ -1321,15 +1364,15 @@ function renderAdminLog(){
             const pc=e.pct>=80?'#6ddc94':e.pct>=50?'#f0c94b':'#ff8888';
             const md=e.mode===-1?'Toàn bộ':e.mode===-2?'Ôn sai':'Phần '+(e.mode+1);
             return `<tr>
-              <td style="white-space:nowrap;color:var(--muted);font-size:0.88rem">${fmtTime(e.ts)}</td>
-              <td><div style="font-size:0.88rem">${e.utype==='google'?'🌐':'👤'} ${e.uname}</div><div style="font-size:0.78rem;color:var(--muted)">${e.utype==='guest'?'Guest':'Google'}</div></td>
+              <td style="white-space:nowrap;color:var(--muted);font-size:1.06rem">${fmtTime(e.ts)}</td>
+              <td><div style="font-size:1.06rem">${e.utype==='google'?'🌐':'👤'} ${e.uname}</div><div style="font-size:0.94rem;color:var(--muted)">${e.utype==='guest'?'Guest':'Google'}</div></td>
               <td><span class="bdg" style="background:${bankCol(e.bank)}22;color:${bankCol(e.bank)}">${bankLabel(e.bank)}</span></td>
-              <td style="font-size:0.88rem;color:var(--muted)">${md}</td>
-              <td style="white-space:nowrap"><span style="color:${pc};font-weight:700">${e.score}/${e.total}</span> <span style="color:${pc};font-size:0.81rem">${e.pct}%</span></td>
-              <td style="color:var(--muted);font-size:0.88rem">${fmtDur(e.dur)}</td>
+              <td style="font-size:1.06rem;color:var(--muted)">${md}</td>
+              <td style="white-space:nowrap"><span style="color:${pc};font-weight:700">${e.score}/${e.total}</span> <span style="color:${pc};font-size:0.98rem">${e.pct}%</span></td>
+              <td style="color:var(--muted);font-size:1.06rem">${fmtDur(e.dur)}</td>
             </tr>`;
           }).join('')}</tbody></table>
-          ${filtered.length>200?`<div style="text-align:center;padding:10px;color:var(--muted);font-size:0.88rem">Hiển thị 200/${filtered.length} bản ghi</div>`:''}</div>`}
+          ${filtered.length>200?`<div style="text-align:center;padding:10px;color:var(--muted);font-size:1.06rem">Hiển thị 200/${filtered.length} bản ghi</div>`:''}</div>`}
     </div>`;
 }
 
@@ -1338,35 +1381,35 @@ function renderAdminSettings(){
   const hasCid=!!localStorage.getItem(GOOGLE_CID_KEY);
   el.innerHTML=`
     <div class="glass" style="padding:18px 16px;margin-bottom:8px">
-      <div style="font-size:1.13rem;font-weight:700;color:var(--text);margin-bottom:16px">🔐 Đổi mật khẩu Admin</div>
+      <div style="font-size:1.37rem;font-weight:700;color:var(--text);margin-bottom:16px">🔐 Đổi mật khẩu Admin</div>
       <div class="fi" style="position:relative">
         <label>Mật khẩu hiện tại</label>
         <input type="password" id="pw-cur" placeholder="••••••••" autocomplete="current-password" style="padding-right:42px">
-        <button onclick="togglePwVis('pw-cur','pce')" id="pce" style="position:absolute;right:10px;bottom:10px;background:none;border:none;cursor:pointer;font-size:1.15rem;color:var(--muted)">👁</button>
+        <button onclick="togglePwVis('pw-cur','pce')" id="pce" style="position:absolute;right:10px;bottom:10px;background:none;border:none;cursor:pointer;font-size:1.39rem;color:var(--muted)">👁</button>
       </div>
       <div class="fi" style="position:relative">
         <label>Mật khẩu mới</label>
         <input type="password" id="pw-new" placeholder="Tối thiểu 6 ký tự" autocomplete="new-password" style="padding-right:42px">
-        <button onclick="togglePwVis('pw-new','pne')" id="pne" style="position:absolute;right:10px;bottom:10px;background:none;border:none;cursor:pointer;font-size:1.15rem;color:var(--muted)">👁</button>
+        <button onclick="togglePwVis('pw-new','pne')" id="pne" style="position:absolute;right:10px;bottom:10px;background:none;border:none;cursor:pointer;font-size:1.39rem;color:var(--muted)">👁</button>
       </div>
       <div class="fi" style="position:relative">
         <label>Xác nhận mật khẩu mới</label>
         <input type="password" id="pw-cf" placeholder="Nhập lại mật khẩu mới" autocomplete="new-password" style="padding-right:42px">
-        <button onclick="togglePwVis('pw-cf','pcfe')" id="pcfe" style="position:absolute;right:10px;bottom:10px;background:none;border:none;cursor:pointer;font-size:1.15rem;color:var(--muted)">👁</button>
+        <button onclick="togglePwVis('pw-cf','pcfe')" id="pcfe" style="position:absolute;right:10px;bottom:10px;background:none;border:none;cursor:pointer;font-size:1.39rem;color:var(--muted)">👁</button>
       </div>
       <div class="err-msg" id="pw-err" style="min-height:1.2em;margin-bottom:6px"></div>
       <button class="btn-main" onclick="submitChgPw()">💾 Lưu mật khẩu mới</button>
     </div>
     <div class="glass" style="padding:18px 16px;margin-bottom:8px">
-      <div style="font-size:1.13rem;font-weight:700;color:var(--text);margin-bottom:10px">🌐 Google Sign-In</div>
-      <div style="font-size:0.88rem;color:var(--muted);margin-bottom:12px">
+      <div style="font-size:1.37rem;font-weight:700;color:var(--text);margin-bottom:10px">🌐 Google Sign-In</div>
+      <div style="font-size:1.06rem;color:var(--muted);margin-bottom:12px">
         ${hasCid?`<span style="color:#6ddc94">✅ Đã cấu hình Client ID</span>`:`<span style="color:#f0c94b">⚠️ Chưa cấu hình — Google Sign-In chưa hoạt động</span>`}
       </div>
       <button class="btn-add" onclick="showGoogleSetup()">⚙️ Cấu hình Google Client ID</button>
     </div>
     <div class="glass" style="padding:18px 16px;margin-bottom:8px">
-      <div style="font-size:1.13rem;font-weight:700;color:var(--text);margin-bottom:8px">📋 Nhật ký hoạt động</div>
-      <div style="font-size:0.88rem;color:var(--muted);margin-bottom:12px">${loadLog().length} phiên đã ghi · Tối đa ${LOG_MAX} bản ghi</div>
+      <div style="font-size:1.37rem;font-weight:700;color:var(--text);margin-bottom:8px">📋 Nhật ký hoạt động</div>
+      <div style="font-size:1.06rem;color:var(--muted);margin-bottom:12px">${loadLog().length} phiên đã ghi · Tối đa ${LOG_MAX} bản ghi</div>
       <button class="btn-rst" onclick="adminTab='log';renderAdminDash()">📋 Xem nhật ký</button>
     </div>`;
 }
@@ -1402,7 +1445,7 @@ function renderAdminTable(){
   tbody.innerHTML=rows.map(it=>{
     const i=q.indexOf(it),cat=secs[it[ck]];
     const cl=cat?cat.c:'#888',cn=cat?(isDT?cat.n+' '+cat.h:cat.n):it[ck];
-    return `<tr><td style="color:var(--muted);font-size:0.88rem">${i+1}</td>
+    return `<tr><td style="color:var(--muted);font-size:1.06rem">${i+1}</td>
     <td class="qtxt">${it.q.replace(/<b>(.*?)<\/b>/g,'<b>$1</b>')}</td>
     <td><span class="bdg" style="background:${cl}22;color:${cl}">${cn}</span></td>
     <td><span class="ans">${'ABCD'[it.a]}</span></td>
@@ -1433,7 +1476,7 @@ function buildMoBody(it){
   const catSel=`<select id="fCat">${secs.map((s,i)=>`<option value="${i}" ${i==cv?'selected':''}>${isDC?s.n:isDT?s.n+' '+s.h:s.n}</option>`).join('')}</select>`;
   let catRow=`<div class="fr"><label>${isDC?'Chủ đề':isDT?'Lục thân':'Phần'}</label>${catSel}</div>`;
   if(isDT)catRow+=`<div class="fr"><label>Loại</label><select id="fType">${DT_TYPES.map(t=>`<option value="${t}" ${it&&it.t===t?'selected':''}>${t}</option>`).join('')}</select></div>`;
-  if(isVS)catRow+=`<div class="fr"><p style="font-size:0.99rem;color:var(--muted);padding:5px 0">Phần I chỉ có 3 đáp án — để trống ô D.</p></div>`;
+  if(isVS)catRow+=`<div class="fr"><p style="font-size:1.2rem;color:var(--muted);padding:5px 0">Phần I chỉ có 3 đáp án — để trống ô D.</p></div>`;
 
   const opts=['A','B','C','D'].map((l,i)=>`
     <div class="oi ${i===(it?it.a:0)?' sel':''}" id="oi${i}">
@@ -1566,8 +1609,8 @@ function renderReport(){
 
     <!-- HEADER -->
     <div class="glass" style="padding:14px 16px;margin-bottom:10px;text-align:center">
-      <div style="font-family:'Noto Serif',serif;font-size:2.12rem;color:var(--gold);margin-bottom:4px">📊 Báo cáo Kết quả</div>
-      <div style="font-size:0.98rem;color:var(--muted)">Tổng hợp toàn bộ lịch sử làm bài</div>
+      <div style="font-family:'Noto Serif',serif;font-size:2.56rem;color:var(--gold);margin-bottom:4px">📊 Báo cáo Kết quả</div>
+      <div style="font-size:1.19rem;color:var(--muted)">Tổng hợp toàn bộ lịch sử làm bài</div>
     </div>
 
     <!-- TỔNG QUAN 4 CARD -->
@@ -1578,15 +1621,15 @@ function renderReport(){
         {v:grandTotal.attempts,l:'Lượt trả lời',i:'🔄'},
         {v:(grandTotal.attempts>0?Math.round(grandTotal.correct/grandTotal.attempts*100):0)+'%',l:'Tỷ lệ đúng chung',i:'🎯'},
       ].map(c=>`<div class="glass" style="padding:12px 14px;text-align:center">
-        <div style="font-size:1.32rem;margin-bottom:3px">${c.i}</div>
-        <div style="font-size:2.09rem;font-weight:800;color:var(--gold)">${c.v}</div>
-        <div style="font-size:0.9rem;color:var(--muted);margin-top:2px">${c.l}</div>
+        <div style="font-size:1.6rem;margin-bottom:3px">${c.i}</div>
+        <div style="font-size:2.53rem;font-weight:800;color:var(--gold)">${c.v}</div>
+        <div style="font-size:1.09rem;color:var(--muted);margin-top:2px">${c.l}</div>
       </div>`).join('')}
     </div>
 
     <!-- OVERALL PROGRESS CHART (canvas) -->
     <div class="glass" style="padding:14px 16px;margin-bottom:10px">
-      <div style="font-size:1.08rem;font-weight:700;color:var(--text);margin-bottom:12px">📈 Tiến độ tổng thể theo bộ</div>
+      <div style="font-size:1.31rem;font-weight:700;color:var(--text);margin-bottom:12px">📈 Tiến độ tổng thể theo bộ</div>
       <canvas id="cv-overall" height="160" style="width:100%;display:block"></canvas>
     </div>
 
@@ -1594,9 +1637,9 @@ function renderReport(){
     ${rdata.map(bk=>`
     <div class="glass" style="padding:14px 16px;margin-bottom:10px">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
-        <span style="font-size:1.55rem">${bk.icon}</span>
-        <span style="font-size:1.2rem;font-weight:700;color:${bk.col}">${bk.label}</span>
-        <span style="margin-left:auto;font-size:0.93rem;color:var(--muted)">
+        <span style="font-size:1.88rem">${bk.icon}</span>
+        <span style="font-size:1.45rem;font-weight:700;color:${bk.col}">${bk.label}</span>
+        <span style="margin-left:auto;font-size:1.12rem;color:var(--muted)">
           ${bk.overall.answered}/${bk.overall.total} câu · 
           ${bk.overall.attempts>0?Math.round(bk.overall.correct/bk.overall.attempts*100):0}% đúng
         </span>
@@ -1612,8 +1655,8 @@ function renderReport(){
             const acc=s.attempts>0?Math.round(s.correct/s.attempts*100):0;
             return `<div style="margin-bottom:7px">
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px">
-                <span style="font-size:0.9rem;color:${scol};font-weight:600;max-width:65%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${sname}</span>
-                <span style="font-size:0.86rem;color:var(--muted);white-space:nowrap">${s.answered}/${s.total} · ${acc>0?acc+'% ✓':'–'}</span>
+                <span style="font-size:1.09rem;color:${scol};font-weight:600;max-width:65%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${sname}</span>
+                <span style="font-size:1.04rem;color:var(--muted);white-space:nowrap">${s.answered}/${s.total} · ${acc>0?acc+'% ✓':'–'}</span>
               </div>
               <div style="height:7px;background:rgba(255,255,255,.07);border-radius:4px;overflow:hidden">
                 <div style="height:100%;width:${prog}%;background:${scol};border-radius:4px;transition:width .6s;opacity:.85"></div>
@@ -1628,7 +1671,7 @@ function renderReport(){
 
     <!-- RESET BUTTON -->
     <div style="text-align:center;padding:8px 0 4px">
-      <button onclick="resetStats()" style="background:none;border:1px solid rgba(200,80,60,.4);color:#c08078;border-radius:8px;padding:8px 18px;font-size:0.93rem;font-family:'Readex Pro',sans-serif;cursor:pointer">🗑 Xóa toàn bộ dữ liệu thống kê</button>
+      <button onclick="resetStats()" style="background:none;border:1px solid rgba(200,80,60,.4);color:#c08078;border-radius:8px;padding:8px 18px;font-size:1.12rem;font-family:'Readex Pro',sans-serif;cursor:pointer">🗑 Xóa toàn bộ dữ liệu thống kê</button>
     </div>
 
   </div>`;
@@ -1964,17 +2007,17 @@ function showGoogleSetup(){
   ov.id='gcid-ov';
   ov.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:600;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(6px)';
   ov.innerHTML=`<div style="background:rgba(6,14,36,.97);border:1px solid rgba(80,140,255,.25);border-radius:18px;padding:24px 22px;width:100%;max-width:440px;box-shadow:0 24px 80px rgba(0,0,0,.8)">
-    <div style="font-size:1.17rem;font-weight:700;color:var(--gold);margin-bottom:6px">⚙️ Cấu hình Google Sign-In</div>
-    <p style="font-size:0.88rem;color:var(--muted);margin-bottom:16px;line-height:1.6">Cần tạo OAuth 2.0 Client ID tại <a href="https://console.cloud.google.com/apis/credentials" target="_blank" style="color:#88c4f0">Google Cloud Console</a>. Thêm URL trang vào <b style="color:var(--text)">Authorized JavaScript origins</b>.</p>
+    <div style="font-size:1.42rem;font-weight:700;color:var(--gold);margin-bottom:6px">⚙️ Cấu hình Google Sign-In</div>
+    <p style="font-size:1.06rem;color:var(--muted);margin-bottom:16px;line-height:1.6">Cần tạo OAuth 2.0 Client ID tại <a href="https://console.cloud.google.com/apis/credentials" target="_blank" style="color:#88c4f0">Google Cloud Console</a>. Thêm URL trang vào <b style="color:var(--text)">Authorized JavaScript origins</b>.</p>
     <div class="fi" style="margin-bottom:12px">
       <label>Google OAuth Client ID</label>
-      <input type="text" id="gcid-inp" value="${cur}" placeholder="xxxxxx.apps.googleusercontent.com" style="font-size:0.88rem">
+      <input type="text" id="gcid-inp" value="${cur}" placeholder="xxxxxx.apps.googleusercontent.com" style="font-size:1.06rem">
     </div>
     <div style="display:flex;gap:8px">
-      <button onclick="saveGoogleClientId()" style="flex:1;background:linear-gradient(135deg,#1e4a1e,var(--green));color:#fff;border:none;border-radius:9px;padding:10px;font-family:'Readex Pro',sans-serif;font-size:0.92rem;font-weight:700;cursor:pointer">💾 Lưu</button>
-      <button onclick="document.getElementById('gcid-ov').remove()" style="background:rgba(10,20,45,.8);border:1px solid var(--gb);color:var(--muted);border-radius:9px;padding:10px 16px;font-family:'Readex Pro',sans-serif;font-size:0.92rem;cursor:pointer">Huỷ</button>
+      <button onclick="saveGoogleClientId()" style="flex:1;background:linear-gradient(135deg,#1e4a1e,var(--green));color:#fff;border:none;border-radius:9px;padding:10px;font-family:'Readex Pro',sans-serif;font-size:1.11rem;font-weight:700;cursor:pointer">💾 Lưu</button>
+      <button onclick="document.getElementById('gcid-ov').remove()" style="background:rgba(10,20,45,.8);border:1px solid var(--gb);color:var(--muted);border-radius:9px;padding:10px 16px;font-family:'Readex Pro',sans-serif;font-size:1.11rem;cursor:pointer">Huỷ</button>
     </div>
-    ${cur?`<button onclick="localStorage.removeItem('${GOOGLE_CID_KEY}');document.getElementById('gcid-ov').remove();showToast('Đã xóa Client ID')" style="background:none;border:none;color:rgba(220,90,90,.5);font-size:0.81rem;cursor:pointer;margin-top:10px;font-family:'Readex Pro',sans-serif">🗑 Xóa Client ID</button>`:''}
+    ${cur?`<button onclick="localStorage.removeItem('${GOOGLE_CID_KEY}');document.getElementById('gcid-ov').remove();showToast('Đã xóa Client ID')" style="background:none;border:none;color:rgba(220,90,90,.5);font-size:0.98rem;cursor:pointer;margin-top:10px;font-family:'Readex Pro',sans-serif">🗑 Xóa Client ID</button>`:''}
   </div>`;
   document.body.appendChild(ov);
   ov.addEventListener('click',e=>{if(e.target===ov)ov.remove();});
@@ -2012,7 +2055,7 @@ function renderSavedUsers(){
   sec.style.display='block';
   list.innerHTML=all.map(u=>`
     <div class="su-item">
-      <div style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#243a7a,#162a58);display:flex;align-items:center;justify-content:center;font-size:0.88rem;font-weight:700;color:#88c4f0;flex-shrink:0;overflow:hidden">
+      <div style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#243a7a,#162a58);display:flex;align-items:center;justify-content:center;font-size:1.06rem;font-weight:700;color:#88c4f0;flex-shrink:0;overflow:hidden">
         ${u.picture&&u.type==='google'?`<img src="${u.picture}" style="width:30px;height:30px;border-radius:50%;object-fit:cover" onerror="this.style.display='none'">`:u.name[0].toUpperCase()}
       </div>
       <div style="flex:1;min-width:0;cursor:pointer" onclick="loginAsSaved('${u.id}')">
@@ -2092,38 +2135,38 @@ function renderFeedbackTab(){
   p.innerHTML=`
   <!-- HEADER -->
   <div class="glass" style="padding:14px 16px;margin-bottom:10px;text-align:center">
-    <div style="font-family:'Noto Serif',serif;font-size:1.98rem;color:var(--gold);margin-bottom:4px">💬 Góp ý & Đánh giá</div>
-    <div style="font-size:0.88rem;color:var(--muted)">Ý kiến của bạn giúp cải thiện ứng dụng</div>
+    <div style="font-family:'Noto Serif',serif;font-size:2.4rem;color:var(--gold);margin-bottom:4px">💬 Góp ý & Đánh giá</div>
+    <div style="font-size:1.06rem;color:var(--muted)">Ý kiến của bạn giúp cải thiện ứng dụng</div>
   </div>
 
   <!-- APP FEEDBACK FORM -->
   <div class="glass" style="padding:16px;margin-bottom:10px">
-    <div style="font-size:1.04rem;font-weight:700;color:var(--text);margin-bottom:12px">🌟 Đánh giá tổng thể ứng dụng</div>
+    <div style="font-size:1.26rem;font-weight:700;color:var(--text);margin-bottom:12px">🌟 Đánh giá tổng thể ứng dụng</div>
     <div style="text-align:center;margin-bottom:10px">
-      <div style="font-size:0.88rem;color:var(--muted);margin-bottom:8px">Bạn thấy ứng dụng này thế nào?</div>
+      <div style="font-size:1.06rem;color:var(--muted);margin-bottom:8px">Bạn thấy ứng dụng này thế nào?</div>
       <div class="star-row" id="app-stars-row">${starHTML('app',_fbRating)}</div>
-      <div style="font-size:0.88rem;color:var(--gold);margin-top:4px;min-height:1.3em" id="app-rating-lbl">${_fbRating>0?['','Chưa hài lòng','Cần cải thiện','Tạm được','Khá tốt','Rất tuyệt! 🎉'][_fbRating]:''}</div>
+      <div style="font-size:1.06rem;color:var(--gold);margin-top:4px;min-height:1.3em" id="app-rating-lbl">${_fbRating>0?['','Chưa hài lòng','Cần cải thiện','Tạm được','Khá tốt','Rất tuyệt! 🎉'][_fbRating]:''}</div>
     </div>
-    <div style="font-size:0.88rem;color:var(--muted);margin-bottom:8px">Chủ đề góp ý (chọn nhiều):</div>
+    <div style="font-size:1.06rem;color:var(--muted);margin-bottom:8px">Chủ đề góp ý (chọn nhiều):</div>
     <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px" id="app-tags-row">
       ${['Giao diện đẹp','Dễ sử dụng','Nội dung hay','Cần thêm câu hỏi','Báo cáo hữu ích',
          'Thiếu tính năng','Có lỗi kỹ thuật','Câu hỏi chưa rõ','Giải thích tốt','Khác']
         .map(t=>`<button class="fb-tag" onclick="this.classList.toggle('on')">${t}</button>`).join('')}
     </div>
     <textarea class="fb-textarea" id="app-fb-text" placeholder="Nhận xét thêm, đề xuất tính năng, báo lỗi... (tuỳ chọn)"></textarea>
-    <button onclick="submitAppFb()" style="width:100%;margin-top:10px;background:linear-gradient(135deg,#1e3a5f,#2a6090);color:#fff;border:none;border-radius:10px;padding:11px;font-family:'Readex Pro',sans-serif;font-size:0.99rem;font-weight:700;cursor:pointer">📤 Gửi đánh giá</button>
+    <button onclick="submitAppFb()" style="width:100%;margin-top:10px;background:linear-gradient(135deg,#1e3a5f,#2a6090);color:#fff;border:none;border-radius:10px;padding:11px;font-family:'Readex Pro',sans-serif;font-size:1.2rem;font-weight:700;cursor:pointer">📤 Gửi đánh giá</button>
   </div>
 
   <!-- BANK FEEDBACK FORMS -->
   <div class="glass" style="padding:16px;margin-bottom:10px">
-    <div style="font-size:1.04rem;font-weight:700;color:var(--text);margin-bottom:14px">📚 Góp ý theo bộ câu hỏi</div>
+    <div style="font-size:1.26rem;font-weight:700;color:var(--text);margin-bottom:14px">📚 Góp ý theo bộ câu hỏi</div>
     ${['dc','dt','vs'].map(b=>{
       const bk=BK[b],col=bankCol(b);
       const r=_fbBankRating[b]||0;
       return `<div style="border-bottom:1px solid rgba(80,140,255,.12);padding-bottom:14px;margin-bottom:14px">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
-          <span style="font-size:1.25rem">${bk.secs[0]?.i||'📖'}</span>
-          <span style="font-size:0.99rem;font-weight:700;color:${col}">${getBankTitle(b)}</span>
+          <span style="font-size:1.51rem">${bk.secs[0]?.i||'📖'}</span>
+          <span style="font-size:1.2rem;font-weight:700;color:${col}">${getBankTitle(b)}</span>
         </div>
         <div style="text-align:center;margin-bottom:8px">
           <div class="star-row" id="bank-stars-${b}">${[1,2,3,4,5].map(n=>
@@ -2135,8 +2178,8 @@ function renderFeedbackTab(){
             .map(t=>`<button class="fb-tag" onclick="this.classList.toggle('on')">${t}</button>`).join('')}
         </div>
         <textarea class="fb-textarea" id="bank-text-${b}" placeholder="Câu nào chưa rõ? Góp ý nội dung bộ ${getBankTitle(b)}..." rows="2" style="min-height:56px"></textarea>
-        <button onclick="submitBankFb('${b}')" style="width:100%;margin-top:8px;background:${col}20;color:${col};border:1px solid ${col}50;border-radius:9px;padding:9px;font-family:'Readex Pro',sans-serif;font-size:0.92rem;font-weight:600;cursor:pointer">📤 Gửi góp ý bộ này</button>
-        <div id="bank-sent-${b}" style="display:none;text-align:center;padding:8px;font-size:0.92rem;color:#6ddc94">✅ Đã gửi!</div>
+        <button onclick="submitBankFb('${b}')" style="width:100%;margin-top:8px;background:${col}20;color:${col};border:1px solid ${col}50;border-radius:9px;padding:9px;font-family:'Readex Pro',sans-serif;font-size:1.11rem;font-weight:600;cursor:pointer">📤 Gửi góp ý bộ này</button>
+        <div id="bank-sent-${b}" style="display:none;text-align:center;padding:8px;font-size:1.11rem;color:#6ddc94">✅ Đã gửi!</div>
       </div>`;
     }).join('')}
   </div>
@@ -2145,8 +2188,8 @@ function renderFeedbackTab(){
   ${all.length>0?`
   <div class="glass" style="padding:16px;margin-bottom:10px">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-      <div style="font-size:1.04rem;font-weight:700;color:var(--text)">📜 Góp ý đã gửi (${all.length})</div>
-      <button onclick="if(confirm('Xóa tất cả góp ý?')){localStorage.removeItem('${FB_KEY}');renderFeedbackTab();}" style="background:none;border:none;color:rgba(220,90,90,.5);font-size:0.81rem;cursor:pointer;font-family:'Readex Pro',sans-serif">🗑 Xóa tất cả</button>
+      <div style="font-size:1.26rem;font-weight:700;color:var(--text)">📜 Góp ý đã gửi (${all.length})</div>
+      <button onclick="if(confirm('Xóa tất cả góp ý?')){localStorage.removeItem('${FB_KEY}');renderFeedbackTab();}" style="background:none;border:none;color:rgba(220,90,90,.5);font-size:0.98rem;cursor:pointer;font-family:'Readex Pro',sans-serif">🗑 Xóa tất cả</button>
     </div>
     ${all.slice(0,20).map(f=>`
     <div class="fb-card">
@@ -2158,7 +2201,7 @@ function renderFeedbackTab(){
       ${f.text?`<div class="fb-body">${f.text}</div>`:''}
       ${f.tags?.length?`<div class="fb-tags-row">${f.tags.map(t=>`<span class="fb-tag-sm">${t}</span>`).join('')}</div>`:''}
     </div>`).join('')}
-    ${all.length>20?`<div style="text-align:center;font-size:0.88rem;color:var(--muted);padding:8px">... và ${all.length-20} góp ý khác</div>`:''}
+    ${all.length>20?`<div style="text-align:center;font-size:1.06rem;color:var(--muted);padding:8px">... và ${all.length-20} góp ý khác</div>`:''}
   </div>`:''}
   `;
 }
@@ -2235,35 +2278,35 @@ function renderHome_page(){
   const logCount=loadLog().length;
   p.innerHTML=`
   <div class="glass" style="padding:22px 20px;margin-bottom:10px;text-align:center">
-    <div style="font-size:2.29rem;margin-bottom:8px">🎴</div>
-    <div style="font-family:'Noto Serif',serif;font-size:1.98rem;color:var(--gold);margin-bottom:4px">Lục Hào Luyện Tập</div>
-    <div style="font-size:0.82rem;color:rgba(200,170,75,.7);margin-bottom:6px;font-style:italic">Designed by Backham Ngô · <a href="mailto:notabin@gmail.com" style="color:rgba(200,170,75,.85);text-decoration:none">notabin@gmail.com</a></div>
-    <div style="font-size:0.92rem;color:var(--muted);margin-bottom:14px">Kinh Dịch · Nạp Giáp · Lục Hào</div>
-    <div style="font-size:1.06rem;color:var(--text);margin-bottom:16px">${greeting}</div>
+    <div style="font-size:2.77rem;margin-bottom:8px">🎴</div>
+    <div style="font-family:'Noto Serif',serif;font-size:2.4rem;color:var(--gold);margin-bottom:4px">Lục Hào Luyện Tập</div>
+    <div style="font-size:0.99rem;color:rgba(200,170,75,.7);margin-bottom:6px;font-style:italic">Designed by Backham Ngô · <a href="mailto:notabin@gmail.com" style="color:rgba(200,170,75,.85);text-decoration:none">notabin@gmail.com</a></div>
+    <div style="font-size:1.11rem;color:var(--muted);margin-bottom:14px">Kinh Dịch · Nạp Giáp · Lục Hào</div>
+    <div style="font-size:1.28rem;color:var(--text);margin-bottom:16px">${greeting}</div>
     <div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap">
-      <div style="text-align:center"><div style="font-size:1.67rem;font-weight:800;color:var(--gold)">${totalQ}</div><div style="font-size:0.81rem;color:var(--muted)">Câu hỏi</div></div>
+      <div style="text-align:center"><div style="font-size:2.02rem;font-weight:800;color:var(--gold)">${totalQ}</div><div style="font-size:0.98rem;color:var(--muted)">Câu hỏi</div></div>
       <div style="width:1px;background:rgba(80,140,255,.2)"></div>
-      <div style="text-align:center"><div style="font-size:1.67rem;font-weight:800;color:var(--teal)">3</div><div style="font-size:0.81rem;color:var(--muted)">Bộ học</div></div>
+      <div style="text-align:center"><div style="font-size:2.02rem;font-weight:800;color:var(--teal)">3</div><div style="font-size:0.98rem;color:var(--muted)">Bộ học</div></div>
       <div style="width:1px;background:rgba(80,140,255,.2)"></div>
-      <div style="text-align:center"><div style="font-size:1.67rem;font-weight:800;color:#6ddc94">${logCount}</div><div style="font-size:0.81rem;color:var(--muted)">Phiên học</div></div>
+      <div style="text-align:center"><div style="font-size:2.02rem;font-weight:800;color:#6ddc94">${logCount}</div><div style="font-size:0.98rem;color:var(--muted)">Phiên học</div></div>
     </div>
   </div>
   <div class="glass" style="padding:16px;margin-bottom:10px">
-    <div style="font-size:1.04rem;font-weight:700;color:var(--text);margin-bottom:12px">🚀 Bắt đầu nhanh</div>
+    <div style="font-size:1.26rem;font-weight:700;color:var(--text);margin-bottom:12px">🚀 Bắt đầu nhanh</div>
     ${banks.map(bk=>{const w=loadWrong(bk.id).size;return `
     <div onclick="sw('${bk.id}')" style="display:flex;align-items:center;gap:12px;padding:11px 13px;background:rgba(8,18,42,.7);border:1px solid rgba(80,140,255,.1);border-left:3px solid ${bk.col};border-radius:11px;cursor:pointer;margin-bottom:7px;transition:background .18s"
       onmouseover="this.style.background='rgba(20,40,80,.8)'" onmouseout="this.style.background='rgba(8,18,42,.7)'">
-      <span style="font-size:1.46rem">${bk.icon}</span>
-      <div style="flex:1"><div style="font-size:0.99rem;font-weight:700;color:${bk.col}">${bk.title}</div>
-      <div style="font-size:0.81rem;color:var(--muted);margin-top:2px">${bk.sub}</div></div>
+      <span style="font-size:1.77rem">${bk.icon}</span>
+      <div style="flex:1"><div style="font-size:1.2rem;font-weight:700;color:${bk.col}">${bk.title}</div>
+      <div style="font-size:0.98rem;color:var(--muted);margin-top:2px">${bk.sub}</div></div>
       <div style="text-align:right;flex-shrink:0">
-        <div style="font-size:0.88rem;font-weight:700;color:${bk.col}">${BK[bk.id].q.length} câu</div>
-        ${w>0?`<div style="font-size:0.75rem;color:#cc99ff">${w}✗ cần ôn</div>`:'<div style="font-size:0.75rem;color:#6ddc94">✓</div>'}
+        <div style="font-size:1.06rem;font-weight:700;color:${bk.col}">${BK[bk.id].q.length} câu</div>
+        ${w>0?`<div style="font-size:0.91rem;color:#cc99ff">${w}✗ cần ôn</div>`:'<div style="font-size:0.91rem;color:#6ddc94">✓</div>'}
       </div>
     </div>`;}).join('')}
   </div>
   <div class="glass" style="padding:16px;margin-bottom:10px">
-    <div style="font-size:1.04rem;font-weight:700;color:var(--text);margin-bottom:12px">📖 Hướng dẫn sử dụng</div>
+    <div style="font-size:1.26rem;font-weight:700;color:var(--text);margin-bottom:12px">📖 Hướng dẫn sử dụng</div>
     ${[
       ['🎯','Chọn bộ học','Nhấn menu bên trái: Địa Chi, Dụng Thần hoặc Vượng Suy'],
       ['📚','Chọn phần học','Luyện từng chủ đề hoặc toàn bộ — có hiển thị tiến độ đúng/sai'],
@@ -2273,20 +2316,20 @@ function renderHome_page(){
       ['💬','Góp ý & đánh giá','Nhấn Góp ý để đánh giá nội dung và đề xuất cải tiến'],
     ].map(([i,t,d])=>`
     <div style="display:flex;gap:10px;padding:9px 0;border-bottom:1px solid rgba(80,140,255,.07)">
-      <span style="font-size:1.25rem;flex-shrink:0">${i}</span>
-      <div><div style="font-size:0.92rem;font-weight:600;color:var(--text);margin-bottom:2px">${t}</div>
-      <div style="font-size:0.84rem;color:var(--muted);line-height:1.5">${d}</div></div>
+      <span style="font-size:1.51rem;flex-shrink:0">${i}</span>
+      <div><div style="font-size:1.11rem;font-weight:600;color:var(--text);margin-bottom:2px">${t}</div>
+      <div style="font-size:1.02rem;color:var(--muted);line-height:1.5">${d}</div></div>
     </div>`).join('')}
   </div>
   <div class="glass" style="padding:16px;margin-bottom:10px;border-color:rgba(40,160,100,.2);background:rgba(8,22,12,.7)">
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-      <span style="font-size:1.46rem">🔮</span>
-      <div style="flex:1"><div style="font-size:1.04rem;font-weight:700;color:#6ddc94">Gieo quẻ & Luận quẻ</div>
-      <div style="font-size:0.84rem;color:var(--muted)">Đang phát triển</div></div>
-      <span style="background:rgba(40,160,100,.2);color:#6ddc94;border:1px solid rgba(40,160,100,.3);border-radius:20px;padding:2px 10px;font-size:0.78rem">Soon</span>
+      <span style="font-size:1.77rem">🔮</span>
+      <div style="flex:1"><div style="font-size:1.26rem;font-weight:700;color:#6ddc94">Gieo quẻ & Luận quẻ</div>
+      <div style="font-size:1.02rem;color:var(--muted)">Đang phát triển</div></div>
+      <span style="background:rgba(40,160,100,.2);color:#6ddc94;border:1px solid rgba(40,160,100,.3);border-radius:20px;padding:2px 10px;font-size:0.94rem">Soon</span>
     </div>
-    <div style="font-size:0.88rem;color:var(--muted);line-height:1.6;margin-bottom:10px">Hỗ trợ 3 phương pháp gieo quẻ kết hợp phân tích AI.</div>
-    <button onclick="sw('software')" style="background:rgba(40,160,100,.15);border:1px solid rgba(40,160,100,.3);color:#6ddc94;border-radius:9px;padding:8px 16px;font-family:'Readex Pro',sans-serif;font-size:0.88rem;cursor:pointer">Xem lộ trình →</button>
+    <div style="font-size:1.06rem;color:var(--muted);line-height:1.6;margin-bottom:10px">Hỗ trợ 3 phương pháp gieo quẻ kết hợp phân tích AI.</div>
+    <button onclick="sw('software')" style="background:rgba(40,160,100,.15);border:1px solid rgba(40,160,100,.3);color:#6ddc94;border-radius:9px;padding:8px 16px;font-family:'Readex Pro',sans-serif;font-size:1.06rem;cursor:pointer">Xem lộ trình →</button>
   </div>
   <div style="height:16px"></div>`;
 }
@@ -2296,12 +2339,12 @@ function renderSoftware(){
   const p=document.getElementById('pane-software');if(!p)return;
   p.innerHTML=`
   <div class="glass" style="padding:22px 20px;margin-bottom:10px;text-align:center">
-    <div style="font-size:3.12rem;margin-bottom:10px">🔮</div>
-    <div style="font-family:'Noto Serif',serif;font-size:1.77rem;color:var(--gold);margin-bottom:6px">Phần mềm Lục Hào</div>
-    <div style="font-size:0.92rem;color:var(--muted)">Gieo quẻ · Luận quẻ · Phân tích AI</div>
+    <div style="font-size:3.77rem;margin-bottom:10px">🔮</div>
+    <div style="font-family:'Noto Serif',serif;font-size:2.14rem;color:var(--gold);margin-bottom:6px">Phần mềm Lục Hào</div>
+    <div style="font-size:1.11rem;color:var(--muted)">Gieo quẻ · Luận quẻ · Phân tích AI</div>
   </div>
   <div class="glass" style="padding:16px;margin-bottom:10px">
-    <div style="font-size:1.04rem;font-weight:700;color:var(--text);margin-bottom:14px">🗺️ Lộ trình phát triển</div>
+    <div style="font-size:1.26rem;font-weight:700;color:var(--text);margin-bottom:14px">🗺️ Lộ trình phát triển</div>
     ${[
       ['🎲','Gieo quẻ Lục Hào','3 phương pháp: Tung đồng xu, Mai Hoa Dịch Số, Số Seri Tiền. Tự động nạp Can Chi theo Tiết Khí.','Đang phát triển','#f0c94b'],
       ['📖','Luận quẻ tự động','Xác định Dụng Thần, xét Vượng Suy, tính Căn Lực, đoán Ứng Kỳ theo nguyên tắc Lục Hào Nạp Giáp.','Lên kế hoạch','#88c4f0'],
@@ -2309,24 +2352,39 @@ function renderSoftware(){
       ['📋','Lưu lịch sử quẻ','Lưu toàn bộ lịch sử gieo quẻ theo ngày, xuất/in kết quả, ghi chú đối chiếu thực tế.','Lên kế hoạch','#6ddc94'],
     ].map(([icon,title,desc,status,col])=>`
     <div style="display:flex;gap:12px;padding:12px;background:rgba(8,18,42,.6);border:1px solid rgba(80,140,255,.1);border-radius:11px;margin-bottom:8px">
-      <span style="font-size:1.56rem;flex-shrink:0">${icon}</span>
+      <span style="font-size:1.89rem;flex-shrink:0">${icon}</span>
       <div style="flex:1">
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px">
-          <span style="font-size:0.99rem;font-weight:700;color:var(--text)">${title}</span>
-          <span style="background:${col}20;color:${col};border:1px solid ${col}40;border-radius:20px;padding:1px 9px;font-size:0.78rem">${status}</span>
+          <span style="font-size:1.2rem;font-weight:700;color:var(--text)">${title}</span>
+          <span style="background:${col}20;color:${col};border:1px solid ${col}40;border-radius:20px;padding:1px 9px;font-size:0.94rem">${status}</span>
         </div>
-        <div style="font-size:0.85rem;color:var(--muted);line-height:1.6">${desc}</div>
+        <div style="font-size:1.03rem;color:var(--muted);line-height:1.6">${desc}</div>
       </div>
     </div>`).join('')}
   </div>
   <div class="glass" style="padding:16px;margin-bottom:10px;border-color:rgba(40,160,100,.2)">
-    <div style="font-size:1.04rem;font-weight:700;color:#6ddc94;margin-bottom:10px">💬 Bạn muốn tính năng gì?</div>
-    <div style="font-size:0.88rem;color:var(--muted);margin-bottom:12px;line-height:1.6">Góp ý giúp chúng tôi ưu tiên phát triển đúng tính năng bạn cần nhất.</div>
-    <button onclick="sw('feedback')" style="background:rgba(40,160,100,.15);border:1px solid rgba(40,160,100,.3);color:#6ddc94;border-radius:9px;padding:10px 20px;font-family:'Readex Pro',sans-serif;font-size:0.94rem;font-weight:600;cursor:pointer">💬 Gửi góp ý tính năng →</button>
+    <div style="font-size:1.26rem;font-weight:700;color:#6ddc94;margin-bottom:10px">💬 Bạn muốn tính năng gì?</div>
+    <div style="font-size:1.06rem;color:var(--muted);margin-bottom:12px;line-height:1.6">Góp ý giúp chúng tôi ưu tiên phát triển đúng tính năng bạn cần nhất.</div>
+    <button onclick="sw('feedback')" style="background:rgba(40,160,100,.15);border:1px solid rgba(40,160,100,.3);color:#6ddc94;border-radius:9px;padding:10px 20px;font-family:'Readex Pro',sans-serif;font-size:1.14rem;font-weight:600;cursor:pointer">💬 Gửi góp ý tính năng →</button>
   </div>
   <div style="height:16px"></div>`;
 }
 
+
+function toggleMobileMore(){
+  const m=document.getElementById('mobile-more');
+  const ov=document.getElementById('mobile-more-overlay');
+  if(!m)return;
+  const open=m.classList.contains('open');
+  m.classList.toggle('open',!open);
+  if(ov)ov.classList.toggle('open',!open);
+}
+function closeMobileMore(){
+  const m=document.getElementById('mobile-more');
+  const ov=document.getElementById('mobile-more-overlay');
+  if(m)m.classList.remove('open');
+  if(ov)ov.classList.remove('open');
+}
 
 function init(){
   BK.dc.def=DC_DEF;BK.dt.def=DT_DEF;BK.vs.def=VS_DEF;
@@ -2364,23 +2422,45 @@ function init(){
   hideLoginScreen();
 
 
-  // Event delegation: catch clicks/taps on any sidebar nav item — works even if inline onclick fails
+  // ── Sidebar navigation ──
+  // iOS Safari: 'click' doesn't fire on non-interactive children (<span>, text).
+  // Fix: use 'touchend' as primary on mobile, 'click' as fallback on desktop.
+  // Prevent double-firing by tracking touch.
   const sidebar=document.getElementById('sidebar');
   if(sidebar){
-    const handleNav=(e)=>{
-      const item=e.target.closest('.sb-item[data-nav]');
+    let _touched=false;
+
+    function _doNav(e){
+      const item=e.target.closest('[data-nav]');
+      if(!item)return;
+      e.preventDefault();
+      e.stopPropagation();
+      const tab=item.getAttribute('data-nav');
+      if(tab){ sw(tab); closeSidebar(); }
+    }
+
+    // touchend fires on ALL elements on iOS — primary mobile handler
+    sidebar.addEventListener('touchend',function(e){
+      const item=e.target.closest('[data-nav]');
       if(item){
-        e.preventDefault();
-        const tab=item.getAttribute('data-nav');
-        if(tab) sw(tab);
+        _touched=true;
+        _doNav(e);
+        // reset after click event would have fired
+        setTimeout(()=>{ _touched=false; },400);
       }
-    };
-    sidebar.addEventListener('click',handleNav);
-    // Also handle keyboard for accessibility
-    sidebar.addEventListener('keydown',(e)=>{
+    },{passive:false});
+
+    // click — primary desktop handler, skip if already handled by touchend
+    sidebar.addEventListener('click',function(e){
+      if(_touched)return;
+      _doNav(e);
+    });
+
+    // keyboard
+    sidebar.addEventListener('keydown',function(e){
       if(e.key==='Enter'||e.key===' '){
-        const item=e.target.closest('.sb-item[data-nav]');
-        if(item){e.preventDefault();sw(item.getAttribute('data-nav'));}
+        const item=e.target.closest('[data-nav]');
+        if(item){e.preventDefault();sw(item.getAttribute('data-nav'));closeSidebar();}
       }
     });
   }
@@ -2392,5 +2472,22 @@ function init(){
 init();
 
 </script>
+
+<!-- BOTTOM TAB BAR (mobile only) -->
+<div id="bottom-nav">
+  <button data-nav="home" onclick="sw('home')"><span class="bico">🏠</span><span class="blbl">Trang chủ</span></button>
+  <button data-nav="dc" onclick="sw('dc')"><span class="bico">🎯</span><span class="blbl">Địa Chi</span></button>
+  <button data-nav="dt" onclick="sw('dt')"><span class="bico">🔮</span><span class="blbl">Dụng Thần</span></button>
+  <button data-nav="vs" onclick="sw('vs')"><span class="bico">⚡</span><span class="blbl">Vượng Suy</span></button>
+  <button id="btn-more-mobile" onclick="toggleMobileMore()"><span class="bico">⋯</span><span class="blbl">Thêm</span></button>
+</div>
+<!-- More menu -->
+<div id="mobile-more-overlay" onclick="closeMobileMore()"></div>
+<div id="mobile-more">
+  <button data-nav="report" onclick="sw('report');closeMobileMore()"><span class="mico">📊</span>Báo cáo</button>
+  <button data-nav="feedback" onclick="sw('feedback');closeMobileMore()"><span class="mico">💬</span>Góp ý</button>
+  <button data-nav="software" onclick="sw('software');closeMobileMore()"><span class="mico">🔮</span>Gieo & Luận quẻ</button>
+  <button data-nav="admin" onclick="sw('admin');closeMobileMore()"><span class="mico">⚙️</span>Admin</button>
+</div>
 </body>
 </html>
